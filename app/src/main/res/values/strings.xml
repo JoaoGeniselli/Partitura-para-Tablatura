@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Chords Dictionary</string>
+    <string name="tab_indicator_high_e">e</string>
+    <string name="tab_indicator_b">B</string>
+    <string name="tab_indicator_g">G</string>
+    <string name="tab_indicator_d">D</string>
+    <string name="tab_indicator_a">A</string>
+    <string name="tab_indicator_low_e">E</string>
+</resources>
