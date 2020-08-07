@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/main_line_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/main_line_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_line_1" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/main_line_3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_line_2" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/main_line_4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_line_3" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/main_line_5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_line_4" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/bar_1"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_5"
+        app:layout_constraintStart_toStartOf="@id/main_line_1"
+        app:layout_constraintTop_toTopOf="@id/main_line_1"
+        app:orientation="vertical" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/bar_2"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_5"
+        app:layout_constraintEnd_toEndOf="@id/main_line_1"
+        app:layout_constraintTop_toTopOf="@id/main_line_1"
+        app:orientation="vertical" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

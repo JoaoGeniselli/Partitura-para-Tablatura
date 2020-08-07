@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tab_indicator_high_e"
-        app:layout_constraintBottom_toBottomOf="@id/line_1"
-        app:layout_constraintEnd_toStartOf="@id/line_1"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_1"
+        app:layout_constraintEnd_toStartOf="@id/main_line_1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/line_1" />
+        app:layout_constraintTop_toTopOf="@id/main_line_1" />
 
     <TextView
         android:id="@+id/line_indicator_2"
@@ -23,10 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tab_indicator_b"
-        app:layout_constraintBottom_toBottomOf="@id/line_2"
-        app:layout_constraintEnd_toStartOf="@id/line_2"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_2"
+        app:layout_constraintEnd_toStartOf="@id/main_line_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/line_2" />
+        app:layout_constraintTop_toTopOf="@id/main_line_2" />
 
     <TextView
         android:id="@+id/line_indicator_3"
@@ -34,10 +34,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tab_indicator_g"
-        app:layout_constraintBottom_toBottomOf="@id/line_3"
-        app:layout_constraintEnd_toStartOf="@id/line_3"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_3"
+        app:layout_constraintEnd_toStartOf="@id/main_line_3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/line_3" />
+        app:layout_constraintTop_toTopOf="@id/main_line_3" />
 
     <TextView
         android:id="@+id/line_indicator_4"
@@ -45,10 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tab_indicator_d"
-        app:layout_constraintBottom_toBottomOf="@id/line_4"
-        app:layout_constraintEnd_toStartOf="@id/line_4"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_4"
+        app:layout_constraintEnd_toStartOf="@id/main_line_4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/line_4" />
+        app:layout_constraintTop_toTopOf="@id/main_line_4" />
 
     <TextView
         android:id="@+id/line_indicator_5"
@@ -56,10 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tab_indicator_a"
-        app:layout_constraintBottom_toBottomOf="@id/line_5"
-        app:layout_constraintEnd_toStartOf="@id/line_5"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_5"
+        app:layout_constraintEnd_toStartOf="@id/main_line_5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/line_5" />
+        app:layout_constraintTop_toTopOf="@id/main_line_5" />
 
     <TextView
         android:id="@+id/line_indicator_6"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="@id/line_6" />
 
     <com.dosei.chordsdictionary.LineView
-        android:id="@+id/line_1"
+        android:id="@+id/main_line_1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/tab_spacing"
@@ -84,7 +84,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.dosei.chordsdictionary.LineView
-        android:id="@+id/line_2"
+        android:id="@+id/main_line_2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/tab_spacing"
@@ -92,10 +92,10 @@
         android:layout_marginEnd="@dimen/tab_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line_1" />
+        app:layout_constraintTop_toBottomOf="@id/main_line_1" />
 
     <com.dosei.chordsdictionary.LineView
-        android:id="@+id/line_3"
+        android:id="@+id/main_line_3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/tab_spacing"
@@ -103,10 +103,10 @@
         android:layout_marginEnd="@dimen/tab_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line_2" />
+        app:layout_constraintTop_toBottomOf="@id/main_line_2" />
 
     <com.dosei.chordsdictionary.LineView
-        android:id="@+id/line_4"
+        android:id="@+id/main_line_4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/tab_spacing"
@@ -114,10 +114,10 @@
         android:layout_marginEnd="@dimen/tab_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line_3" />
+        app:layout_constraintTop_toBottomOf="@id/main_line_3" />
 
     <com.dosei.chordsdictionary.LineView
-        android:id="@+id/line_5"
+        android:id="@+id/main_line_5"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="@dimen/tab_spacing"
@@ -125,7 +125,7 @@
         android:layout_marginEnd="@dimen/tab_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line_4" />
+        app:layout_constraintTop_toBottomOf="@id/main_line_4" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/line_6"
@@ -137,15 +137,15 @@
         android:layout_marginEnd="@dimen/tab_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line_5" />
+        app:layout_constraintTop_toBottomOf="@id/main_line_5" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/bar_1"
         android:layout_width="1dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@id/line_6"
-        app:layout_constraintStart_toStartOf="@id/line_1"
-        app:layout_constraintTop_toTopOf="@id/line_1"
+        app:layout_constraintStart_toStartOf="@id/main_line_1"
+        app:layout_constraintTop_toTopOf="@id/main_line_1"
         app:orientation="vertical" />
 
     <com.dosei.chordsdictionary.LineView
@@ -153,8 +153,8 @@
         android:layout_width="1dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@id/line_6"
-        app:layout_constraintEnd_toEndOf="@id/line_1"
-        app:layout_constraintTop_toTopOf="@id/line_1"
+        app:layout_constraintEnd_toEndOf="@id/main_line_1"
+        app:layout_constraintTop_toTopOf="@id/main_line_1"
         app:orientation="vertical" />
 
     <TextView
@@ -162,10 +162,10 @@
         style="@style/TabNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/line_1"
-        app:layout_constraintEnd_toEndOf="@id/line_1"
-        app:layout_constraintStart_toStartOf="@id/line_1"
-        app:layout_constraintTop_toTopOf="@id/line_1"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_1"
+        app:layout_constraintEnd_toEndOf="@id/main_line_1"
+        app:layout_constraintStart_toStartOf="@id/main_line_1"
+        app:layout_constraintTop_toTopOf="@id/main_line_1"
         tools:text="0" />
 
     <TextView
@@ -173,10 +173,10 @@
         style="@style/TabNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/line_2"
-        app:layout_constraintEnd_toEndOf="@id/line_2"
-        app:layout_constraintStart_toStartOf="@id/line_2"
-        app:layout_constraintTop_toTopOf="@id/line_2"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_2"
+        app:layout_constraintEnd_toEndOf="@id/main_line_2"
+        app:layout_constraintStart_toStartOf="@id/main_line_2"
+        app:layout_constraintTop_toTopOf="@id/main_line_2"
         tools:text="5" />
 
     <TextView
@@ -184,10 +184,10 @@
         style="@style/TabNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/line_3"
-        app:layout_constraintEnd_toEndOf="@id/line_3"
-        app:layout_constraintStart_toStartOf="@id/line_3"
-        app:layout_constraintTop_toTopOf="@id/line_3"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_3"
+        app:layout_constraintEnd_toEndOf="@id/main_line_3"
+        app:layout_constraintStart_toStartOf="@id/main_line_3"
+        app:layout_constraintTop_toTopOf="@id/main_line_3"
         tools:text="9" />
 
     <TextView
@@ -195,10 +195,10 @@
         style="@style/TabNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/line_4"
-        app:layout_constraintEnd_toEndOf="@id/line_4"
-        app:layout_constraintStart_toStartOf="@id/line_4"
-        app:layout_constraintTop_toTopOf="@id/line_4"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_4"
+        app:layout_constraintEnd_toEndOf="@id/main_line_4"
+        app:layout_constraintStart_toStartOf="@id/main_line_4"
+        app:layout_constraintTop_toTopOf="@id/main_line_4"
         tools:text="14" />
 
     <TextView
@@ -206,10 +206,10 @@
         style="@style/TabNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/line_5"
-        app:layout_constraintEnd_toEndOf="@id/line_5"
-        app:layout_constraintStart_toStartOf="@id/line_5"
-        app:layout_constraintTop_toTopOf="@id/line_5"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_5"
+        app:layout_constraintEnd_toEndOf="@id/main_line_5"
+        app:layout_constraintStart_toStartOf="@id/main_line_5"
+        app:layout_constraintTop_toTopOf="@id/main_line_5"
         tools:text="19" />
 
     <TextView
