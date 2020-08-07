@@ -3,7 +3,7 @@
     <dimen name="score_line_button_height">16dp</dimen>
     <dimen name="score_line_height">1dp</dimen>
     <dimen name="tab_spacing">24dp</dimen>
-    <dimen name="score_spacing">16dp</dimen>
+    <dimen name="score_spacing">15dp</dimen>
 
 
 </resources>

@@ -1,9 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/upper_line_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/upper_line_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upper_line_1" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/upper_line_3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upper_line_2" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/upper_line_4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upper_line_3" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/upper_line_5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upper_line_4" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/main_line_1"
@@ -14,7 +69,7 @@
         android:layout_marginEnd="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/upper_line_5" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/main_line_2"
@@ -77,5 +132,59 @@
         app:layout_constraintEnd_toEndOf="@id/main_line_1"
         app:layout_constraintTop_toTopOf="@id/main_line_1"
         app:orientation="vertical" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/lower_line_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_line_5" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/lower_line_2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lower_line_1" />
+
+    <com.dosei.chordsdictionary.LineView
+        android:id="@+id/lower_line_3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/score_spacing"
+        android:layout_marginTop="@dimen/score_spacing"
+        android:layout_marginEnd="@dimen/score_spacing"
+        android:layout_marginBottom="@dimen/score_spacing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lower_line_2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintGuide_begin="31.5dp" />
+
+    <ImageView
+        android:id="@+id/note_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_note"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/main_line_1"
+        app:layout_constraintStart_toStartOf="@id/main_line_1"
+        app:layout_constraintTop_toTopOf="@id/guideline"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
