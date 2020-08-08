@@ -8,7 +8,4 @@
     <dimen name="inter_item_vertical_margin">16dp</dimen>
     <dimen name="large_vertical_margin">32dp</dimen>
     <dimen name="large_text_size">21sp</dimen>
-
-
-
 </resources>

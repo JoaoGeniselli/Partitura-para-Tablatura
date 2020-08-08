@@ -146,16 +146,3 @@ data class GuitarPositions(
     val chord5: Int? = null,
     val chord6: Int? = null
 )
-
-object TrebleClef {
-    private const val highLineLimitPosition = 8
-    private const val lowLineLimitPosition = -2
-
-    val sheetLineRange = IntRange(lowLineLimitPosition, highLineLimitPosition)
-}
-
-data class TrebleClefPosition(
-    val positionsOverReferenceG: Int
-) {
-    fun hasAdditionalLine() = !TrebleClef.sheetLineRange.contains(positionsOverReferenceG)
-}
