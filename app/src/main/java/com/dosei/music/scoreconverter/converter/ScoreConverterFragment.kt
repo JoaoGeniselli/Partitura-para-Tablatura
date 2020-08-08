@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.converter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
+import com.dosei.music.scoreconverter.*
 import kotlinx.android.synthetic.main.fragment_score_converter.*
 import kotlinx.android.synthetic.main.fragment_score_converter.seek_bar
 

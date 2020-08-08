@@ -2,6 +2,7 @@ package com.dosei.music.scoreconverter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +15,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initConverter() {
-        scoreConverterFragment = ScoreConverterFragment()
+        scoreConverterFragment =
+            ScoreConverterFragment()
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, scoreConverterFragment, "ScoreConverter")
