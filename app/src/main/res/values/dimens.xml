@@ -5,7 +5,9 @@
     <dimen name="tab_spacing">24dp</dimen>
     <dimen name="score_spacing">15dp</dimen>
     <dimen name="horizontal_margin">16dp</dimen>
+    <dimen name="horizontal_margin_seek_bar">6dp</dimen>
     <dimen name="inter_item_vertical_margin">16dp</dimen>
     <dimen name="large_vertical_margin">32dp</dimen>
     <dimen name="large_text_size">21sp</dimen>
+    <dimen name="common_margin">8dp</dimen>
 </resources>

@@ -9,4 +9,7 @@
     <string name="tab_indicator_low_e" translatable="false">E</string>
 
     <string name="current_note">Current note: %1s</string>
+
+    <string name="score">Score</string>
+    <string name="tablature">Tablature</string>
 </resources>
