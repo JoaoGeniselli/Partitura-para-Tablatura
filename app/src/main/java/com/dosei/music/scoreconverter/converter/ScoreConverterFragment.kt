@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.dosei.music.scoreconverter.*
 import kotlinx.android.synthetic.main.fragment_score_converter.*
 import kotlinx.android.synthetic.main.fragment_score_converter.seek_bar
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
 
+    private val viewModel by viewModel<ScoreConverterViewModel>()
     private lateinit var scoreFragment: ScoreFragment
     private lateinit var tablatureFragment: TablatureFragment
-    private val notes = initNaturalNotes()
-    private lateinit var currentNote: GuitarNote
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +26,38 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initChildFragments()
+        initSeekBar()
+
+        viewModel.apply {
+            lifecycle.addObserver(this)
+            currentNote.observe(
+                this@ScoreConverterFragment,
+                Observer { updateNote(it) }
+            )
+            progressMax.observe(
+                this@ScoreConverterFragment,
+                Observer { seek_bar?.max = it }
+            )
+            savedInstanceState?.getInt(STATE_KEY_PROGRESS)?.let {
+                onSavedIndexRetrieved(it)
+            }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(STATE_KEY_PROGRESS, seek_bar?.progress ?: 0)
+    }
+
+    private fun initSeekBar() {
+        seek_bar?.apply {
+            progress = 0
+            setOnSeekBarChangeListener(this@ScoreConverterFragment)
+        }
+    }
+
+    private fun initChildFragments() {
         scoreFragment = ScoreFragment()
         tablatureFragment = TablatureFragment()
 
@@ -37,33 +70,24 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
                 .replace(R.id.tablature_container, tablatureFragment, "Tablature")
                 .commit()
         }
+    }
 
-        seek_bar?.apply {
-            max = notes.size - 1
-            progress = 0
-            setOnSeekBarChangeListener(this@ScoreConverterFragment)
+    private fun updateNote(note: CurrentNote?) {
+        note?.run {
+            text_current_note.text = getString(R.string.current_note, name)
+            scoreFragment.notePosition = scorePosition
+            tablatureFragment.positions = tablaturePositions
         }
-
-        currentNote = notes.first()
     }
 
-    override fun onResume() {
-        super.onResume()
-        updateCurrentNote(currentNote)
-    }
-
-    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-        val selectedNote = notes[seek_bar.progress]
-        updateCurrentNote(selectedNote)
-    }
-
-    private fun updateCurrentNote(note: GuitarNote) {
-        currentNote = note
-        text_current_note.text = getString(R.string.current_note, note.name)
-        scoreFragment.notePosition = notes.lastIndex - notes.indexOf(note)
-        tablatureFragment.positions = note.positions
+    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        viewModel.onProgressUpdate(progress)
     }
 
     override fun onStartTrackingTouch(p0: SeekBar?) = Unit
     override fun onStopTrackingTouch(p0: SeekBar?) = Unit
+
+    companion object {
+        private const val STATE_KEY_PROGRESS = "progress"
+    }
 }

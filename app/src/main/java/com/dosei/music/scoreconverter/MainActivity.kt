@@ -6,20 +6,27 @@ import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var scoreConverterFragment: ScoreConverterFragment
+    private var scoreConverterFragment: ScoreConverterFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initConverter()
+        savedInstanceState?.let {
+            scoreConverterFragment = supportFragmentManager.findFragmentByTag(
+                SCORE_CONVERTER_TAG
+            ) as? ScoreConverterFragment
+        } ?: initConverter()
     }
 
     private fun initConverter() {
-        scoreConverterFragment =
-            ScoreConverterFragment()
-
+        val fragment = ScoreConverterFragment()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, scoreConverterFragment, "ScoreConverter")
+            .replace(R.id.main_container, fragment, SCORE_CONVERTER_TAG)
             .commit()
+        scoreConverterFragment = fragment
+    }
+
+    companion object {
+        private const val SCORE_CONVERTER_TAG = "ScoreConverter"
     }
 }
