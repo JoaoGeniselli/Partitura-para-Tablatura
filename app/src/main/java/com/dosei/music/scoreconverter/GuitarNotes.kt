@@ -1,4 +1,4 @@
-package com.dosei.chordsdictionary
+package com.dosei.music.scoreconverter
 
 data class GuitarNote(
     val name: String,

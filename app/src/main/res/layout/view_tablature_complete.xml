@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/line_6" />
 
-    <com.dosei.chordsdictionary.LineView
+    <com.dosei.music.scoreconverter.LineView
         android:id="@+id/main_line_1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -83,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.dosei.chordsdictionary.LineView
+    <com.dosei.music.scoreconverter.LineView
         android:id="@+id/main_line_2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -94,7 +94,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_1" />
 
-    <com.dosei.chordsdictionary.LineView
+    <com.dosei.music.scoreconverter.LineView
         android:id="@+id/main_line_3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -105,7 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_2" />
 
-    <com.dosei.chordsdictionary.LineView
+    <com.dosei.music.scoreconverter.LineView
         android:id="@+id/main_line_4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -116,7 +116,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_3" />
 
-    <com.dosei.chordsdictionary.LineView
+    <com.dosei.music.scoreconverter.LineView
         android:id="@+id/main_line_5"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -127,7 +127,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_4" />
 
-    <com.dosei.chordsdictionary.LineView
+    <com.dosei.music.scoreconverter.LineView
         android:id="@+id/line_6"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -139,7 +139,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_5" />
 
-    <com.dosei.chordsdictionary.LineView
+    <com.dosei.music.scoreconverter.LineView
         android:id="@+id/bar_1"
         android:layout_width="1dp"
         android:layout_height="0dp"
@@ -148,7 +148,7 @@
         app:layout_constraintTop_toTopOf="@id/main_line_1"
         app:orientation="vertical" />
 
-    <com.dosei.chordsdictionary.LineView
+    <com.dosei.music.scoreconverter.LineView
         android:id="@+id/bar_2"
         android:layout_width="1dp"
         android:layout_height="0dp"

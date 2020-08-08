@@ -1,4 +1,4 @@
-package com.dosei.chordsdictionary
+package com.dosei.music.scoreconverter
 
 import android.os.Bundle
 import android.view.LayoutInflater

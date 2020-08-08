@@ -1,4 +1,4 @@
-package com.dosei.chordsdictionary
+package com.dosei.music.scoreconverter
 
 import android.content.res.Resources
 import android.os.Bundle
