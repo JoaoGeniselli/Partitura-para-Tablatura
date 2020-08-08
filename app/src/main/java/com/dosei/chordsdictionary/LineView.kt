@@ -11,27 +11,29 @@ import android.view.View
 class LineView(context: Context, attributeSet: AttributeSet?) : View(context, attributeSet) {
 
     private var isHorizontal = true
+    private var lineColor = Color.BLACK
     private val rect = Rect(0, 0, 0, 0)
-
-    private val paint = Paint().apply {
-        color = Color.BLACK
-        style = Paint.Style.FILL
-        strokeWidth = context.dpToPixels(1)
-    }
+    private val paint: Paint
 
     init {
         attributeSet?.let {
-            updateOrientation(context, it)
+            updateAttributes(context, it)
+        }
+        paint = Paint().apply {
+            color = lineColor
+            style = Paint.Style.FILL
+            strokeWidth = context.dpToPixels(1)
         }
     }
 
-    private fun updateOrientation(context: Context, attrs: AttributeSet) {
+    private fun updateAttributes(context: Context, attrs: AttributeSet) {
         val a = context.theme.obtainStyledAttributes(
             attrs, R.styleable.LineView, 0, 0
         )
         val horizontalId = 1
         val orientationFromXml = a.getInt(R.styleable.LineView_orientation, horizontalId)
         isHorizontal = orientationFromXml == horizontalId
+        lineColor = a.getColor(R.styleable.LineView_lineColor, lineColor)
     }
 
     override fun onDraw(canvas: Canvas?) {

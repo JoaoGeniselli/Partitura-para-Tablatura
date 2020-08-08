@@ -14,7 +14,8 @@
         android:layout_marginEnd="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineColor="@color/sheet_additional_line_color" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/upper_line_2"
@@ -25,7 +26,8 @@
         android:layout_marginEnd="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/upper_line_1" />
+        app:layout_constraintTop_toBottomOf="@id/upper_line_1"
+        app:lineColor="@color/sheet_additional_line_color" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/upper_line_3"
@@ -36,7 +38,8 @@
         android:layout_marginEnd="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/upper_line_2" />
+        app:layout_constraintTop_toBottomOf="@id/upper_line_2"
+        app:lineColor="@color/sheet_additional_line_color" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/upper_line_4"
@@ -47,7 +50,8 @@
         android:layout_marginEnd="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/upper_line_3" />
+        app:layout_constraintTop_toBottomOf="@id/upper_line_3"
+        app:lineColor="@color/sheet_additional_line_color" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/upper_line_5"
@@ -58,7 +62,8 @@
         android:layout_marginEnd="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/upper_line_4" />
+        app:layout_constraintTop_toBottomOf="@id/upper_line_4"
+        app:lineColor="@color/sheet_additional_line_color" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/main_line_1"
@@ -142,7 +147,8 @@
         android:layout_marginEnd="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_line_5" />
+        app:layout_constraintTop_toBottomOf="@id/main_line_5"
+        app:lineColor="@color/sheet_additional_line_color" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/lower_line_2"
@@ -153,7 +159,8 @@
         android:layout_marginEnd="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lower_line_1" />
+        app:layout_constraintTop_toBottomOf="@id/lower_line_1"
+        app:lineColor="@color/sheet_additional_line_color" />
 
     <com.dosei.chordsdictionary.LineView
         android:id="@+id/lower_line_3"
@@ -165,7 +172,8 @@
         android:layout_marginBottom="@dimen/score_spacing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lower_line_2" />
+        app:layout_constraintTop_toBottomOf="@id/lower_line_2"
+        app:lineColor="@color/sheet_additional_line_color" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -186,5 +194,15 @@
         app:layout_constraintStart_toStartOf="@id/main_line_1"
         app:layout_constraintTop_toTopOf="@id/guideline"
         tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="28dp"
+        android:src="@drawable/ic_treble_clef"
+        app:layout_constraintBottom_toBottomOf="@id/main_line_4"
+        app:layout_constraintStart_toEndOf="@id/bar_1"
+        app:layout_constraintTop_toTopOf="@id/main_line_4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
