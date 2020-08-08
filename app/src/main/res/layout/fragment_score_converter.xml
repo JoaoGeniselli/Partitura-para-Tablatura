@@ -67,13 +67,37 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/horizontal_margin"
         android:layout_marginTop="@dimen/inter_item_vertical_margin"
-        android:layout_marginEnd="@dimen/horizontal_margin"
+        android:layout_marginEnd="@dimen/common_margin"
         android:layout_marginBottom="@dimen/common_margin"
+        android:gravity="center_vertical"
+        android:minHeight="40dp"
         android:textSize="@dimen/large_text_size"
         app:layout_constraintBottom_toTopOf="@id/seek_bar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sharp_button"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Nota atual: E2" />
+
+    <ImageButton
+        android:id="@+id/sharp_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="@dimen/common_margin"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_sharp"
+        app:layout_constraintBottom_toBottomOf="@id/text_current_note"
+        app:layout_constraintEnd_toStartOf="@id/flat_button"
+        app:layout_constraintTop_toTopOf="@id/text_current_note" />
+
+    <ImageButton
+        android:id="@+id/flat_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="@dimen/horizontal_margin"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_flat"
+        app:layout_constraintBottom_toBottomOf="@id/text_current_note"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_current_note" />
 
     <SeekBar
         android:id="@+id/seek_bar"
