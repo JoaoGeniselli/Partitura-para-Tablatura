@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Partitura para Tablatura</string>
+    <string name="current_note">Nota atual: %1s</string>
+</resources>
