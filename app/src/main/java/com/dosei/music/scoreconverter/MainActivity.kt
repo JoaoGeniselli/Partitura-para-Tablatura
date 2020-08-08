@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
     private lateinit var tablatureFragment: TablatureFragment
 
     private val notes = initNaturalNotes()
+    private lateinit var currentNote: GuitarNote
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,26 +31,25 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
         seek_bar.max = notes.size - 1
         seek_bar.progress = 0
         seek_bar.setOnSeekBarChangeListener(this)
+
+        currentNote = notes.first()
     }
 
-    override fun onStart() {
-        super.onStart()
-        scoreFragment.notePosition = 5
-        tablatureFragment.positions = GuitarPositions(
-            chord2 = 0,
-            chord3 = 4,
-            chord4 = 9,
-            chord5 = 14,
-            chord6 = 19
-        )
-        text_current_note.text = "Nota Atual: B3"
+    override fun onResume() {
+        super.onResume()
+        updateCurrentNote(currentNote)
+    }
+
+    private fun updateCurrentNote(note: GuitarNote) {
+        currentNote = note
+        text_current_note.text = getString(R.string.current_note, note.name)
+        scoreFragment.notePosition = notes.lastIndex - notes.indexOf(note)
+        tablatureFragment.positions = note.positions
     }
 
     override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-        val currentNote = notes[seek_bar.progress]
-        text_current_note.text = "Nota Atual: ${currentNote.name}"
-        scoreFragment.notePosition = notes.size - seek_bar.progress - 1
-        tablatureFragment.positions = currentNote.positions
+        val selectedNote = notes[seek_bar.progress]
+        updateCurrentNote(selectedNote)
     }
 
     override fun onStartTrackingTouch(p0: SeekBar?) = Unit

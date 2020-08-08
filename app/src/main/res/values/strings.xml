@@ -6,4 +6,6 @@
     <string name="tab_indicator_d">D</string>
     <string name="tab_indicator_a">A</string>
     <string name="tab_indicator_low_e">E</string>
+
+    <string name="current_note">Nota atual: %1s</string>
 </resources>
