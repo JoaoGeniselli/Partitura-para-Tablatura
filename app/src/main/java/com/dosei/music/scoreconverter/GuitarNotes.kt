@@ -1,5 +1,9 @@
 package com.dosei.music.scoreconverter
 
+object Guitar {
+    val fretRange = IntRange(0, 20)
+}
+
 data class GuitarNote(
     val note: String,
     val octave: Int,
@@ -13,249 +17,352 @@ fun initNaturalNotes(): List<GuitarNote> = listOf(
         note = "E",
         octave = 2,
         positions = GuitarPositions(
-            chord6 = 0
+            string6 = 0
         )
     ),
     GuitarNote(
         note = "F",
         octave = 2,
         positions = GuitarPositions(
-            chord6 = 1
+            string6 = 1
         )
     ),
     GuitarNote(
         note = "G",
         octave = 2,
         positions = GuitarPositions(
-            chord6 = 3
+            string6 = 3
         )
     ),
     GuitarNote(
         note = "A",
         octave = 2,
         positions = GuitarPositions(
-            chord5 = 0,
-            chord6 = 5
+            string5 = 0,
+            string6 = 5
         )
     ),
     GuitarNote(
         note = "B",
         octave = 2,
         positions = GuitarPositions(
-            chord5 = 2,
-            chord6 = 7
+            string5 = 2,
+            string6 = 7
         )
     ),
     GuitarNote(
         note = "C",
         octave = 3,
         positions = GuitarPositions(
-            chord5 = 3,
-            chord6 = 8
+            string5 = 3,
+            string6 = 8
         )
     ),
     GuitarNote(
         note = "D",
         octave = 3,
         positions = GuitarPositions(
-            chord4 = 0,
-            chord5 = 5,
-            chord6 = 10
+            string4 = 0,
+            string5 = 5,
+            string6 = 10
         )
     ),
     GuitarNote(
         note = "E",
         octave = 3,
         positions = GuitarPositions(
-            chord4 = 2,
-            chord5 = 7,
-            chord6 = 12
+            string4 = 2,
+            string5 = 7,
+            string6 = 12
         )
     ),
     GuitarNote(
         note = "F",
         octave = 3,
         positions = GuitarPositions(
-            chord4 = 3,
-            chord5 = 8,
-            chord6 = 13
+            string4 = 3,
+            string5 = 8,
+            string6 = 13
         )
     ),
     GuitarNote(
         note = "G",
         octave = 3,
         positions = GuitarPositions(
-            chord3 = 0,
-            chord4 = 5,
-            chord5 = 10,
-            chord6 = 15
+            string3 = 0,
+            string4 = 5,
+            string5 = 10,
+            string6 = 15
         )
     ),
     GuitarNote(
         note = "A",
         octave = 3,
         positions = GuitarPositions(
-            chord3 = 2,
-            chord4 = 7,
-            chord5 = 12,
-            chord6 = 17
+            string3 = 2,
+            string4 = 7,
+            string5 = 12,
+            string6 = 17
         )
     ),
     GuitarNote(
         note = "B",
         octave = 3,
         positions = GuitarPositions(
-            chord2 = 0,
-            chord3 = 4,
-            chord4 = 9,
-            chord5 = 14,
-            chord6 = 19
+            string2 = 0,
+            string3 = 4,
+            string4 = 9,
+            string5 = 14,
+            string6 = 19
         )
     ),
     GuitarNote(
         note = "C",
         octave = 4,
         positions = GuitarPositions(
-            chord2 = 1,
-            chord3 = 5,
-            chord4 = 10,
-            chord5 = 15,
-            chord6 = 20
+            string2 = 1,
+            string3 = 5,
+            string4 = 10,
+            string5 = 15,
+            string6 = 20
         )
     ),
     GuitarNote(
         note = "D",
         octave = 4,
         positions = GuitarPositions(
-            chord2 = 3,
-            chord3 = 7,
-            chord4 = 12,
-            chord5 = 17
+            string2 = 3,
+            string3 = 7,
+            string4 = 12,
+            string5 = 17
         )
     ),
     GuitarNote(
         note = "E",
         octave = 4,
         positions = GuitarPositions(
-            chord1 = 0,
-            chord2 = 5,
-            chord3 = 9,
-            chord4 = 14,
-            chord5 = 19
+            string1 = 0,
+            string2 = 5,
+            string3 = 9,
+            string4 = 14,
+            string5 = 19
         )
     ),
     GuitarNote(
         note = "F",
         octave = 4,
         positions = GuitarPositions(
-            chord1 = 1,
-            chord2 = 6,
-            chord3 = 10,
-            chord4 = 15,
-            chord5 = 20
+            string1 = 1,
+            string2 = 6,
+            string3 = 10,
+            string4 = 15,
+            string5 = 20
         )
     ),
     GuitarNote(
         note = "G",
         octave = 4,
         positions = GuitarPositions(
-            chord1 = 3,
-            chord2 = 8,
-            chord3 = 12,
-            chord4 = 17
+            string1 = 3,
+            string2 = 8,
+            string3 = 12,
+            string4 = 17
         )
     ),
     GuitarNote(
         note = "A",
         octave = 4,
         positions = GuitarPositions(
-            chord1 = 5,
-            chord2 = 10,
-            chord3 = 14,
-            chord4 = 19
+            string1 = 5,
+            string2 = 10,
+            string3 = 14,
+            string4 = 19
         )
     ),
     GuitarNote(
         note = "B",
         octave = 4,
         positions = GuitarPositions(
-            chord1 = 7,
-            chord2 = 12,
-            chord3 = 16
+            string1 = 7,
+            string2 = 12,
+            string3 = 16
         )
     ),
     GuitarNote(
         note = "C",
         octave = 5,
         positions = GuitarPositions(
-            chord1 = 8,
-            chord2 = 13,
-            chord3 = 17
+            string1 = 8,
+            string2 = 13,
+            string3 = 17
         )
     ),
     GuitarNote(
         note = "D",
         octave = 5,
         positions = GuitarPositions(
-            chord1 = 10,
-            chord2 = 15,
-            chord3 = 19
+            string1 = 10,
+            string2 = 15,
+            string3 = 19
         )
     ),
     GuitarNote(
         note = "E",
         octave = 5,
         positions = GuitarPositions(
-            chord1 = 12,
-            chord2 = 17
+            string1 = 12,
+            string2 = 17
         )
     ),
     GuitarNote(
         note = "F",
         octave = 5,
         positions = GuitarPositions(
-            chord1 = 13,
-            chord2 = 18
+            string1 = 13,
+            string2 = 18
         )
     ),
     GuitarNote(
         note = "G",
         octave = 5,
         positions = GuitarPositions(
-            chord1 = 15,
-            chord2 = 20
+            string1 = 15,
+            string2 = 20
         )
     ),
     GuitarNote(
         note = "A",
         octave = 5,
         positions = GuitarPositions(
-            chord1 = 17
+            string1 = 17
         )
     ),
     GuitarNote(
         note = "B",
         octave = 5,
         positions = GuitarPositions(
-            chord1 = 19
+            string1 = 19
         )
     ),
     GuitarNote(
         note = "C",
         octave = 6,
         positions = GuitarPositions(
-            chord1 = 20
+            string1 = 20
         )
     )
 )
 
 data class GuitarPositions(
-    val chord1: Int? = null,
-    val chord2: Int? = null,
-    val chord3: Int? = null,
-    val chord4: Int? = null,
-    val chord5: Int? = null,
-    val chord6: Int? = null
+    val string1: Int? = null,
+    val string2: Int? = null,
+    val string3: Int? = null,
+    val string4: Int? = null,
+    val string5: Int? = null,
+    val string6: Int? = null
 ) {
-    fun asList() = listOf(chord1, chord2, chord3, chord4, chord5, chord6)
+    fun asList() = listOf(string1, string2, string3, string4, string5, string6)
 }
+
+data class OctavedNote(
+    val note: Note,
+    val octave: Int
+)
+
+enum class Note {
+    C {
+        override val semitonesToNext: Int = 2
+        override val next: Note by lazy { D }
+    },
+    D {
+        override val semitonesToNext: Int = 2
+        override val next: Note by lazy { E }
+    },
+    E {
+        override val semitonesToNext: Int = 1
+        override val next: Note by lazy { F }
+    },
+    F {
+        override val semitonesToNext: Int = 2
+        override val next: Note by lazy { G }
+    },
+    G {
+        override val semitonesToNext: Int = 2
+        override val next: Note by lazy { A }
+    },
+    A {
+        override val semitonesToNext: Int = 2
+        override val next: Note by lazy { B }
+    },
+    B {
+        override val semitonesToNext: Int = 1
+        override val next: Note by lazy { C }
+    };
+
+    abstract val semitonesToNext: Int
+    abstract val next: Note
+
+    fun isOctaveStart() = this == C
+}
+
+fun stringPositionsByNote(initialNote: OctavedNote): Map<OctavedNote, Int> {
+    var currentOctave = initialNote.octave
+    var currentNote = initialNote.note
+
+    val stringNotes = mutableMapOf<OctavedNote, Int>()
+    var fretPosition = 0
+
+    while (fretPosition <= Guitar.fretRange.last) {
+        if (fretPosition != 0 && currentNote.isOctaveStart()) {
+            currentOctave++
+        }
+        val note = OctavedNote(note = currentNote, octave = currentOctave)
+        stringNotes[note] = fretPosition
+        fretPosition += currentNote.semitonesToNext
+        currentNote = currentNote.next
+    }
+    return stringNotes
+}
+
+data class Tuning(
+    val string1: OctavedNote,
+    val string2: OctavedNote,
+    val string3: OctavedNote,
+    val string4: OctavedNote,
+    val string5: OctavedNote,
+    val string6: OctavedNote
+)
+
+data class StringPositions(
+    val string1: Map<OctavedNote, Int>,
+    val string2: Map<OctavedNote, Int>,
+    val string3: Map<OctavedNote, Int>,
+    val string4: Map<OctavedNote, Int>,
+    val string5: Map<OctavedNote, Int>,
+    val string6: Map<OctavedNote, Int>
+) {
+    fun allStrings() = listOf(string1, string2, string3, string4, string5, string6)
+}
+
+fun generateScale() {
+    val tuning = Tuning(
+        string1 = OctavedNote(note = Note.E, octave = 4),
+        string2 = OctavedNote(note = Note.B, octave = 3),
+        string3 = OctavedNote(note = Note.G, octave = 3),
+        string4 = OctavedNote(note = Note.D, octave = 3),
+        string5 = OctavedNote(note = Note.A, octave = 2),
+        string6 = OctavedNote(note = Note.E, octave = 2)
+    )
+}
+
+fun allNotesFromStrings(guitarStrings: List<Map<OctavedNote, Int>>): List<OctavedNote> {
+    val allNotes = mutableListOf<OctavedNote>()
+    guitarStrings.forEach { string ->
+        val stringNotes = string.toList()
+            .sortedBy { it.second }
+            .map { position -> position.first }
+        allNotes.addAll(stringNotes)
+    }
+    return allNotes.distinct()
+}
+

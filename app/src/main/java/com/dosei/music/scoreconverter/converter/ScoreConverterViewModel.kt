@@ -1,11 +1,11 @@
 package com.dosei.music.scoreconverter.converter
 
 import androidx.lifecycle.*
-import com.dosei.music.scoreconverter.GuitarNote
-import com.dosei.music.scoreconverter.SingleLiveEvent
-import com.dosei.music.scoreconverter.initNaturalNotes
+import com.dosei.music.scoreconverter.*
 
-class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
+class ScoreConverterViewModel(
+    private val noteRepository: NoteRepository
+) : ViewModel(), LifecycleObserver {
 
     private val _currentNote = SingleLiveEvent<CurrentNote>()
     val currentNote: LiveData<CurrentNote> get() = _currentNote
@@ -13,12 +13,12 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     private val _progressMax = MutableLiveData<Int>()
     val progressMax: LiveData<Int> get() = _progressMax
 
-    private lateinit var allNotes: List<GuitarNote>
+    private lateinit var allNotes: List<OctavedNote>
     private var currentNoteIndex = 0
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun init() {
-        allNotes = initNaturalNotes()
+        allNotes = noteRepository.findAllNotes()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -32,10 +32,10 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
         _currentNote.value = allNotes[currentNoteIndex].toCurrentNote()
     }
 
-    private fun GuitarNote.toCurrentNote() = CurrentNote(
-        name = name,
+    private fun OctavedNote.toCurrentNote() = CurrentNote(
+        name = "${note.name}${octave}",
         scorePosition = allNotes.lastIndex - allNotes.indexOf(this),
-        tablaturePositions = positions
+        tablaturePositions = noteRepository.notePositions(this)
     )
 
     fun onSavedIndexRetrieved(index: Int) {

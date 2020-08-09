@@ -27,12 +27,12 @@ class TablatureFragment : Fragment() {
     private fun updatePositions() {
         positions?.run {
             updateAllChordPositions(
-                note_line_1 to chord1,
-                note_line_2 to chord2,
-                note_line_3 to chord3,
-                note_line_4 to chord4,
-                note_line_5 to chord5,
-                note_line_6 to chord6
+                note_line_1 to string1,
+                note_line_2 to string2,
+                note_line_3 to string3,
+                note_line_4 to string4,
+                note_line_5 to string5,
+                note_line_6 to string6
             )
         }
     }

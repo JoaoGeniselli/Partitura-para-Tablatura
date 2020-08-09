@@ -7,7 +7,7 @@ import org.koin.dsl.module
 object DependencyInjection {
     val module by lazy {
         module {
-            viewModel { ScoreConverterViewModel() }
+            viewModel { ScoreConverterViewModel(NoteRepository()) }
         }
     }
 }
