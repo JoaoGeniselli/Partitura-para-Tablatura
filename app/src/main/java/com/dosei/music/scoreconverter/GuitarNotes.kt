@@ -1,7 +1,15 @@
 package com.dosei.music.scoreconverter
 
 object Guitar {
-    val fretRange = IntRange(0, 20)
+    val lastFret = 20
+    val tuning = Tuning(
+        string1 = OctavedNote(note = Note.E, octave = 4),
+        string2 = OctavedNote(note = Note.B, octave = 3),
+        string3 = OctavedNote(note = Note.G, octave = 3),
+        string4 = OctavedNote(note = Note.D, octave = 3),
+        string5 = OctavedNote(note = Note.A, octave = 2),
+        string6 = OctavedNote(note = Note.E, octave = 2)
+    )
 }
 
 data class GuitarNote(
@@ -264,42 +272,46 @@ data class GuitarPositions(
     fun asList() = listOf(string1, string2, string3, string4, string5, string6)
 }
 
-data class OctavedNote(
-    val note: Note,
-    val octave: Int
-)
+//private fun findNoteAtAbsolutePosition(absolutePosition: Int): OctavedNote {
+//    val octave = (absolutePosition / SCALE_SIZE)
+//    val noteIndex = octave * SCALE_SIZE
+//    val note = Note.noteAtIndex(noteIndex)
+//    return OctavedNote(note!!, octave)
+//}
+
+const val SCALE_SIZE = 12
 
 enum class Note {
     C {
-        override val semitonesToNext: Int = 2
+        override val scalePosition: Int = 0
         override val next: Note by lazy { D }
     },
     D {
-        override val semitonesToNext: Int = 2
+        override val scalePosition: Int = 2
         override val next: Note by lazy { E }
     },
     E {
-        override val semitonesToNext: Int = 1
+        override val scalePosition: Int = 4
         override val next: Note by lazy { F }
     },
     F {
-        override val semitonesToNext: Int = 2
+        override val scalePosition: Int = 5
         override val next: Note by lazy { G }
     },
     G {
-        override val semitonesToNext: Int = 2
+        override val scalePosition: Int = 7
         override val next: Note by lazy { A }
     },
     A {
-        override val semitonesToNext: Int = 2
+        override val scalePosition: Int = 9
         override val next: Note by lazy { B }
     },
     B {
-        override val semitonesToNext: Int = 1
+        override val scalePosition: Int = 11
         override val next: Note by lazy { C }
     };
 
-    abstract val semitonesToNext: Int
+    abstract val scalePosition: Int
     abstract val next: Note
 
     fun isOctaveStart() = this == C
@@ -312,13 +324,13 @@ fun stringPositionsByNote(initialNote: OctavedNote): Map<OctavedNote, Int> {
     val stringNotes = mutableMapOf<OctavedNote, Int>()
     var fretPosition = 0
 
-    while (fretPosition <= Guitar.fretRange.last) {
+    while (fretPosition <= Guitar.lastFret) {
         if (fretPosition != 0 && currentNote.isOctaveStart()) {
             currentOctave++
         }
         val note = OctavedNote(note = currentNote, octave = currentOctave)
         stringNotes[note] = fretPosition
-        fretPosition += currentNote.semitonesToNext
+        fretPosition += currentNote.scalePosition
         currentNote = currentNote.next
     }
     return stringNotes
@@ -342,17 +354,6 @@ data class StringPositions(
     val string6: Map<OctavedNote, Int>
 ) {
     fun allStrings() = listOf(string1, string2, string3, string4, string5, string6)
-}
-
-fun generateScale() {
-    val tuning = Tuning(
-        string1 = OctavedNote(note = Note.E, octave = 4),
-        string2 = OctavedNote(note = Note.B, octave = 3),
-        string3 = OctavedNote(note = Note.G, octave = 3),
-        string4 = OctavedNote(note = Note.D, octave = 3),
-        string5 = OctavedNote(note = Note.A, octave = 2),
-        string6 = OctavedNote(note = Note.E, octave = 2)
-    )
 }
 
 fun allNotesFromStrings(guitarStrings: List<Map<OctavedNote, Int>>): List<OctavedNote> {

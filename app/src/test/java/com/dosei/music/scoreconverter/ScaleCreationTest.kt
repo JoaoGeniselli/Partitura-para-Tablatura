@@ -49,6 +49,16 @@ class ScaleCreationTest {
     }
 
     @Test
+    fun `calculate absolute position`() {
+
+    }
+
+    @Test
+    fun `find note in absolute position`() {
+
+    }
+
+    @Test
     fun `all notes`() {
         val lowE = OctavedNote(Note.E, octave = 2)
         val notesEString = stringPositionsByNote(lowE)
