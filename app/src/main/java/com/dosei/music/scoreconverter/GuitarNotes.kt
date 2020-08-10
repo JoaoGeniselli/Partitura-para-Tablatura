@@ -1,7 +1,7 @@
 package com.dosei.music.scoreconverter
 
 object Guitar {
-    val lastFret = 20
+    const val fretsAmount = 20
     val tuning = Tuning(
         string1 = OctavedNote(note = Note.E, octave = 4),
         string2 = OctavedNote(note = Note.B, octave = 3),
@@ -324,7 +324,7 @@ fun stringPositionsByNote(initialNote: OctavedNote): Map<OctavedNote, Int> {
     val stringNotes = mutableMapOf<OctavedNote, Int>()
     var fretPosition = 0
 
-    while (fretPosition <= Guitar.lastFret) {
+    while (fretPosition <= Guitar.fretsAmount) {
         if (fretPosition != 0 && currentNote.isOctaveStart()) {
             currentOctave++
         }
