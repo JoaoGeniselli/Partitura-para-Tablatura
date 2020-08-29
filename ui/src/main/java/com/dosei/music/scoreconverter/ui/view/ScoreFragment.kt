@@ -12,6 +12,7 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
     private lateinit var densityCalculator: DensityCalculator
     private val gestureDetector = GestureDetector(context, this)
     var maxPosition: Int = 26
+    var onPositionChangedListener: OnPositionChangedListener? = null
 
     var notePosition: Int? = null
         set(value) {
@@ -79,7 +80,13 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
         currentEvent ?: return false
         val yInDips = densityCalculator.pixelsToDips(currentEvent.y)
         val closestPosition = yInDips / 8
-        notePosition = min(closestPosition, maxPosition)
+        val updatedPosition = min(closestPosition, maxPosition)
+        notePosition = updatedPosition
+        onPositionChangedListener?.onScorePositionChanged(updatedPosition)
         return true
+    }
+
+    interface OnPositionChangedListener {
+        fun onScorePositionChanged(position: Int)
     }
 }
