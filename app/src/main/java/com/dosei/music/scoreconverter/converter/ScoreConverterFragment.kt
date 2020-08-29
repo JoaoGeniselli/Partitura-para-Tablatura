@@ -53,6 +53,10 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
                 this@ScoreConverterFragment,
                 Observer { flat_button.setImageResource(if (it) R.drawable.ic_flat_active else R.drawable.ic_flat_black) }
             )
+            noteDecoration.observe(
+                this@ScoreConverterFragment,
+                Observer { scoreFragment.noteDecoration = it }
+            )
         }
     }
 

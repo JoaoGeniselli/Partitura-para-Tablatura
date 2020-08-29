@@ -20,13 +20,30 @@ class ScoreFragment : Fragment() {
         return inflater.inflate(R.layout.view_score_complete, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (view as? ViewGroup)?.apply {
+            clipToPadding = false
+            clipChildren = false
+        }
+    }
+
     var notePosition: Int? = null
         set(value) {
             field = value
             updatePosition()
         }
 
+    var noteDecoration: ScoreNoteDecoration? = null
+        set(value) {
+            field = value
+            updatePosition()
+        }
+
     private fun updatePosition() {
+        noteDecoration?.let {
+            note_decoration.setImageResource(it.resource)
+        } ?: note_decoration.setImageDrawable(null)
         val noteListPosition = notePosition ?: return
         val guidelinePositionInDips = calculateGuidelineInDips(noteListPosition)
         val positionInPixels = convertToPixels(guidelinePositionInDips)

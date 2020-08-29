@@ -6,6 +6,7 @@ import com.dosei.music.scoreconverter.domain.Guitar
 import com.dosei.music.scoreconverter.ui.view.GuitarPositions
 import com.dosei.music.scoreconverter.domain.OctavedNote
 import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
+import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 
 class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
 
@@ -15,6 +16,9 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
 
     private val _progressMax = MutableLiveData<Int>()
     val progressMax: LiveData<Int> get() = _progressMax
+
+    private val _noteDecoration = MutableLiveData<ScoreNoteDecoration?>()
+    val noteDecoration: LiveData<ScoreNoteDecoration?> get() = _noteDecoration
 
     private var currentNotePosition: Int = 0
 
@@ -48,12 +52,17 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     private fun updateCurrentNote(updatedPosition: Int) {
         currentNotePosition = updatedPosition
         _currentNote.value = allNotes[currentNotePosition].toCurrentNote()
+        _noteDecoration.value = when(noteModifier) {
+            NoteModifier.FLAT -> ScoreNoteDecoration.FLAT
+            NoteModifier.SHARP -> ScoreNoteDecoration.SHARP
+            else -> null
+        }
     }
 
     private fun OctavedNote.toCurrentNote(): CurrentNote {
         val adjustedNote = this.copy(modifier = noteModifier)
         val positions = guitar.tuning.run {
-            com.dosei.music.scoreconverter.ui.view.GuitarPositions(
+            GuitarPositions(
                 string1 = string1.positionOf(adjustedNote),
                 string2 = string2.positionOf(adjustedNote),
                 string3 = string3.positionOf(adjustedNote),

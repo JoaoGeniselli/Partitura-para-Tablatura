@@ -2,4 +2,8 @@
 <resources>
     <dimen name="tab_spacing">24dp</dimen>
     <dimen name="score_spacing">15dp</dimen>
+    <dimen name="score_spacing_margin">24dp</dimen>
+    <dimen name="note_height">16dp</dimen>
+    <dimen name="note_decoration_height">24dp</dimen>
+    <dimen name="note_decoration_width">16dp</dimen>
 </resources>

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/score_spacing">
 
     <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/upper_line_1"
@@ -187,13 +188,22 @@
     <ImageView
         android:id="@+id/note_indicator"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
+        android:layout_height="@dimen/note_height"
         android:src="@drawable/ic_note"
         app:layout_constraintBottom_toBottomOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/main_line_1"
         app:layout_constraintStart_toStartOf="@id/main_line_1"
         app:layout_constraintTop_toTopOf="@id/guideline"
         tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/note_decoration"
+        android:layout_width="@dimen/note_decoration_width"
+        android:layout_height="@dimen/note_decoration_height"
+        app:layout_constraintBottom_toBottomOf="@id/note_indicator"
+        app:layout_constraintEnd_toStartOf="@id/note_indicator"
+        app:layout_constraintTop_toTopOf="@id/note_indicator"
+        tools:src="@drawable/ic_sharp_black" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -206,11 +216,11 @@
         app:layout_constraintTop_toTopOf="@id/main_line_4" />
 
     <Space
-        app:layout_constraintTop_toBottomOf="@id/lower_line_3"
         android:layout_width="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_height="@dimen/score_spacing"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lower_line_3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
