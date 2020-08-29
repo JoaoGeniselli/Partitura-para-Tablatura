@@ -1,32 +1,17 @@
 package com.dosei.music.scoreconverter.ui.view
 
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.dosei.music.scoreconverter.ui.R
 import kotlinx.android.synthetic.main.view_score_complete.*
+import kotlin.math.min
 
-class ScoreFragment : Fragment() {
+class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestureListener {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.view_score_complete, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        (view as? ViewGroup)?.apply {
-            clipToPadding = false
-            clipChildren = false
-        }
-    }
+    private lateinit var densityCalculator: DensityCalculator
+    private val gestureDetector = GestureDetector(context, this)
+    var maxPosition: Int = 26
 
     var notePosition: Int? = null
         set(value) {
@@ -40,13 +25,31 @@ class ScoreFragment : Fragment() {
             updatePosition()
         }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.view_score_complete, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        context?.let { densityCalculator = DensityCalculator.lightweight(it) }
+        (view as? ViewGroup)?.apply {
+            clipToPadding = false
+            clipChildren = false
+        }
+        view?.setOnTouchListener(this)
+    }
+
     private fun updatePosition() {
         noteDecoration?.let {
             note_decoration.setImageResource(it.resource)
         } ?: note_decoration.setImageDrawable(null)
         val noteListPosition = notePosition ?: return
         val guidelinePositionInDips = calculateGuidelineInDips(noteListPosition)
-        val positionInPixels = convertToPixels(guidelinePositionInDips)
+        val positionInPixels = densityCalculator.dipsToPixels(guidelinePositionInDips)
         guideline.setGuidelineBegin(positionInPixels)
     }
 
@@ -56,12 +59,27 @@ class ScoreFragment : Fragment() {
         return (position + 1).toFloat() * multiplierInDips - centralizationDiff
     }
 
-    private fun convertToPixels(positionInDips: Float): Int {
-        val resources: Resources = resources
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            positionInDips,
-            resources.displayMetrics
-        ).toInt()
+    override fun onTouch(view: View?, event: MotionEvent?): Boolean {
+        gestureDetector.onTouchEvent(event)
+        return true
+    }
+
+    override fun onShowPress(p0: MotionEvent?) = Unit
+    override fun onSingleTapUp(p0: MotionEvent?): Boolean = false
+    override fun onDown(p0: MotionEvent?): Boolean = false
+    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean = false
+    override fun onLongPress(p0: MotionEvent?) = Unit
+
+    override fun onScroll(
+        startEvent: MotionEvent?,
+        currentEvent: MotionEvent?,
+        p2: Float,
+        p3: Float
+    ): Boolean {
+        currentEvent ?: return false
+        val yInDips = densityCalculator.pixelsToDips(currentEvent.y)
+        val closestPosition = yInDips / 8
+        notePosition = min(closestPosition, maxPosition)
+        return true
     }
 }
