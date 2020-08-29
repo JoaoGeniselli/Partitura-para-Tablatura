@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.dosei.music.scoreconverter.domain.GuitarPositions
+import com.dosei.music.scoreconverter.ui.R
 import kotlinx.android.synthetic.main.view_tablature_complete.*
 
 class TablatureFragment : Fragment() {

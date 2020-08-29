@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.ui.view
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,7 +7,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
-import com.dosei.music.scoreconverter.toolbox.dpToPixels
+import com.dosei.music.scoreconverter.ui.R
 
 class LineView(context: Context, attributeSet: AttributeSet?) : View(context, attributeSet) {
 

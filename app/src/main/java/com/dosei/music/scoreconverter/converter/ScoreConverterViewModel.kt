@@ -3,7 +3,7 @@ package com.dosei.music.scoreconverter.converter
 import androidx.lifecycle.*
 import com.dosei.music.scoreconverter.*
 import com.dosei.music.scoreconverter.domain.Guitar
-import com.dosei.music.scoreconverter.domain.GuitarPositions
+import com.dosei.music.scoreconverter.ui.view.GuitarPositions
 import com.dosei.music.scoreconverter.domain.OctavedNote
 import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
 
@@ -53,7 +53,7 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     private fun OctavedNote.toCurrentNote(): CurrentNote {
         val adjustedNote = this.copy(modifier = noteModifier)
         val positions = guitar.tuning.run {
-            GuitarPositions(
+            com.dosei.music.scoreconverter.ui.view.GuitarPositions(
                 string1 = string1.positionOf(adjustedNote),
                 string2 = string2.positionOf(adjustedNote),
                 string3 = string3.positionOf(adjustedNote),

@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.ui.view
 
 import android.content.res.Resources
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.dosei.music.scoreconverter.ui.R
 import kotlinx.android.synthetic.main.view_score_complete.*
 
 class ScoreFragment : Fragment() {

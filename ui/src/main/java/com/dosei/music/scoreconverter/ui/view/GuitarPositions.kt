@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.domain
+package com.dosei.music.scoreconverter.ui.view
 
 data class GuitarPositions(
     val string1: Int? = null,

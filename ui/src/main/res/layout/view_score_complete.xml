@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/upper_line_1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lineColor="@color/sheet_additional_line_color" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/upper_line_2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@id/upper_line_1"
         app:lineColor="@color/sheet_additional_line_color" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/upper_line_3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/upper_line_2"
         app:lineColor="@color/sheet_additional_line_color" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/upper_line_4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@id/upper_line_3"
         app:lineColor="@color/sheet_additional_line_color" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/upper_line_5"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/upper_line_4"
         app:lineColor="@color/sheet_additional_line_color" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/main_line_1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -76,7 +76,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/upper_line_5" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/main_line_2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -87,7 +87,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_1" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/main_line_3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -98,7 +98,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_2" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/main_line_4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -109,7 +109,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_3" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/main_line_5"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -120,7 +120,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_line_4" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/bar_1"
         android:layout_width="1dp"
         android:layout_height="0dp"
@@ -129,7 +129,7 @@
         app:layout_constraintTop_toTopOf="@id/main_line_1"
         app:orientation="vertical" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/bar_2"
         android:layout_width="1dp"
         android:layout_height="0dp"
@@ -138,7 +138,7 @@
         app:layout_constraintTop_toTopOf="@id/main_line_1"
         app:orientation="vertical" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/lower_line_1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -150,7 +150,7 @@
         app:layout_constraintTop_toBottomOf="@id/main_line_5"
         app:lineColor="@color/sheet_additional_line_color" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/lower_line_2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -162,7 +162,7 @@
         app:layout_constraintTop_toBottomOf="@id/lower_line_1"
         app:lineColor="@color/sheet_additional_line_color" />
 
-    <com.dosei.music.scoreconverter.LineView
+    <com.dosei.music.scoreconverter.ui.view.LineView
         android:id="@+id/lower_line_3"
         android:layout_width="match_parent"
         android:layout_height="1dp"

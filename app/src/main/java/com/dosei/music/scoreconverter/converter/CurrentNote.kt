@@ -1,6 +1,6 @@
 package com.dosei.music.scoreconverter.converter
 
-import com.dosei.music.scoreconverter.domain.GuitarPositions
+import com.dosei.music.scoreconverter.ui.view.GuitarPositions
 
 data class CurrentNote(
     val name: String,

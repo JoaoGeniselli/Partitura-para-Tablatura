@@ -15,8 +15,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
 
     private val viewModel by viewModel<ScoreConverterViewModel>()
-    private lateinit var scoreFragment: ScoreFragment
-    private lateinit var tablatureFragment: TablatureFragment
+    private lateinit var scoreFragment: com.dosei.music.scoreconverter.ui.view.ScoreFragment
+    private lateinit var tablatureFragment: com.dosei.music.scoreconverter.ui.view.TablatureFragment
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,8 +69,9 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
     }
 
     private fun initChildFragments() {
-        scoreFragment = ScoreFragment()
-        tablatureFragment = TablatureFragment()
+        scoreFragment = com.dosei.music.scoreconverter.ui.view.ScoreFragment()
+        tablatureFragment =
+            com.dosei.music.scoreconverter.ui.view.TablatureFragment()
 
         activity?.supportFragmentManager?.run {
             beginTransaction()
