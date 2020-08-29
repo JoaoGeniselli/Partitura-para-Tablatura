@@ -72,7 +72,7 @@
         android:gravity="center_vertical"
         android:minHeight="40dp"
         android:textSize="@dimen/large_text_size"
-        app:layout_constraintBottom_toTopOf="@id/seek_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/sharp_button"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Nota atual: E2" />
@@ -98,16 +98,5 @@
         app:layout_constraintBottom_toBottomOf="@id/text_current_note"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/text_current_note" />
-
-    <SeekBar
-        android:id="@+id/seek_bar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/horizontal_margin_seek_bar"
-        android:layout_marginEnd="@dimen/horizontal_margin_seek_bar"
-        android:layout_marginBottom="@dimen/inter_item_vertical_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

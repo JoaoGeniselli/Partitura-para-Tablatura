@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.dosei.music.scoreconverter.*
+import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.ui.view.ScoreFragment
 import kotlinx.android.synthetic.main.fragment_score_converter.*
-import kotlinx.android.synthetic.main.fragment_score_converter.seek_bar
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener,
+class ScoreConverterFragment : Fragment(),
     ScoreFragment.OnPositionChangedListener {
 
     private val viewModel by viewModel<ScoreConverterViewModel>()
@@ -29,7 +27,6 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener,
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initChildFragments()
-        initSeekBar()
 
         sharp_button.setOnClickListener { viewModel.onSharpClicked() }
         flat_button.setOnClickListener { viewModel.onFlatClicked() }
@@ -43,10 +40,7 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener,
             )
             progressMax.observe(
                 this@ScoreConverterFragment,
-                Observer {
-                    seek_bar?.max = it
-                    scoreFragment.maxPosition = it
-                }
+                Observer { scoreFragment.maxPosition = it }
             )
             savedInstanceState?.getInt(STATE_KEY_PROGRESS)?.let {
                 onSavedIndexRetrieved(it)
@@ -68,14 +62,7 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener,
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(STATE_KEY_PROGRESS, seek_bar?.progress ?: 0)
-    }
-
-    private fun initSeekBar() {
-        seek_bar?.apply {
-            progress = 0
-            setOnSeekBarChangeListener(this@ScoreConverterFragment)
-        }
+        outState.putInt(STATE_KEY_PROGRESS, scoreFragment.notePosition ?: 0)
     }
 
     private fun initChildFragments() {
@@ -101,13 +88,6 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener,
             tablatureFragment.positions = tablaturePositions
         }
     }
-
-    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        viewModel.onScorePositionUpdated(progress)
-    }
-
-    override fun onStartTrackingTouch(p0: SeekBar?) = Unit
-    override fun onStopTrackingTouch(p0: SeekBar?) = Unit
 
     companion object {
         private const val STATE_KEY_PROGRESS = "progress"

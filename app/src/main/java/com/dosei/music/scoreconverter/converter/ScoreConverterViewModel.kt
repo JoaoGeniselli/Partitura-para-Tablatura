@@ -80,7 +80,7 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     }
 
     fun onSavedIndexRetrieved(index: Int) {
-        currentNotePosition = index
+        currentNotePosition = allNotes.lastIndex - index
     }
 
     fun onSharpClicked() {
@@ -108,7 +108,6 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     }
 
     fun onScorePositionUpdated(updatedIndex: Int) {
-        Log.d("position", updatedIndex.toString())
         val reversedPosition = allNotes.lastIndex - updatedIndex
         updateCurrentNote(reversedPosition)
     }
