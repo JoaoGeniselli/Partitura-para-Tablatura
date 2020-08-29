@@ -29,6 +29,9 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
         initChildFragments()
         initSeekBar()
 
+        sharp_button.setOnClickListener { viewModel.onSharpClicked() }
+        flat_button.setOnClickListener { viewModel.onFlatClicked() }
+
         viewModel.apply {
             lifecycle.addObserver(this)
             currentNote.observe(
@@ -42,6 +45,14 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
             savedInstanceState?.getInt(STATE_KEY_PROGRESS)?.let {
                 onSavedIndexRetrieved(it)
             }
+            sharpHighlight.observe(
+                this@ScoreConverterFragment,
+                Observer { sharp_button.setImageResource(if (it) R.drawable.ic_sharp_active else R.drawable.ic_sharp_black) }
+            )
+            flatHighlight.observe(
+                this@ScoreConverterFragment,
+                Observer { flat_button.setImageResource(if (it) R.drawable.ic_flat_active else R.drawable.ic_flat_black) }
+            )
         }
     }
 

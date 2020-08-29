@@ -18,6 +18,14 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
 
     private var allNotes: List<OctavedNote> = listOf()
 
+    private var noteModifier: NoteModifier? = null
+
+    private val _sharpHighlight = SingleLiveEvent<Boolean>()
+    val sharpHighlight: LiveData<Boolean> get() = _sharpHighlight
+
+    private val _flatHighlight = SingleLiveEvent<Boolean>()
+    val flatHighlight: LiveData<Boolean> get() = _flatHighlight
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun init() {
         allNotes = calculator.generateAllNotes(guitar)
@@ -36,18 +44,19 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     }
 
     private fun OctavedNote.toCurrentNote(): CurrentNote {
+        val adjustedNote = this.copy(modifier = noteModifier)
         val positions = guitar.tuning.run {
             GuitarPositions(
-                string1 = string1.positionOf(this@toCurrentNote),
-                string2 = string2.positionOf(this@toCurrentNote),
-                string3 = string3.positionOf(this@toCurrentNote),
-                string4 = string4.positionOf(this@toCurrentNote),
-                string5 = string5.positionOf(this@toCurrentNote),
-                string6 = string6.positionOf(this@toCurrentNote)
+                string1 = string1.positionOf(adjustedNote),
+                string2 = string2.positionOf(adjustedNote),
+                string3 = string3.positionOf(adjustedNote),
+                string4 = string4.positionOf(adjustedNote),
+                string5 = string5.positionOf(adjustedNote),
+                string6 = string6.positionOf(adjustedNote)
             )
         }
         return CurrentNote(
-            name = name,
+            name = adjustedNote.name,
             scorePosition = allNotes.lastIndex - allNotes.indexOf(this),
             tablaturePositions = positions
         )
@@ -55,6 +64,30 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
 
     fun onSavedIndexRetrieved(index: Int) {
         currentNotePosition = index
+    }
+
+    fun onSharpClicked() {
+        if (noteModifier == NoteModifier.SHARP) {
+            noteModifier = null
+            _sharpHighlight.value = false
+        } else {
+            noteModifier = NoteModifier.SHARP
+            _sharpHighlight.value = true
+            _flatHighlight.value = false
+        }
+        updateCurrentNote(currentNotePosition)
+    }
+
+    fun onFlatClicked() {
+        if (noteModifier == NoteModifier.FLAT) {
+            noteModifier = null
+            _flatHighlight.value = false
+        } else {
+            noteModifier = NoteModifier.FLAT
+            _flatHighlight.value = true
+            _sharpHighlight.value = false
+        }
+        updateCurrentNote(currentNotePosition)
     }
 
     fun onProgressUpdate(updatedIndex: Int) = updateCurrentNote(updatedIndex)
