@@ -35,12 +35,9 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
                 this@ScoreConverterFragment,
                 Observer { updateNote(it) }
             )
-            progressRange.observe(
+            progressMax.observe(
                 this@ScoreConverterFragment,
-                Observer {
-                    seek_bar?.min = it.first
-                    seek_bar?.max = it.last
-                }
+                Observer { seek_bar?.max = it }
             )
             savedInstanceState?.getInt(STATE_KEY_PROGRESS)?.let {
                 onSavedIndexRetrieved(it)

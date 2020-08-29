@@ -6,6 +6,14 @@ data class GuitarString(
 ) {
     val noteRange: IntRange
 
+    fun positionOf(note: OctavedNote): Int? {
+        val notePosition = note.absolutePosition
+        if (noteRange.contains(notePosition)) {
+            return notePosition - initialNote.absolutePosition
+        }
+        return null
+    }
+
     init {
         val firstPosition = initialNote.absolutePosition
         noteRange = IntRange(
