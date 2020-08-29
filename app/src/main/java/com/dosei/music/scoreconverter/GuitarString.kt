@@ -1,15 +1,16 @@
 package com.dosei.music.scoreconverter
 
 data class GuitarString(
-    val initialNote: OctavedNote
+    val initialNote: OctavedNote,
+    val frets: Int = 20
 ) {
     val noteRange: IntRange
 
     init {
-        val firstPosition = initialNote.absoluteSemitonePosition
+        val firstPosition = initialNote.absolutePosition
         noteRange = IntRange(
             start = firstPosition,
-            endInclusive = firstPosition + Guitar.fretsAmount
+            endInclusive = firstPosition + frets
         )
     }
 }

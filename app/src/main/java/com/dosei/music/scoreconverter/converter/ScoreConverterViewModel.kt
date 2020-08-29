@@ -10,36 +10,37 @@ class ScoreConverterViewModel(
     private val _currentNote = SingleLiveEvent<CurrentNote>()
     val currentNote: LiveData<CurrentNote> get() = _currentNote
 
-    private val _progressMax = MutableLiveData<Int>()
-    val progressMax: LiveData<Int> get() = _progressMax
+    private val _progressRange = MutableLiveData<IntRange>()
+    val progressRange: LiveData<IntRange> get() = _progressRange
 
-    private lateinit var allNotes: List<OctavedNote>
-    private var currentNoteIndex = 0
+    private lateinit var allNotesRange: IntRange
+    private var currentNotePosition: Int = 0
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun init() {
-        allNotes = noteRepository.findAllNotes()
+        allNotesRange = noteRepository.findAllNotesRange()
+        currentNotePosition = allNotesRange.first
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private fun resume() {
-        _progressMax.value = allNotes.lastIndex
-        updateCurrentNote(currentNoteIndex)
+        _progressRange.value = noteRepository.findAllNotesRange()
+        updateCurrentNote(currentNotePosition)
     }
 
-    private fun updateCurrentNote(updatedIndex: Int) {
-        currentNoteIndex = updatedIndex
-        _currentNote.value = allNotes[currentNoteIndex].toCurrentNote()
+    private fun updateCurrentNote(updatedPosition: Int) {
+//        currentNotePosition = updatedPosition
+//        _currentNote.value = allNotes[currentNotePosition].toCurrentNote()
     }
 
-    private fun OctavedNote.toCurrentNote() = CurrentNote(
-        name = "${note.name}${octave}",
-        scorePosition = allNotes.lastIndex - allNotes.indexOf(this),
-        tablaturePositions = noteRepository.notePositions(this)
-    )
+//    private fun toCurrentNote() = CurrentNote(
+//        name = "${note.name}${octave}",
+//        scorePosition = allNotes.lastIndex - allNotes.indexOf(this),
+//        tablaturePositions = noteRepository.notePositions(this)
+//    )
 
     fun onSavedIndexRetrieved(index: Int) {
-        currentNoteIndex = index
+        currentNotePosition = index
     }
 
     fun onProgressUpdate(updatedIndex: Int) = updateCurrentNote(updatedIndex)

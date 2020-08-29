@@ -1,15 +1,19 @@
 package com.dosei.music.scoreconverter
 
-object Guitar {
-    const val fretsAmount = 20
-    val tuning = Tuning(
-        string1 = OctavedNote(note = Note.E, octave = 4),
-        string2 = OctavedNote(note = Note.B, octave = 3),
-        string3 = OctavedNote(note = Note.G, octave = 3),
-        string4 = OctavedNote(note = Note.D, octave = 3),
-        string5 = OctavedNote(note = Note.A, octave = 2),
-        string6 = OctavedNote(note = Note.E, octave = 2)
+data class Guitar(
+    val fretsAmount: Int = 20,
+    val tuning: Tuning = Tuning(
+        string1 = GuitarString(initialNote = OctavedNote(note = Note.E, octave = 4), frets = fretsAmount),
+        string2 = GuitarString(initialNote = OctavedNote(note = Note.B, octave = 3), frets = fretsAmount),
+        string3 = GuitarString(initialNote = OctavedNote(note = Note.G, octave = 3), frets = fretsAmount),
+        string4 = GuitarString(initialNote = OctavedNote(note = Note.D, octave = 3), frets = fretsAmount),
+        string5 = GuitarString(initialNote = OctavedNote(note = Note.A, octave = 2), frets = fretsAmount),
+        string6 = GuitarString(initialNote = OctavedNote(note = Note.E, octave = 2), frets = fretsAmount)
     )
+) {
+    companion object {
+        fun default() = Guitar()
+    }
 }
 
 data class GuitarNote(
@@ -272,13 +276,6 @@ data class GuitarPositions(
     fun asList() = listOf(string1, string2, string3, string4, string5, string6)
 }
 
-//private fun findNoteAtAbsolutePosition(absolutePosition: Int): OctavedNote {
-//    val octave = (absolutePosition / SCALE_SIZE)
-//    val noteIndex = octave * SCALE_SIZE
-//    val note = Note.noteAtIndex(noteIndex)
-//    return OctavedNote(note!!, octave)
-//}
-
 const val SCALE_SIZE = 12
 
 enum class Note {
@@ -315,7 +312,28 @@ enum class Note {
     abstract val next: Note
 
     fun isOctaveStart() = this == C
+
+    fun isOctaveEnd() = this == B
+
+    companion object {
+
+        fun withIndex(index: Int): Note? {
+            return values().firstOrNull { it.scalePosition == index }
+        }
+    }
 }
+
+//fun generateAllNaturalNotes() {
+//    val initialNote = Guitar.default().tuning.string6.initialNote
+//    val lastNote = Guitar.default().tuning.string1.lastNaturalNote
+//
+//    var currentNote = initialNote
+//    val notes = mutableListOf<OctavedNote>()
+//    while (currentNote != lastNote) {
+//        notes.add(currentNote)
+//        currentNote = currentNote
+//    }
+//}
 
 fun stringPositionsByNote(initialNote: OctavedNote): Map<OctavedNote, Int> {
     var currentOctave = initialNote.octave
@@ -324,7 +342,7 @@ fun stringPositionsByNote(initialNote: OctavedNote): Map<OctavedNote, Int> {
     val stringNotes = mutableMapOf<OctavedNote, Int>()
     var fretPosition = 0
 
-    while (fretPosition <= Guitar.fretsAmount) {
+    while (fretPosition <= Guitar.default().fretsAmount) {
         if (fretPosition != 0 && currentNote.isOctaveStart()) {
             currentOctave++
         }
@@ -337,12 +355,12 @@ fun stringPositionsByNote(initialNote: OctavedNote): Map<OctavedNote, Int> {
 }
 
 data class Tuning(
-    val string1: OctavedNote,
-    val string2: OctavedNote,
-    val string3: OctavedNote,
-    val string4: OctavedNote,
-    val string5: OctavedNote,
-    val string6: OctavedNote
+    val string1: GuitarString,
+    val string2: GuitarString,
+    val string3: GuitarString,
+    val string4: GuitarString,
+    val string5: GuitarString,
+    val string6: GuitarString
 )
 
 data class StringPositions(
