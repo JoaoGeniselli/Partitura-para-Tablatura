@@ -51,6 +51,20 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     }
 
     private fun updateCurrentNote(updatedPosition: Int) {
+        when(noteModifier) {
+            NoteModifier.SHARP -> {
+                _sharpHighlight.value = true
+                _flatHighlight.value = false
+            }
+            NoteModifier.FLAT -> {
+                _sharpHighlight.value = false
+                _flatHighlight.value = true
+            }
+            else -> {
+                _sharpHighlight.value = false
+                _flatHighlight.value = false
+            }
+        }
         currentNotePosition = updatedPosition
         _currentNote.value = allNotes[currentNotePosition].toCurrentNote()
         _noteDecoration.value = when (noteModifier) {
@@ -84,31 +98,22 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     }
 
     fun onSharpClicked() {
-        if (noteModifier == NoteModifier.SHARP) {
-            noteModifier = null
-            _sharpHighlight.value = false
-        } else {
-            noteModifier = NoteModifier.SHARP
-            _sharpHighlight.value = true
-            _flatHighlight.value = false
-        }
+        noteModifier = if (noteModifier == NoteModifier.SHARP) null else NoteModifier.SHARP
         updateCurrentNote(currentNotePosition)
     }
 
     fun onFlatClicked() {
-        if (noteModifier == NoteModifier.FLAT) {
-            noteModifier = null
-            _flatHighlight.value = false
-        } else {
-            noteModifier = NoteModifier.FLAT
-            _flatHighlight.value = true
-            _sharpHighlight.value = false
-        }
+        noteModifier = if (noteModifier == NoteModifier.FLAT) null else NoteModifier.FLAT
         updateCurrentNote(currentNotePosition)
     }
 
     fun onScorePositionUpdated(updatedIndex: Int) {
         val reversedPosition = allNotes.lastIndex - updatedIndex
         updateCurrentNote(reversedPosition)
+    }
+
+    fun onSavedModifierRetrieved(modifier: NoteModifier?) {
+        noteModifier = modifier
+        updateCurrentNote(currentNotePosition)
     }
 }

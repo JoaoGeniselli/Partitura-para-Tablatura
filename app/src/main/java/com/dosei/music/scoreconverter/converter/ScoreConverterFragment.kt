@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.dosei.music.scoreconverter.NoteModifier
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.ui.view.ScoreFragment
+import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
+import com.dosei.music.scoreconverter.ui.view.TablatureFragment
 import kotlinx.android.synthetic.main.fragment_score_converter.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -15,7 +18,7 @@ class ScoreConverterFragment : Fragment(),
     ScoreFragment.OnPositionChangedListener {
 
     private val viewModel by viewModel<ScoreConverterViewModel>()
-    private lateinit var scoreFragment: com.dosei.music.scoreconverter.ui.view.ScoreFragment
+    private lateinit var scoreFragment: ScoreFragment
     private lateinit var tablatureFragment: com.dosei.music.scoreconverter.ui.view.TablatureFragment
 
     override fun onCreateView(
@@ -42,9 +45,6 @@ class ScoreConverterFragment : Fragment(),
                 this@ScoreConverterFragment,
                 Observer { scoreFragment.maxPosition = it }
             )
-            savedInstanceState?.getInt(STATE_KEY_PROGRESS)?.let {
-                onSavedIndexRetrieved(it)
-            }
             sharpHighlight.observe(
                 this@ScoreConverterFragment,
                 Observer { sharp_button.setImageResource(if (it) R.drawable.ic_sharp_active else R.drawable.ic_sharp_black) }
@@ -57,18 +57,26 @@ class ScoreConverterFragment : Fragment(),
                 this@ScoreConverterFragment,
                 Observer { scoreFragment.noteDecoration = it }
             )
+            savedInstanceState?.getInt(STATE_KEY_PROGRESS)?.let {
+                onSavedIndexRetrieved(it)
+            }
+            savedInstanceState?.getSerializable(STATE_KEY_MODIFIER)?.let {
+                (it as? ScoreNoteDecoration)?.let { decoration ->
+                    onSavedModifierRetrieved(decoration.toNoteModifier())
+                }
+            }
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(STATE_KEY_PROGRESS, scoreFragment.notePosition ?: 0)
+        outState.putSerializable(STATE_KEY_MODIFIER, scoreFragment.noteDecoration)
     }
 
     private fun initChildFragments() {
-        scoreFragment = com.dosei.music.scoreconverter.ui.view.ScoreFragment()
-        tablatureFragment =
-            com.dosei.music.scoreconverter.ui.view.TablatureFragment()
+        scoreFragment = ScoreFragment()
+        tablatureFragment = TablatureFragment()
 
         activity?.supportFragmentManager?.run {
             beginTransaction()
@@ -91,9 +99,18 @@ class ScoreConverterFragment : Fragment(),
 
     companion object {
         private const val STATE_KEY_PROGRESS = "progress"
+        private const val STATE_KEY_MODIFIER = "note_modifier"
     }
 
     override fun onScorePositionChanged(position: Int) {
         viewModel.onScorePositionUpdated(position)
+    }
+}
+
+private fun ScoreNoteDecoration.toNoteModifier(): NoteModifier? {
+    return when (this) {
+        ScoreNoteDecoration.SHARP -> NoteModifier.SHARP
+        ScoreNoteDecoration.FLAT -> NoteModifier.FLAT
+        else -> null
     }
 }
