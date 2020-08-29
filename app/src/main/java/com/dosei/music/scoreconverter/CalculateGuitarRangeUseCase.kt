@@ -9,7 +9,14 @@ class CalculateGuitarRangeUseCase {
         )
     }
 
-//    fun allGuitarNotes(guitar: Guitar) {
-//        val generalRange = calculateGeneralRange()
-//    }
+    fun generateAllNotes(guitar: Guitar): List<OctavedNote> {
+        val generalRange = calculateGeneralRange(guitar)
+        var currentNote = guitar.tuning.string6.initialNote
+        val allNotes = mutableListOf<OctavedNote>()
+        while (currentNote.absolutePosition <= generalRange.last) {
+            allNotes.add(currentNote)
+            currentNote = currentNote.nextNatural
+        }
+        return allNotes
+    }
 }

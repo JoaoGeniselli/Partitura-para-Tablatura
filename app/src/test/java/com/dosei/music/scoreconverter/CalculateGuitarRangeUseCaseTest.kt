@@ -53,4 +53,15 @@ class CalculateGuitarRangeUseCaseTest {
         assertEquals(OctavedNote(Note.C, 6).absolutePosition, range.last)
     }
 
+    @Test
+    fun `generate all notes`() {
+        val calculator = CalculateGuitarRangeUseCase()
+        val guitar = Guitar.default()
+        val allNotes = calculator.generateAllNotes(guitar)
+
+        assertEquals(27, allNotes.size)
+        assertEquals(OctavedNote(Note.E, 2), allNotes.first())
+        assertEquals(OctavedNote(Note.C, 6), allNotes.last())
+    }
+
 }
