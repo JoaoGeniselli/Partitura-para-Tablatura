@@ -2,8 +2,6 @@
 <resources>
     <dimen name="score_line_button_height">16dp</dimen>
     <dimen name="score_line_height">1dp</dimen>
-    <dimen name="tab_spacing">24dp</dimen>
-    <dimen name="score_spacing">15dp</dimen>
     <dimen name="horizontal_margin">16dp</dimen>
     <dimen name="horizontal_margin_seek_bar">6dp</dimen>
     <dimen name="inter_item_vertical_margin">16dp</dimen>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_indicator_high_e" translatable="false">e</string>
+    <string name="tab_indicator_b" translatable="false">B</string>
+    <string name="tab_indicator_g" translatable="false">G</string>
+    <string name="tab_indicator_d" translatable="false">D</string>
+    <string name="tab_indicator_a" translatable="false">A</string>
+    <string name="tab_indicator_low_e" translatable="false">E</string>
+</resources>
