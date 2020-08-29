@@ -2,10 +2,15 @@ package com.dosei.music.scoreconverter.converter
 
 import androidx.lifecycle.*
 import com.dosei.music.scoreconverter.*
+import com.dosei.music.scoreconverter.domain.Guitar
+import com.dosei.music.scoreconverter.domain.GuitarPositions
+import com.dosei.music.scoreconverter.domain.OctavedNote
+import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
 
 class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
 
-    private val _currentNote = SingleLiveEvent<CurrentNote>()
+    private val _currentNote =
+        SingleLiveEvent<CurrentNote>()
     val currentNote: LiveData<CurrentNote> get() = _currentNote
 
     private val _progressMax = MutableLiveData<Int>()
@@ -20,10 +25,12 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
 
     private var noteModifier: NoteModifier? = null
 
-    private val _sharpHighlight = SingleLiveEvent<Boolean>()
+    private val _sharpHighlight =
+        SingleLiveEvent<Boolean>()
     val sharpHighlight: LiveData<Boolean> get() = _sharpHighlight
 
-    private val _flatHighlight = SingleLiveEvent<Boolean>()
+    private val _flatHighlight =
+        SingleLiveEvent<Boolean>()
     val flatHighlight: LiveData<Boolean> get() = _flatHighlight
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)

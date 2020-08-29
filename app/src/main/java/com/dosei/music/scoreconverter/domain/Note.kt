@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.domain
 
 const val SCALE_SIZE = 12
 

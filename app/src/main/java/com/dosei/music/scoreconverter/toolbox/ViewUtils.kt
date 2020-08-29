@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.toolbox
 
 import android.content.Context
 import android.util.TypedValue

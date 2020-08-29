@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.dosei.music.scoreconverter.domain.GuitarPositions
 import kotlinx.android.synthetic.main.view_tablature_complete.*
 
 class TablatureFragment : Fragment() {

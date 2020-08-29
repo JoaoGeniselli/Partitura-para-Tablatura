@@ -1,5 +1,7 @@
 package com.dosei.music.scoreconverter
 
+import com.dosei.music.scoreconverter.domain.Note
+import com.dosei.music.scoreconverter.domain.OctavedNote
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -7,9 +9,20 @@ class OctavedNoteTest {
 
     @Test
     fun `generate correct name`() {
-        val note1 = OctavedNote(note = Note.C, octave = 2)
-        val note2 = OctavedNote(note = Note.A, octave = 4, modifier = NoteModifier.SHARP)
-        val note3 = OctavedNote(note = Note.E, octave = 5, modifier = NoteModifier.FLAT)
+        val note1 = OctavedNote(
+            note = Note.C,
+            octave = 2
+        )
+        val note2 = OctavedNote(
+            note = Note.A,
+            octave = 4,
+            modifier = NoteModifier.SHARP
+        )
+        val note3 = OctavedNote(
+            note = Note.E,
+            octave = 5,
+            modifier = NoteModifier.FLAT
+        )
 
         assertEquals("C2", note1.name)
         assertEquals("A#4", note2.name)
@@ -18,11 +31,28 @@ class OctavedNoteTest {
 
     @Test
     fun `calculate correct absolute semitone position`() {
-        val note1 = OctavedNote(note = Note.C, octave = 0)
-        val note2 = OctavedNote(note = Note.D, octave = 1)
-        val note3 = OctavedNote(note = Note.B, octave = 1, modifier = NoteModifier.FLAT)
-        val note4 = OctavedNote(note = Note.E, octave = 2)
-        val note5 = OctavedNote(note = Note.G, octave = 2, modifier = NoteModifier.SHARP)
+        val note1 = OctavedNote(
+            note = Note.C,
+            octave = 0
+        )
+        val note2 = OctavedNote(
+            note = Note.D,
+            octave = 1
+        )
+        val note3 = OctavedNote(
+            note = Note.B,
+            octave = 1,
+            modifier = NoteModifier.FLAT
+        )
+        val note4 = OctavedNote(
+            note = Note.E,
+            octave = 2
+        )
+        val note5 = OctavedNote(
+            note = Note.G,
+            octave = 2,
+            modifier = NoteModifier.SHARP
+        )
 
         assertEquals(0, note1.absolutePosition)
         assertEquals(14, note2.absolutePosition)
@@ -33,10 +63,24 @@ class OctavedNoteTest {
 
     @Test
     fun `get next natural note`() {
-        val note1 = OctavedNote(note = Note.C, octave = 0)
-        val note2 = OctavedNote(note = Note.B, octave = 1)
-        val note3 = OctavedNote(note = Note.A, octave = 0, modifier = NoteModifier.FLAT)
-        val note4 = OctavedNote(note = Note.F, octave = 0, modifier = NoteModifier.SHARP)
+        val note1 = OctavedNote(
+            note = Note.C,
+            octave = 0
+        )
+        val note2 = OctavedNote(
+            note = Note.B,
+            octave = 1
+        )
+        val note3 = OctavedNote(
+            note = Note.A,
+            octave = 0,
+            modifier = NoteModifier.FLAT
+        )
+        val note4 = OctavedNote(
+            note = Note.F,
+            octave = 0,
+            modifier = NoteModifier.SHARP
+        )
 
         val next1 = note1.nextNatural
         assertEquals(Note.D, next1.note)
@@ -61,10 +105,24 @@ class OctavedNoteTest {
 
     @Test
     fun `flat test`() {
-        val note1 = OctavedNote(note = Note.C, octave = 0)
-        val note2 = OctavedNote(note = Note.B, octave = 1)
-        val note3 = OctavedNote(note = Note.A, octave = 0, modifier = NoteModifier.FLAT)
-        val note4 = OctavedNote(note = Note.F, octave = 0, modifier = NoteModifier.SHARP)
+        val note1 = OctavedNote(
+            note = Note.C,
+            octave = 0
+        )
+        val note2 = OctavedNote(
+            note = Note.B,
+            octave = 1
+        )
+        val note3 = OctavedNote(
+            note = Note.A,
+            octave = 0,
+            modifier = NoteModifier.FLAT
+        )
+        val note4 = OctavedNote(
+            note = Note.F,
+            octave = 0,
+            modifier = NoteModifier.SHARP
+        )
 
     }
 

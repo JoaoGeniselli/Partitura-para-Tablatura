@@ -1,5 +1,8 @@
 package com.dosei.music.scoreconverter
 
+import com.dosei.music.scoreconverter.domain.Guitar
+import com.dosei.music.scoreconverter.domain.OctavedNote
+
 class CalculateGuitarRangeUseCase {
 
     fun calculateGeneralRange(guitar: Guitar) : IntRange {

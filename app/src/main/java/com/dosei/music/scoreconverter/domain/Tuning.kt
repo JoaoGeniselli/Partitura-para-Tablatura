@@ -1,4 +1,6 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.domain
+
+import com.dosei.music.scoreconverter.domain.GuitarString
 
 data class Tuning(
     val string1: GuitarString,

@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.domain
 
 data class Guitar(
     val fretsAmount: Int = 20,
