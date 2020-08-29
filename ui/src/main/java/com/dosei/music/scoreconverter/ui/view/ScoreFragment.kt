@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import com.dosei.music.scoreconverter.ui.R
 import kotlinx.android.synthetic.main.view_score_complete.*
+import kotlin.math.max
 import kotlin.math.min
 
 class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestureListener {
@@ -80,7 +81,7 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
         currentEvent ?: return false
         val yInDips = densityCalculator.pixelsToDips(currentEvent.y)
         val closestPosition = yInDips / 8
-        val updatedPosition = min(closestPosition, maxPosition)
+        val updatedPosition = max(min(closestPosition, maxPosition), 0)
         notePosition = updatedPosition
         onPositionChangedListener?.onScorePositionChanged(updatedPosition)
         return true
