@@ -8,11 +8,13 @@ import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.dosei.music.scoreconverter.*
+import com.dosei.music.scoreconverter.ui.view.ScoreFragment
 import kotlinx.android.synthetic.main.fragment_score_converter.*
 import kotlinx.android.synthetic.main.fragment_score_converter.seek_bar
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
+class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener,
+    ScoreFragment.OnPositionChangedListener {
 
     private val viewModel by viewModel<ScoreConverterViewModel>()
     private lateinit var scoreFragment: com.dosei.music.scoreconverter.ui.view.ScoreFragment
@@ -31,6 +33,7 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
 
         sharp_button.setOnClickListener { viewModel.onSharpClicked() }
         flat_button.setOnClickListener { viewModel.onFlatClicked() }
+        scoreFragment.onPositionChangedListener = this
 
         viewModel.apply {
             lifecycle.addObserver(this)
@@ -100,7 +103,7 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        viewModel.onProgressUpdate(progress)
+        viewModel.onScorePositionUpdated(progress)
     }
 
     override fun onStartTrackingTouch(p0: SeekBar?) = Unit
@@ -108,5 +111,9 @@ class ScoreConverterFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
 
     companion object {
         private const val STATE_KEY_PROGRESS = "progress"
+    }
+
+    override fun onScorePositionChanged(position: Int) {
+        viewModel.onScorePositionUpdated(position)
     }
 }

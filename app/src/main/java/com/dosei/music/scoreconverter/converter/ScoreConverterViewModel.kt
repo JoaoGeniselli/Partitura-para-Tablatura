@@ -1,5 +1,6 @@
 package com.dosei.music.scoreconverter.converter
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.dosei.music.scoreconverter.*
 import com.dosei.music.scoreconverter.domain.Guitar
@@ -52,7 +53,7 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     private fun updateCurrentNote(updatedPosition: Int) {
         currentNotePosition = updatedPosition
         _currentNote.value = allNotes[currentNotePosition].toCurrentNote()
-        _noteDecoration.value = when(noteModifier) {
+        _noteDecoration.value = when (noteModifier) {
             NoteModifier.FLAT -> ScoreNoteDecoration.FLAT
             NoteModifier.SHARP -> ScoreNoteDecoration.SHARP
             else -> null
@@ -106,5 +107,9 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
         updateCurrentNote(currentNotePosition)
     }
 
-    fun onProgressUpdate(updatedIndex: Int) = updateCurrentNote(updatedIndex)
+    fun onScorePositionUpdated(updatedIndex: Int) {
+        Log.d("position", updatedIndex.toString())
+        val reversedPosition = allNotes.lastIndex - updatedIndex
+        updateCurrentNote(reversedPosition)
+    }
 }
