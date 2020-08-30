@@ -1,17 +1,18 @@
 package com.dosei.music.scoreconverter.converter
 
 import androidx.lifecycle.*
-import com.dosei.music.scoreconverter.domain.NotesRepository
 import com.dosei.music.scoreconverter.NoteModifier
 import com.dosei.music.scoreconverter.domain.Guitar
+import com.dosei.music.scoreconverter.domain.NotesRepository
 import com.dosei.music.scoreconverter.domain.OctavedNote
+import com.dosei.music.scoreconverter.domain.PositionsRepository
 import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
-import com.dosei.music.scoreconverter.ui.view.GuitarPositions
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 
 class ScoreConverterViewModel(
     private val guitar: Guitar,
-    private val notesRepository: NotesRepository
+    private val notesRepository: NotesRepository,
+    private val positionsRepository: PositionsRepository
 ) : ViewModel(), LifecycleObserver {
 
     private var allNotes: List<OctavedNote> = listOf()
@@ -55,13 +56,12 @@ class ScoreConverterViewModel(
     }
 
     private fun updateCurrentNote(updatedPosition: Int) {
-        updateModifierButtonHighlight()
+        updateNoteModifierIndicators()
         currentNotePosition = updatedPosition
         _currentNote.value = allNotes[currentNotePosition].toCurrentNote()
-        _noteDecoration.value = noteModifier.toNoteDecoration()
     }
 
-    private fun updateModifierButtonHighlight() {
+    private fun updateNoteModifierIndicators() {
         when (noteModifier) {
             NoteModifier.SHARP -> {
                 _sharpHighlight.value = true
@@ -76,20 +76,12 @@ class ScoreConverterViewModel(
                 _flatHighlight.value = false
             }
         }
+        _noteDecoration.value = noteModifier.toNoteDecoration()
     }
 
     private fun OctavedNote.toCurrentNote(): CurrentNote {
-        val adjustedNote = this.copy(modifier = noteModifier)
-        val positions = guitar.tuning.run {
-            GuitarPositions(
-                string1 = string1.positionOf(adjustedNote),
-                string2 = string2.positionOf(adjustedNote),
-                string3 = string3.positionOf(adjustedNote),
-                string4 = string4.positionOf(adjustedNote),
-                string5 = string5.positionOf(adjustedNote),
-                string6 = string6.positionOf(adjustedNote)
-            )
-        }
+        val adjustedNote = copy(modifier = noteModifier)
+        val positions = positionsRepository.findPositions(adjustedNote, guitar)
         return CurrentNote(
             name = adjustedNote.name,
             scorePosition = reversedIndex(allNotes.indexOf(this)),

@@ -13,8 +13,7 @@ import com.dosei.music.scoreconverter.ui.view.TablatureFragment
 import kotlinx.android.synthetic.main.fragment_score_converter.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ScoreConverterFragment : Fragment(),
-    ScoreFragment.OnPositionChangedListener {
+class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListener {
 
     private val viewModel by viewModel<ScoreConverterViewModel>()
     private lateinit var scoreFragment: ScoreFragment
