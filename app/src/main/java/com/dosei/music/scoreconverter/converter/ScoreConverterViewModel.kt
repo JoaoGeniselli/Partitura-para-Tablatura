@@ -1,7 +1,7 @@
 package com.dosei.music.scoreconverter.converter
 
 import androidx.lifecycle.*
-import com.dosei.music.scoreconverter.CalculateGuitarRangeUseCase
+import com.dosei.music.scoreconverter.domain.NotesRepository
 import com.dosei.music.scoreconverter.NoteModifier
 import com.dosei.music.scoreconverter.domain.Guitar
 import com.dosei.music.scoreconverter.domain.OctavedNote
@@ -10,8 +10,8 @@ import com.dosei.music.scoreconverter.ui.view.GuitarPositions
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 
 class ScoreConverterViewModel(
-    private val guitar: Guitar = Guitar.default(),
-    private val calculator: CalculateGuitarRangeUseCase = CalculateGuitarRangeUseCase()
+    private val guitar: Guitar,
+    private val notesRepository: NotesRepository
 ) : ViewModel(), LifecycleObserver {
 
     private var allNotes: List<OctavedNote> = listOf()
@@ -35,7 +35,7 @@ class ScoreConverterViewModel(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun init() {
-        allNotes = calculator.generateAllNotes(guitar)
+        allNotes = notesRepository.findAllNotes(guitar)
         currentNotePosition = 0
     }
 

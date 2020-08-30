@@ -4,11 +4,11 @@ import com.dosei.music.scoreconverter.domain.*
 import org.junit.Assert.*
 import org.junit.Test
 
-class CalculateGuitarRangeUseCaseTest {
+class NotesRepositoryTest {
 
     @Test
     fun `calculate correct natural range`() {
-        val calculator = CalculateGuitarRangeUseCase()
+        val calculator = NotesRepository()
         val range = calculator.calculateGeneralRange(Guitar.default())
         assertEquals(
             OctavedNote(
@@ -24,7 +24,7 @@ class CalculateGuitarRangeUseCaseTest {
 
     @Test
     fun `calculate correct range with sharp end`() {
-        val calculator = CalculateGuitarRangeUseCase()
+        val calculator = NotesRepository()
         val range = calculator.calculateGeneralRange(
             Guitar(fretsAmount = 21)
         )
@@ -43,7 +43,7 @@ class CalculateGuitarRangeUseCaseTest {
 
     @Test
     fun `calculate correct range with flat end`() {
-        val calculator = CalculateGuitarRangeUseCase()
+        val calculator = NotesRepository()
         val range = calculator.calculateGeneralRange(
             Guitar(fretsAmount = 19)
         )
@@ -62,7 +62,7 @@ class CalculateGuitarRangeUseCaseTest {
 
     @Test
     fun `calculate correct range with custom tuning`() {
-        val calculator = CalculateGuitarRangeUseCase()
+        val calculator = NotesRepository()
         val range = calculator.calculateGeneralRange(
             Guitar(
                 fretsAmount = 20,
@@ -126,9 +126,9 @@ class CalculateGuitarRangeUseCaseTest {
 
     @Test
     fun `generate all notes`() {
-        val calculator = CalculateGuitarRangeUseCase()
+        val calculator = NotesRepository()
         val guitar = Guitar.default()
-        val allNotes = calculator.generateAllNotes(guitar)
+        val allNotes = calculator.findAllNotes(guitar)
 
         assertEquals(27, allNotes.size)
         assertEquals(

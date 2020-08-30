@@ -1,9 +1,6 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.domain
 
-import com.dosei.music.scoreconverter.domain.Guitar
-import com.dosei.music.scoreconverter.domain.OctavedNote
-
-class CalculateGuitarRangeUseCase {
+class NotesRepository {
 
     fun calculateGeneralRange(guitar: Guitar) : IntRange {
         return IntRange(
@@ -12,7 +9,7 @@ class CalculateGuitarRangeUseCase {
         )
     }
 
-    fun generateAllNotes(guitar: Guitar): List<OctavedNote> {
+    fun findAllNotes(guitar: Guitar): List<OctavedNote> {
         val generalRange = calculateGeneralRange(guitar)
         var currentNote = guitar.tuning.string6.initialNote
         val allNotes = mutableListOf<OctavedNote>()
