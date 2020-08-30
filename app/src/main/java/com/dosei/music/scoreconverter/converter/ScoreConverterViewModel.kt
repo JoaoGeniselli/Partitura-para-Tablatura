@@ -1,18 +1,24 @@
 package com.dosei.music.scoreconverter.converter
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.dosei.music.scoreconverter.*
+import com.dosei.music.scoreconverter.CalculateGuitarRangeUseCase
+import com.dosei.music.scoreconverter.NoteModifier
 import com.dosei.music.scoreconverter.domain.Guitar
-import com.dosei.music.scoreconverter.ui.view.GuitarPositions
 import com.dosei.music.scoreconverter.domain.OctavedNote
 import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
+import com.dosei.music.scoreconverter.ui.view.GuitarPositions
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 
-class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
+class ScoreConverterViewModel(
+    private val guitar: Guitar = Guitar.default(),
+    private val calculator: CalculateGuitarRangeUseCase = CalculateGuitarRangeUseCase()
+) : ViewModel(), LifecycleObserver {
 
-    private val _currentNote =
-        SingleLiveEvent<CurrentNote>()
+    private var allNotes: List<OctavedNote> = listOf()
+    private var noteModifier: NoteModifier? = null
+    private var currentNotePosition: Int = 0
+
+    private val _currentNote = SingleLiveEvent<CurrentNote>()
     val currentNote: LiveData<CurrentNote> get() = _currentNote
 
     private val _progressMax = MutableLiveData<Int>()
@@ -21,21 +27,10 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     private val _noteDecoration = MutableLiveData<ScoreNoteDecoration?>()
     val noteDecoration: LiveData<ScoreNoteDecoration?> get() = _noteDecoration
 
-    private var currentNotePosition: Int = 0
-
-    private val guitar = Guitar.default()
-    private val calculator = CalculateGuitarRangeUseCase()
-
-    private var allNotes: List<OctavedNote> = listOf()
-
-    private var noteModifier: NoteModifier? = null
-
-    private val _sharpHighlight =
-        SingleLiveEvent<Boolean>()
+    private val _sharpHighlight = SingleLiveEvent<Boolean>()
     val sharpHighlight: LiveData<Boolean> get() = _sharpHighlight
 
-    private val _flatHighlight =
-        SingleLiveEvent<Boolean>()
+    private val _flatHighlight = SingleLiveEvent<Boolean>()
     val flatHighlight: LiveData<Boolean> get() = _flatHighlight
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -51,7 +46,14 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     }
 
     private fun updateCurrentNote(updatedPosition: Int) {
-        when(noteModifier) {
+        updateModifierButtonHighlight()
+        currentNotePosition = updatedPosition
+        _currentNote.value = allNotes[currentNotePosition].toCurrentNote()
+        _noteDecoration.value = noteModifier.toNoteDecoration()
+    }
+
+    private fun updateModifierButtonHighlight() {
+        when (noteModifier) {
             NoteModifier.SHARP -> {
                 _sharpHighlight.value = true
                 _flatHighlight.value = false
@@ -64,13 +66,6 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
                 _sharpHighlight.value = false
                 _flatHighlight.value = false
             }
-        }
-        currentNotePosition = updatedPosition
-        _currentNote.value = allNotes[currentNotePosition].toCurrentNote()
-        _noteDecoration.value = when (noteModifier) {
-            NoteModifier.FLAT -> ScoreNoteDecoration.FLAT
-            NoteModifier.SHARP -> ScoreNoteDecoration.SHARP
-            else -> null
         }
     }
 
@@ -88,13 +83,20 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
         }
         return CurrentNote(
             name = adjustedNote.name,
-            scorePosition = allNotes.lastIndex - allNotes.indexOf(this),
+            scorePosition = reversedIndex(allNotes.indexOf(this)),
             tablaturePositions = positions
         )
     }
 
+    private fun reversedIndex(index: Int) = allNotes.lastIndex - index
+
     fun onSavedIndexRetrieved(index: Int) {
-        currentNotePosition = allNotes.lastIndex - index
+        currentNotePosition = reversedIndex(index)
+    }
+
+    fun onSavedModifierRetrieved(modifier: NoteModifier?) {
+        noteModifier = modifier
+        updateCurrentNote(currentNotePosition)
     }
 
     fun onSharpClicked() {
@@ -108,12 +110,7 @@ class ScoreConverterViewModel : ViewModel(), LifecycleObserver {
     }
 
     fun onScorePositionUpdated(updatedIndex: Int) {
-        val reversedPosition = allNotes.lastIndex - updatedIndex
+        val reversedPosition = reversedIndex(updatedIndex)
         updateCurrentNote(reversedPosition)
-    }
-
-    fun onSavedModifierRetrieved(modifier: NoteModifier?) {
-        noteModifier = modifier
-        updateCurrentNote(currentNotePosition)
     }
 }

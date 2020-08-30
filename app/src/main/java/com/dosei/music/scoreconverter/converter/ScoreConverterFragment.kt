@@ -19,7 +19,7 @@ class ScoreConverterFragment : Fragment(),
 
     private val viewModel by viewModel<ScoreConverterViewModel>()
     private lateinit var scoreFragment: ScoreFragment
-    private lateinit var tablatureFragment: com.dosei.music.scoreconverter.ui.view.TablatureFragment
+    private lateinit var tablatureFragment: TablatureFragment
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -104,13 +104,5 @@ class ScoreConverterFragment : Fragment(),
 
     override fun onScorePositionChanged(position: Int) {
         viewModel.onScorePositionUpdated(position)
-    }
-}
-
-private fun ScoreNoteDecoration.toNoteModifier(): NoteModifier? {
-    return when (this) {
-        ScoreNoteDecoration.SHARP -> NoteModifier.SHARP
-        ScoreNoteDecoration.FLAT -> NoteModifier.FLAT
-        else -> null
     }
 }
