@@ -1,7 +1,5 @@
 package com.dosei.music.scoreconverter.domain
 
-const val SCALE_SIZE = 12
-
 enum class Note {
     C {
         override val scalePosition: Int = 0
@@ -40,6 +38,8 @@ enum class Note {
     fun isOctaveEnd() = this == B
 
     companion object {
+
+        const val SCALE_SIZE = 12
 
         fun withIndex(index: Int): Note? {
             return values().firstOrNull { it.scalePosition == index }
