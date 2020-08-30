@@ -45,6 +45,15 @@ class ScoreConverterViewModel(
         updateCurrentNote(currentNotePosition)
     }
 
+    fun onSavedIndexRetrieved(index: Int) {
+        currentNotePosition = reversedIndex(index)
+    }
+
+    fun onSavedModifierRetrieved(modifier: NoteModifier?) {
+        noteModifier = modifier
+        updateCurrentNote(currentNotePosition)
+    }
+
     private fun updateCurrentNote(updatedPosition: Int) {
         updateModifierButtonHighlight()
         currentNotePosition = updatedPosition
@@ -89,15 +98,6 @@ class ScoreConverterViewModel(
     }
 
     private fun reversedIndex(index: Int) = allNotes.lastIndex - index
-
-    fun onSavedIndexRetrieved(index: Int) {
-        currentNotePosition = reversedIndex(index)
-    }
-
-    fun onSavedModifierRetrieved(modifier: NoteModifier?) {
-        noteModifier = modifier
-        updateCurrentNote(currentNotePosition)
-    }
 
     fun onSharpClicked() {
         noteModifier = if (noteModifier == NoteModifier.SHARP) null else NoteModifier.SHARP
