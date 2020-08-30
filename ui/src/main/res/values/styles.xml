@@ -2,8 +2,6 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Minuet" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:imageButtonStyle">@style/Widget.AppCompat.Button.Colored</item>
-        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
