@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_more_vert_white_24dp"
+        android:title=""
+        app:showAsAction="always"
+        android:id="@+id/menu">
+
+        <menu>
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/ic_info_outline_black_24dp"
+                android:title="@string/menu_item_about"
+                />
+
+            <item
+                android:id="@+id/rate_the_app"
+                android:icon="@drawable/ic_star_border_black_24dp"
+                android:title="@string/menu_item_rate_this_app"
+                />
+
+            <item
+                android:id="@+id/contact_us"
+                android:icon="@drawable/ic_mail_outline_black_24dp"
+                android:title="@string/menu_item_contact_us"
+                />
+
+            <item
+                android:id="@+id/share"
+                android:icon="@drawable/ic_share_black_24dp"
+                android:title="@string/menu_item_share"
+                />
+        </menu>
+    </item>
+
+
+
+
+
+</menu>

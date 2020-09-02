@@ -2,6 +2,7 @@ package com.dosei.music.scoreconverter
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
 
@@ -18,6 +19,11 @@ class MainActivity : AppCompatActivity() {
                 SCORE_CONVERTER_TAG
             ) as? ScoreConverterFragment
         } ?: initConverter()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
     private fun adjustActionBar() {
