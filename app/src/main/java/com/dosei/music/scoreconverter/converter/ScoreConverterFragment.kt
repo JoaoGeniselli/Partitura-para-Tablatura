@@ -81,7 +81,7 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
             this@ScoreConverterFragment,
             Observer { scoreFragment.noteDecoration = it }
         )
-        showTutorialOnce.observe(
+        showTutorial.observe(
             this@ScoreConverterFragment,
             Observer { showTutorial() }
         )
@@ -129,6 +129,7 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
             addStep(stringIndicator, getString(R.string.tutorial_step_2_content))
             addStep(currentNoteView, getString(R.string.tutorial_step_3_content))
             addStep(sharpButton, getString(R.string.tutorial_step_4_content))
+            onFinish { viewModel.onTutorialFinished() }
         }
     }
 

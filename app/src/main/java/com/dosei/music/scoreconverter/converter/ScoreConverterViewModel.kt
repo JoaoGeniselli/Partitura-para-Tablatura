@@ -6,13 +6,15 @@ import com.dosei.music.scoreconverter.domain.Guitar
 import com.dosei.music.scoreconverter.domain.NotesRepository
 import com.dosei.music.scoreconverter.domain.OctavedNote
 import com.dosei.music.scoreconverter.domain.PositionsRepository
+import com.dosei.music.scoreconverter.io.SharedPreferencesClient
 import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 
 class ScoreConverterViewModel(
     private val guitar: Guitar,
     private val notesRepository: NotesRepository,
-    private val positionsRepository: PositionsRepository
+    private val positionsRepository: PositionsRepository,
+    private val preferencesClient: SharedPreferencesClient
 ) : ViewModel(), LifecycleObserver {
 
     private var allNotes: List<OctavedNote> = listOf()
@@ -34,8 +36,8 @@ class ScoreConverterViewModel(
     private val _flatHighlight = SingleLiveEvent<Boolean>()
     val flatHighlight: LiveData<Boolean> get() = _flatHighlight
 
-    private val _showTutorialOnce = SingleLiveEvent<Unit>()
-    val showTutorialOnce: LiveData<Unit> get() = _showTutorialOnce
+    private val _showTutorial = SingleLiveEvent<Unit>()
+    val showTutorial: LiveData<Unit> get() = _showTutorial
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun init() {
@@ -47,7 +49,14 @@ class ScoreConverterViewModel(
     private fun resume() {
         _progressMax.value = allNotes.lastIndex
         updateCurrentNote(currentNotePosition)
-        _showTutorialOnce.value = Unit
+        showTutorialIfNeeded()
+    }
+
+    private fun showTutorialIfNeeded() {
+        val tutorialWasNeverShown = !preferencesClient.getBoolean(KEY_TUTORIAL_COMMIT) 
+        if (tutorialWasNeverShown) {
+            _showTutorial.value = Unit    
+        }
     }
 
     fun onSavedIndexRetrieved(index: Int) {
@@ -108,5 +117,11 @@ class ScoreConverterViewModel(
     fun onScorePositionUpdated(updatedIndex: Int) {
         val reversedPosition = reversedIndex(updatedIndex)
         updateCurrentNote(reversedPosition)
+    }
+
+    fun onTutorialFinished() = preferencesClient.setBoolean(KEY_TUTORIAL_COMMIT, true)
+
+    companion object {
+        private const val KEY_TUTORIAL_COMMIT = "tutorial_commit"
     }
 }
