@@ -6,8 +6,7 @@
     <string name="tablature">Tablatura</string>
 
     <string name="tutorial_step_1_content">Arraste para selecionar a nota desejada na partitura</string>
-    <string name="tutorial_step_1_button">Próximo</string>
-
-    <string name="tutorial_step_2_content">Em seguida, as posições da nota selecionada irão aparecer da tablatura</string>
-    <string name="tutorial_step_2_button">Ok, entendi!</string>
+    <string name="tutorial_step_2_content">Em seguida, as posições da nota selecionada irão aparecer na tablatura</string>
+    <string name="tutorial_step_3_content">E o nome da nota selecionada irá aparecer aqui</string>
+    <string name="tutorial_step_4_content">Você também adicionar um acidente à nota seleciona ao clicar nos botões de sustenido e bemol.</string>
 </resources>

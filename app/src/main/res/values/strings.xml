@@ -5,8 +5,7 @@
     <string name="tablature">Tablature</string>
 
     <string name="tutorial_step_1_content">Drag to select the note</string>
-    <string name="tutorial_step_1_button">Next</string>
-
     <string name="tutorial_step_2_content">Then, the selected note positions will appear in the tablature</string>
-    <string name="tutorial_step_2_button">OK, got it!</string>
+    <string name="tutorial_step_3_content">And you will see it\'s name here</string>
+    <string name="tutorial_step_4_content">You can also add an accidental to the selected note by clicking on the sharp and flat buttons.</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.dosei.music.scoreconverter.R
+import com.dosei.music.scoreconverter.ui.tutorial.Tutorial
 import com.dosei.music.scoreconverter.ui.view.ScoreFragment
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 import com.dosei.music.scoreconverter.ui.view.TablatureFragment
@@ -119,7 +120,16 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
     }
 
     private fun showTutorial() {
-
+        val noteIndicator = view?.findViewById<View>(R.id.note_indicator) ?: return
+        val stringIndicator = view?.findViewById<View>(R.id.note_line_6) ?: return
+        val currentNoteView = text_current_note ?: return
+        val sharpButton = sharp_button ?: return
+        Tutorial.start(activity ?: return) {
+            addStep(noteIndicator, getString(R.string.tutorial_step_1_content))
+            addStep(stringIndicator, getString(R.string.tutorial_step_2_content))
+            addStep(currentNoteView, getString(R.string.tutorial_step_3_content))
+            addStep(sharpButton, getString(R.string.tutorial_step_4_content))
+        }
     }
 
     private val Bundle.lastNotePosition: Int?
