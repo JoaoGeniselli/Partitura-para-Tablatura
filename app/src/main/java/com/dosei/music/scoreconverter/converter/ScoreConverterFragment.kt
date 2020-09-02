@@ -80,6 +80,10 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
             this@ScoreConverterFragment,
             Observer { scoreFragment.noteDecoration = it }
         )
+        showTutorialOnce.observe(
+            this@ScoreConverterFragment,
+            Observer { showTutorial() }
+        )
         savedInstanceState?.lastNotePosition?.let { position ->
             onSavedIndexRetrieved(position)
         }
@@ -112,6 +116,10 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
             R.drawable.ic_flat_black
         }
         flat_button.setImageResource(updatedIcon)
+    }
+
+    private fun showTutorial() {
+
     }
 
     private val Bundle.lastNotePosition: Int?

@@ -34,6 +34,9 @@ class ScoreConverterViewModel(
     private val _flatHighlight = SingleLiveEvent<Boolean>()
     val flatHighlight: LiveData<Boolean> get() = _flatHighlight
 
+    private val _showTutorialOnce = SingleLiveEvent<Unit>()
+    val showTutorialOnce: LiveData<Unit> get() = _showTutorialOnce
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun init() {
         allNotes = notesRepository.findAllNotes(guitar)
@@ -44,6 +47,7 @@ class ScoreConverterViewModel(
     private fun resume() {
         _progressMax.value = allNotes.lastIndex
         updateCurrentNote(currentNotePosition)
+        _showTutorialOnce.value = Unit
     }
 
     fun onSavedIndexRetrieved(index: Int) {

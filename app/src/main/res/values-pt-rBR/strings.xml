@@ -4,4 +4,10 @@
     <string name="current_note">Nota atual: %1s</string>
     <string name="score">Partitura</string>
     <string name="tablature">Tablatura</string>
+
+    <string name="tutorial_step_1_content">Arraste para selecionar a nota desejada na partitura</string>
+    <string name="tutorial_step_1_button">Próximo</string>
+
+    <string name="tutorial_step_2_content">Em seguida, as posições da nota selecionada irão aparecer da tablatura</string>
+    <string name="tutorial_step_2_button">Ok, entendi!</string>
 </resources>
