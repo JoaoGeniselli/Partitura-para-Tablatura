@@ -8,7 +8,7 @@
     <string name="tutorial_step_1_content">Arraste para selecionar a nota desejada na partitura</string>
     <string name="tutorial_step_2_content">Em seguida, as posições da nota selecionada irão aparecer na tablatura</string>
     <string name="tutorial_step_3_content">E o nome da nota selecionada irá aparecer aqui</string>
-    <string name="tutorial_step_4_content">Você também adicionar um acidente à nota seleciona ao clicar nos botões de sustenido e bemol.</string>
+    <string name="tutorial_step_4_content">Você também pode adicionar um acidente à nota seleciona ao clicar nos botões de sustenido e bemol.</string>
     <string name="menu_item_about">Sobre</string>
     <string name="menu_item_rate_this_app">Avalie este app</string>
     <string name="menu_item_contact_us">Contate-nos</string>

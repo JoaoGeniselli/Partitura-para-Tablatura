@@ -9,13 +9,13 @@ def secretProperties = new Properties()
 secretProperties.load(new FileInputStream(secretPropertiesFile))
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
 
     defaultConfig {
         applicationId "com.dosei.music.scoreconverter"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0.0"
 
