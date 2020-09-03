@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
@@ -13,6 +14,7 @@ import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,8 +34,10 @@ class MainActivity : AppCompatActivity() {
     private fun adjustActionBar() {
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportActionBar?.hide()
+            view_ad?.visibility = View.GONE
         } else {
             supportActionBar?.show()
+            view_ad?.visibility = View.VISIBLE
         }
     }
 

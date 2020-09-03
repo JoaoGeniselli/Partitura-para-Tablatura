@@ -3,6 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
+def secretPropertiesFile = rootProject.file("secret.properties")
+def secretProperties = new Properties()
+secretProperties.load(new FileInputStream(secretPropertiesFile))
+
 android {
     compileSdkVersion 28
 
@@ -15,6 +19,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "admob_application_id", secretProperties['ADMOB_APPLICATION_ID']
+        resValue "string", "admob_home_banner_id", secretProperties['ADMOB_HOME_BANNER_ID']
     }
 
     buildTypes {
@@ -47,4 +54,6 @@ dependencies {
     implementation "org.koin:koin-android-scope:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     implementation project(path: ':ui')
+    implementation 'com.google.android.gms:play-services-ads:19.3.0'
+
 }

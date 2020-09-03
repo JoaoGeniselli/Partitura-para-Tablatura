@@ -1,6 +1,7 @@
 package com.dosei.music.scoreconverter
 
 import android.app.Application
+import com.google.android.gms.ads.MobileAds
 import com.dosei.music.scoreconverter.di.DependencyInjection
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -13,5 +14,6 @@ class ScoreConverterApplication : Application() {
             androidContext(this@ScoreConverterApplication)
             modules(DependencyInjection.module)
         }
+        MobileAds.initialize(this) { }
     }
 }
