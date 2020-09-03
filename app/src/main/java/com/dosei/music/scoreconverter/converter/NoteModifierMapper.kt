@@ -1,6 +1,6 @@
 package com.dosei.music.scoreconverter.converter
 
-import com.dosei.music.scoreconverter.NoteModifier
+import com.dosei.music.scoreconverter.domain.NoteModifier
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 
 fun NoteModifier?.toNoteDecoration(): ScoreNoteDecoration? = when (this) {

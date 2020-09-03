@@ -1,14 +1,11 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.main
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
@@ -40,7 +37,10 @@ class MainActivity : AppCompatActivity() {
     private fun initConverter() {
         val fragment = ScoreConverterFragment()
         supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, fragment, SCORE_CONVERTER_TAG)
+            .replace(
+                R.id.main_container, fragment,
+                SCORE_CONVERTER_TAG
+            )
             .commit()
         scoreConverterFragment = fragment
     }

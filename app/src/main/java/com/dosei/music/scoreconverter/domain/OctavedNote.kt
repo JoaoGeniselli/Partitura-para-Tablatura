@@ -1,7 +1,5 @@
 package com.dosei.music.scoreconverter.domain
 
-import com.dosei.music.scoreconverter.NoteModifier
-
 data class OctavedNote(
     val note: Note,
     val octave: Int,

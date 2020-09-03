@@ -1,7 +1,7 @@
 package com.dosei.music.scoreconverter.converter
 
 import androidx.lifecycle.*
-import com.dosei.music.scoreconverter.NoteModifier
+import com.dosei.music.scoreconverter.domain.NoteModifier
 import com.dosei.music.scoreconverter.domain.Guitar
 import com.dosei.music.scoreconverter.domain.NotesRepository
 import com.dosei.music.scoreconverter.domain.OctavedNote

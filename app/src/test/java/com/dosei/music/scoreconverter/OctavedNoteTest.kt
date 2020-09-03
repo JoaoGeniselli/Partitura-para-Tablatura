@@ -1,6 +1,7 @@
 package com.dosei.music.scoreconverter
 
 import com.dosei.music.scoreconverter.domain.Note
+import com.dosei.music.scoreconverter.domain.NoteModifier
 import com.dosei.music.scoreconverter.domain.OctavedNote
 import org.junit.Assert.*
 import org.junit.Test

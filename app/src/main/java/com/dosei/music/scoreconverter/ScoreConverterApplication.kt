@@ -1,6 +1,7 @@
 package com.dosei.music.scoreconverter
 
 import android.app.Application
+import com.dosei.music.scoreconverter.di.DependencyInjection
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter
+package com.dosei.music.scoreconverter.domain
 
 enum class NoteModifier(val noteSuffix: String, val absolutePositionDiff: Int) {
     SHARP("#", 1),
