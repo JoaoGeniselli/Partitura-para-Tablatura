@@ -4,6 +4,8 @@
     <string name="score">Score</string>
     <string name="tablature">Tablature</string>
 
+    <string name="saturn_dev_email" translatable="false">saturn.dev.app@gmail.com</string>
+
     <string name="tutorial_step_1_content">Drag to select the note</string>
     <string name="tutorial_step_2_content">Then, the selected note positions will appear in the tablature</string>
     <string name="tutorial_step_3_content">And you will see it\'s name here</string>
@@ -12,4 +14,8 @@
     <string name="menu_item_rate_this_app">Rate this app</string>
     <string name="menu_item_contact_us">Contact Us</string>
     <string name="menu_item_share">Share this app</string>
+    <string name="share_chooser_title">Share to:</string>
+    <string name="share_app_content">Hello! Take a look at this awesome app!\n\n%1s\n%2s</string>
+    <string name="contact_chooser_title">Send e-mail to:</string>
+
 </resources>

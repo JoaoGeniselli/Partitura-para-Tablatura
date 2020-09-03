@@ -1,10 +1,18 @@
 package com.dosei.music.scoreconverter
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
+import com.dosei.music.scoreconverter.toolbox.goToPlayStore
+import com.dosei.music.scoreconverter.toolbox.sendEmail
+import com.dosei.music.scoreconverter.toolbox.shareText
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         } ?: initConverter()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
     private fun adjustActionBar() {
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportActionBar?.hide()
@@ -40,6 +43,59 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.main_container, fragment, SCORE_CONVERTER_TAG)
             .commit()
         scoreConverterFragment = fragment
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.rate_the_app -> rateThisApp()
+            R.id.share -> shareApp()
+            R.id.about -> redirectToAboutScreen()
+            R.id.contact_us -> redirectToEmailContact()
+            else -> return false
+        }
+        return true
+    }
+
+    private fun rateThisApp() {
+        goToPlayStore(
+            activity = this,
+            appPackage = applicationContext.packageName
+        )
+    }
+
+    private fun redirectToAboutScreen() {
+
+    }
+
+    private fun redirectToEmailContact() {
+        val contactEmail = getString(R.string.saturn_dev_email)
+        val subject = getString(R.string.app_name)
+        val chooserTitle = getString(R.string.contact_chooser_title)
+        sendEmail(
+            activity = this,
+            recipients = arrayOf(contactEmail),
+            subject = subject,
+            chooserTitle = chooserTitle
+        )
+    }
+
+    private fun shareApp() {
+        val appName = getString(R.string.app_name)
+        val appPlayStorePath = "https://play.google.com/[MEU APP]"
+        shareText(
+            activity = this,
+            content = getString(
+                R.string.share_app_content,
+                appName,
+                appPlayStorePath
+            ),
+            chooserTitle = getString(R.string.share_chooser_title)
+        )
     }
 
     companion object {
