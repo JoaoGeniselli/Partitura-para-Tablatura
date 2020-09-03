@@ -16,4 +16,7 @@
     <string name="share_chooser_title">Compartilhar para:</string>
     <string name="share_app_content">Olá! Dê uma olhada neste aplicativo incrível!\n\n%1s\n%2s</string>
     <string name="contact_chooser_title">Enviar e-mail para:</string>
+    <string name="about_activity_title">Sobre o app</string>
+    <string name="about_content">Esta ferramenta foi feita com o objetivo de auxiliar estudantes de violão erudito na memorização das posições de notas de partitura no braço de um violão.\n\nSugestões são bem vindas!\nSe você tem alguma funcionalidade ou melhoria que gostaria de ver neste app, entre em contato conosco <a href="mailto:saturn.dev.app@gmail.com?Subject=Partitura%20para%20Tablatura">clicando aqui</a>.</string>
+    <string name="version_name_label">Versão %s</string>
 </resources>

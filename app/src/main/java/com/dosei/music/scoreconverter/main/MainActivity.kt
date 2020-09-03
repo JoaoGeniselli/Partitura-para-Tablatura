@@ -1,11 +1,13 @@
 package com.dosei.music.scoreconverter.main
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.dosei.music.scoreconverter.R
+import com.dosei.music.scoreconverter.about.AboutActivity
 import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
@@ -69,7 +71,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun redirectToAboutScreen() {
-
+        startActivity(
+            Intent(this, AboutActivity::class.java)
+        )
     }
 
     private fun redirectToEmailContact() {
