@@ -6,7 +6,7 @@ import android.content.Intent
 import android.net.Uri
 
 private const val URL_MARKET = "market://details?id="
-private const val URL_PLAY_STORE = "http://play.google.com/store/apps/details?id="
+const val URL_PLAY_STORE = "http://play.google.com/store/apps/details?id="
 
 fun goToPlayStore(
     activity: Activity,

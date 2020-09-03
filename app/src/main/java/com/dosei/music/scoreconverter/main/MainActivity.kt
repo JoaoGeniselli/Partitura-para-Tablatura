@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
 import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
+import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
@@ -90,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun shareApp() {
         val appName = getString(R.string.app_name)
-        val appPlayStorePath = "https://play.google.com/[MEU APP]"
+        val appPlayStorePath = URL_PLAY_STORE + applicationContext.packageName
         shareText(
             activity = this,
             content = getString(
