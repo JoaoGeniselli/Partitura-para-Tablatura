@@ -1,6 +1,3 @@
-import java.util.*
-import java.io.FileInputStream
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -21,27 +18,24 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    val secretPropertiesFile = rootProject.file("secret.properties")
-    val secretProperties = Properties()
-    secretProperties.load(FileInputStream(secretPropertiesFile))
+    val secrets = SecretsAPI.forProject(rootProject)
 
     buildTypes {
         getByName("debug") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 
-            resValue("string", "admob_application_id", secretProperties["ADMOB_APPLICATION_ID"] as String)
-            resValue("string", "admob_home_banner_id", secretProperties["FAKE_ADMOB_HOME_BANNER_ID"] as String)
+            resValue("string", "admob_application_id", secrets.getString(SecretsKeys.adMobAppId))
+            resValue("string", "admob_home_banner_id", secrets.getString(SecretsKeys.adMobHomeBannerId))
         }
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 
-            resValue("string", "admob_application_id", secretProperties["ADMOB_APPLICATION_ID"] as String)
-            resValue("string", "admob_home_banner_id", secretProperties["ADMOB_HOME_BANNER_ID"] as String)
+            resValue("string", "admob_application_id", secrets.getString(SecretsKeys.adMobAppId))
+            resValue("string", "admob_home_banner_id", secrets.getString(SecretsKeys.fakeAdMobHomeBannerId))
         }
     }
-
 }
 
 dependencies {
