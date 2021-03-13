@@ -30,7 +30,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             resValue "string", "admob_application_id", secretProperties['ADMOB_APPLICATION_ID']
-            resValue "string", "admob_home_banner_id", secretProperties['ADMOB_HOME_BANNER_ID']
+            resValue "string", "admob_home_banner_id", secretProperties['FAKE_ADMOB_HOME_BANNER_ID']
         }
         release {
             minifyEnabled false
