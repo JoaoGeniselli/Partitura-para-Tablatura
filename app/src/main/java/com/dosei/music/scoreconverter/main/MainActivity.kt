@@ -14,6 +14,9 @@ import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +32,15 @@ class MainActivity : AppCompatActivity() {
                 SCORE_CONVERTER_TAG
             ) as? ScoreConverterFragment
         } ?: initConverter()
+        loadAdMob()
+    }
+
+    private fun loadAdMob() {
+        MobileAds.initialize(this) {}
+        findViewById<AdView>(R.id.view_ad)?.apply {
+            val adRequest = AdRequest.Builder().build()
+            loadAd(adRequest)
+        }
     }
 
     private fun adjustActionBar() {
