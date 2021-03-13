@@ -63,6 +63,11 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
 
     override fun onTouch(view: View?, event: MotionEvent?): Boolean {
         gestureDetector.onTouchEvent(event)
+
+        if (event?.action == MotionEvent.ACTION_UP) {
+            onPositionChangedListener?.onScorePositionChanged(notePosition ?: 0)
+        }
+
         return true
     }
 
@@ -83,7 +88,6 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
         val closestPosition = yInDips / 8
         val updatedPosition = max(min(closestPosition, maxPosition), 0)
         notePosition = updatedPosition
-        onPositionChangedListener?.onScorePositionChanged(updatedPosition)
         return true
     }
 
