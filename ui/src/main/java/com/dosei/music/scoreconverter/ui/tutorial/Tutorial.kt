@@ -35,7 +35,7 @@ class Tutorial {
     private fun Step.toTarget(): TapTarget = TapTarget
         .forView(target, description)
         .tintTarget(false)
-        .cancelable(true)
+        .cancelable(false)
 
     private fun makeListener() = object : TapTargetSequence.Listener {
         override fun onSequenceCanceled(lastTarget: TapTarget?) = onCancelListener()
