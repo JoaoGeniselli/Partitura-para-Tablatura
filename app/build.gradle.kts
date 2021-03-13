@@ -26,14 +26,14 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 
             resValue("string", "admob_application_id", secrets.getString(SecretsKeys.adMobAppId))
-            resValue("string", "admob_home_banner_id", secrets.getString(SecretsKeys.adMobHomeBannerId))
+            resValue("string", "admob_home_banner_id", secrets.getString(SecretsKeys.fakeAdMobHomeBannerId))
         }
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 
             resValue("string", "admob_application_id", secrets.getString(SecretsKeys.adMobAppId))
-            resValue("string", "admob_home_banner_id", secrets.getString(SecretsKeys.fakeAdMobHomeBannerId))
+            resValue("string", "admob_home_banner_id", secrets.getString(SecretsKeys.adMobHomeBannerId))
         }
     }
 }
