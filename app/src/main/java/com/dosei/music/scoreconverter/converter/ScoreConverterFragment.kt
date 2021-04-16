@@ -39,7 +39,7 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
     }
 
     private fun initChildFragments() {
-        scoreFragment = ScoreFragment()
+        scoreFragment = ScoreFragment.newInstance(GUITAR_UPPER_LINES, GUITAR_LOWER_LINES)
         tablatureFragment = TablatureFragment()
         scoreFragment.onPositionChangedListener = this
 
@@ -146,5 +146,8 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
     companion object {
         private const val STATE_KEY_NOTE_POSITION = "progress"
         private const val STATE_KEY_NOTE_DECORATION = "note_modifier"
+
+        private const val GUITAR_UPPER_LINES = 5
+        private const val GUITAR_LOWER_LINES = 3
     }
 }
