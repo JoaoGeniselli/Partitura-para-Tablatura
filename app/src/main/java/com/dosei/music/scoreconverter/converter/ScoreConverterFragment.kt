@@ -129,6 +129,7 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
             addStep(stringIndicator, getString(R.string.tutorial_step_2_content))
             addStep(currentNoteView, getString(R.string.tutorial_step_3_content))
             addStep(sharpButton, getString(R.string.tutorial_step_4_content))
+            addStep(stringIndicator, getString(R.string.tutorial_step_5_content))
             onFinish { viewModel.onTutorialFinished() }
         }
     }
