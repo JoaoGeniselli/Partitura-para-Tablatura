@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.ui.view
+package com.dosei.music.scoreconverter.ui.view.keyboard
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,8 +6,10 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 import com.dosei.music.scoreconverter.ui.R
+import com.dosei.music.scoreconverter.ui.view.dpToPixels
 
 class WhiteTileView(context: Context, attributeSet: AttributeSet?) : View(context, attributeSet) {
 
