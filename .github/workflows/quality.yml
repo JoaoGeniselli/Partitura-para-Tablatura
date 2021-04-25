@@ -27,9 +27,9 @@ jobs:
               echo "ADMOB_HOME_BANNER_ID=\"$ADMOB_HOME_BANNER_ID\"" >> ./secret.properties
 
       - name: Setup firebase auth
-          env:
-            FIREBASE_AUTH: ${{ secrets.FIREBASE_AUTH }}
-          run: echo "$FIREBASE_AUTH" > ./app/google-services.json
+        env:
+          FIREBASE_AUTH: ${{ secrets.FIREBASE_AUTH }}
+        run: echo "$FIREBASE_AUTH" > ./app/google-services.json
               
       - name: Run all tests
         run: ./gradlew test
