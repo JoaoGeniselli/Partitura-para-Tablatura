@@ -28,5 +28,8 @@ jobs:
               echo "$ADMOB_HOME_BANNER_ID" > ./secrets.properties | 
               echo "$FAKE_ADMOB_HOME_BANNER_ID" > ./secrets.properties
               
+      - name: Show where I am
+        run: ls | pwd
+              
       - name: Run all tests
         run: ./gradlew test
