@@ -1,8 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: [ feature/test_ci ]
+  pull_request:
+    branches: [ develop ]
 
   workflow_dispatch:
 
