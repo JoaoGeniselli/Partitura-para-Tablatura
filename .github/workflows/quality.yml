@@ -1,8 +1,8 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [ feature/custom_strings ]
+  push:
+    branches: [ feature/test_ci ]
 
   workflow_dispatch:
 
@@ -24,9 +24,15 @@ jobs:
           ADMOB_APPLICATION_ID: ${{ secrets.ADMOB_APPLICATION_ID }}
           ADMOB_HOME_BANNER_ID: ${{ secrets.ADMOB_HOME_BANNER_ID }}
           FAKE_ADMOB_HOME_BANNER_ID: ${{ secrets.FAKE_ADMOB_HOME_BANNER_ID }}
-        run: echo "$ADMOB_APPLICATION_ID" > ./secrets.properties | 
-              echo "$ADMOB_HOME_BANNER_ID" > ./secrets.properties | 
-              echo "$FAKE_ADMOB_HOME_BANNER_ID" > ./secrets.properties
+        run: echo "$ADMOB_APPLICATION_ID" > ./secret.properties |
+              echo "$ADMOB_HOME_BANNER_ID" > ./secret.properties |
+              echo "$FAKE_ADMOB_HOME_BANNER_ID" > ./secret.properties
+
+      - name: Where am I
+        run: ls
+
+      - name: Show fake secrets
+        run: cat secret.properties
               
       - name: Run all tests
         run: ./gradlew test
