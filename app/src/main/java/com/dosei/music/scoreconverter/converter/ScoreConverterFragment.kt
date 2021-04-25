@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.dosei.music.scoreconverter.R
+import com.dosei.music.scoreconverter.player.AudioPlayer
 import com.dosei.music.scoreconverter.ui.tutorial.Tutorial
 import com.dosei.music.scoreconverter.ui.view.ScoreFragment
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 import com.dosei.music.scoreconverter.ui.view.TablatureFragment
 import kotlinx.android.synthetic.main.fragment_score_converter.*
+import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListener {
@@ -19,12 +21,23 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
     private val viewModel by viewModel<ScoreConverterViewModel>()
     private lateinit var scoreFragment: ScoreFragment
     private lateinit var tablatureFragment: TablatureFragment
+    private val player by inject<AudioPlayer>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_score_converter, container, false)
+
+    override fun onStart() {
+        super.onStart()
+        player.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        player.stop()
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -58,7 +71,10 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
     private fun ScoreConverterViewModel.bindToMe(savedInstanceState: Bundle?) {
         lifecycle.addObserver(this)
 
-        sharp_button.setOnClickListener { viewModel.onSharpClicked() }
+        sharp_button.setOnClickListener {
+            viewModel.onSharpClicked()
+            player.playNote()
+        }
         flat_button.setOnClickListener { viewModel.onFlatClicked() }
 
         currentNote.observe(

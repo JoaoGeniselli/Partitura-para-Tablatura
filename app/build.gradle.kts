@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(project(path = ":ui"))
+    implementation(project(path = ":player"))
 
     implementation(Dependencies.kotlin)
     implementation(Dependencies.AndroidX.appCompat)
