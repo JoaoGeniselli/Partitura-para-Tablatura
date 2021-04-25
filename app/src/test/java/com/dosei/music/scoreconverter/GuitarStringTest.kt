@@ -17,7 +17,6 @@ class GuitarStringTest {
         val string =
             GuitarString(initialNote = lowE)
 
-        // This is a test, remove me later
         assertEquals(28, string.noteRange.first)
         assertEquals(48, string.noteRange.last)
 
