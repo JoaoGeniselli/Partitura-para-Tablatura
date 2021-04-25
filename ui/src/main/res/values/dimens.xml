@@ -6,4 +6,9 @@
     <dimen name="note_height">16dp</dimen>
     <dimen name="note_decoration_height">24dp</dimen>
     <dimen name="note_decoration_width">16dp</dimen>
+
+    <dimen name="piano_white_tile_width">24dp</dimen>
+    <dimen name="piano_white_tile_height">128dp</dimen>
+    <dimen name="piano_black_tile_width">12dp</dimen>
+    <dimen name="piano_black_tile_height">72dp</dimen>
 </resources>

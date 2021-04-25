@@ -10,6 +10,7 @@
     <string name="tutorial_step_2_content">Then, the selected note positions will appear in the tablature</string>
     <string name="tutorial_step_3_content">And you will see it\'s name here</string>
     <string name="tutorial_step_4_content">You can also add an accidental to the selected note by clicking on the sharp and flat buttons.</string>
+    <string name="tutorial_step_5_content">Remember, the notes shown in this tablature are not chords, they are the possible positions of an individual note.</string>
     <string name="menu_item_about">About</string>
     <string name="menu_item_rate_this_app">Rate this app</string>
     <string name="menu_item_contact_us">Contact Us</string>
