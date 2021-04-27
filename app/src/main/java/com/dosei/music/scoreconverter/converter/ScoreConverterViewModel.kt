@@ -7,6 +7,7 @@ import com.dosei.music.scoreconverter.domain.NotesRepository
 import com.dosei.music.scoreconverter.domain.OctavedNote
 import com.dosei.music.scoreconverter.domain.PositionsRepository
 import com.dosei.music.scoreconverter.io.SharedPreferencesClient
+import com.dosei.music.scoreconverter.player.AudioPlayer
 import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 
@@ -15,7 +16,8 @@ class ScoreConverterViewModel(
     private val notesRepository: NotesRepository,
     private val positionsRepository: PositionsRepository,
     private val preferencesClient: SharedPreferencesClient,
-    private val noteConverter: MIDINoteConverter
+    private val noteConverter: MIDINoteConverter,
+    private val player: AudioPlayer
 ) : ViewModel(), LifecycleObserver {
 
     private var allNotes: List<OctavedNote> = listOf()
@@ -53,6 +55,12 @@ class ScoreConverterViewModel(
         showTutorialIfNeeded()
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    private fun onStart() = player.start()
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    private fun onStop() = player.stop()
+
     private fun showTutorialIfNeeded() {
         val tutorialWasNeverShown = !preferencesClient.getBoolean(KEY_TUTORIAL_COMMIT) 
         if (tutorialWasNeverShown) {
@@ -72,7 +80,12 @@ class ScoreConverterViewModel(
     private fun updateCurrentNote(updatedPosition: Int) {
         updateNoteModifierIndicators()
         currentNotePosition = updatedPosition
-        _currentNote.value = allNotes[currentNotePosition].toCurrentNote()
+
+        val note = allNotes[currentNotePosition]
+        _currentNote.value = note.toCurrentNote()
+
+        val noteWithModifier = note.apply { modifier = noteModifier }
+        player.playNote(noteConverter.convert(noteWithModifier))
     }
 
     private fun updateNoteModifierIndicators() {

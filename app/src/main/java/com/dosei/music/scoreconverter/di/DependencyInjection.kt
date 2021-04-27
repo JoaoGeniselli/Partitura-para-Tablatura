@@ -27,7 +27,8 @@ object DependencyInjection {
                     notesRepository = get(),
                     positionsRepository = get(),
                     preferencesClient = get(),
-                    noteConverter = get()
+                    noteConverter = get(),
+                    player = get()
                 )
             }
         }

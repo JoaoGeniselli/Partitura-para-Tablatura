@@ -21,23 +21,12 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
     private val viewModel by viewModel<ScoreConverterViewModel>()
     private lateinit var scoreFragment: ScoreFragment
     private lateinit var tablatureFragment: TablatureFragment
-    private val player by inject<AudioPlayer>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_score_converter, container, false)
-
-    override fun onStart() {
-        super.onStart()
-        player.start()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        player.stop()
-    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -73,7 +62,6 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
 
         sharp_button.setOnClickListener {
             viewModel.onSharpClicked()
-            player.playNote()
         }
         flat_button.setOnClickListener { viewModel.onFlatClicked() }
 

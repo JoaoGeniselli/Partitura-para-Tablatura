@@ -12,13 +12,20 @@ class AudioPlayer(private val driver: MidiDriver) {
         driver.write(event)
     }
 
-    fun playNote() {
+    fun playNote(note: Int, duration: Int = DEFAULT_DURATION) {
         val event = ByteArray(3)
-        event[0] = MidiConstants.NOTE_ON
-        event[1] = 48
-        event[2] = 63
+        event[POSITION_ACTION] = MidiConstants.NOTE_ON
+        event[POSITION_NOTE] = note.toByte()
+        event[POSITION_DURATION] = duration.toByte()
         driver.write(event)
     }
 
     fun stop() = driver.stop()
+
+    companion object {
+        private const val POSITION_ACTION = 0
+        private const val POSITION_NOTE = 1
+        private const val POSITION_DURATION = 2
+        const val DEFAULT_DURATION = 63
+    }
 }
