@@ -14,7 +14,8 @@ class ScoreConverterViewModel(
     private val guitar: Guitar,
     private val notesRepository: NotesRepository,
     private val positionsRepository: PositionsRepository,
-    private val preferencesClient: SharedPreferencesClient
+    private val preferencesClient: SharedPreferencesClient,
+    private val noteConverter: MIDINoteConverter
 ) : ViewModel(), LifecycleObserver {
 
     private var allNotes: List<OctavedNote> = listOf()

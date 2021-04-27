@@ -1,5 +1,6 @@
 package com.dosei.music.scoreconverter.di
 
+import com.dosei.music.scoreconverter.converter.MIDINoteConverter
 import com.dosei.music.scoreconverter.converter.ScoreConverterViewModel
 import com.dosei.music.scoreconverter.domain.Guitar
 import com.dosei.music.scoreconverter.domain.NotesRepository
@@ -17,14 +18,16 @@ object DependencyInjection {
             factory { NotesRepository() }
             factory { PositionsRepository() }
             factory { SharedPreferencesClient(androidContext()) }
-            single { PlayerDependencyInjection.createPlayer() }
+            factory { PlayerDependencyInjection.createPlayer() }
+            factory { MIDINoteConverter() }
 
             viewModel {
                 ScoreConverterViewModel(
                     guitar = get(),
                     notesRepository = get(),
                     positionsRepository = get(),
-                    preferencesClient = get()
+                    preferencesClient = get(),
+                    noteConverter = get()
                 )
             }
         }
