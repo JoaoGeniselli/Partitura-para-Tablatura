@@ -4,5 +4,5 @@ import org.billthefarmer.mididriver.MidiDriver
 
 object PlayerDependencyInjection {
 
-    fun createPlayer(): AudioPlayer = AudioPlayer(MidiDriver())
+    fun createPlayer(): AudioPlayer = MidiDriverAudioPlayer(MidiDriver())
 }
