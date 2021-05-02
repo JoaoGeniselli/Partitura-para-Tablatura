@@ -41,4 +41,5 @@ dependencies {
     implementation(Dependencies.AndroidX.appCompat)
     implementation(Dependencies.midiDriver)
     testImplementation(Dependencies.junit)
+    testImplementation(Dependencies.mockk)
 }
