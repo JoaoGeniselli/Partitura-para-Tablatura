@@ -6,13 +6,16 @@ import androidx.annotation.IntRange
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.dosei.music.scoreconverter.ui.R
-import kotlinx.android.synthetic.main.view_score_complete.*
+import com.dosei.music.scoreconverter.ui.databinding.ViewScoreCompleteBinding
 import kotlin.math.max
 import kotlin.math.min
 
 class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestureListener {
 
     private lateinit var densityCalculator: DensityCalculator
+
+    private var _binding: ViewScoreCompleteBinding? = null
+    private val binding: ViewScoreCompleteBinding get() = _binding!!
 
     private val gestureDetector = GestureDetector(context, this)
 
@@ -44,8 +47,9 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.view_score_complete, container, false)
+    ): View {
+        _binding = ViewScoreCompleteBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -58,24 +62,24 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
         view?.setOnTouchListener(this)
 
         val allUpperLines = listOf(
-            upper_line_1,
-            upper_line_2,
-            upper_line_3,
-            upper_line_4,
-            upper_line_5,
-            upper_line_6,
-            upper_line_7,
-            upper_line_8,
-            upper_line_9
+            binding.upperLine1,
+            binding.upperLine2,
+            binding.upperLine3,
+            binding.upperLine4,
+            binding.upperLine5,
+            binding.upperLine6,
+            binding.upperLine7,
+            binding.upperLine8,
+            binding.upperLine9
         )
 
         val allLowerLines = listOf(
-            lower_line_1,
-            lower_line_2,
-            lower_line_3,
-            lower_line_4,
-            lower_line_5,
-            lower_line_6
+            binding.lowerLine1,
+            binding.lowerLine2,
+            binding.lowerLine3,
+            binding.lowerLine4,
+            binding.lowerLine5,
+            binding.lowerLine6
         )
 
         allUpperLines.subList(0, upperLines).forEach { it.visibility = View.VISIBLE }
@@ -84,12 +88,12 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
 
     private fun updatePosition() {
         noteDecoration?.let {
-            note_decoration.setImageResource(it.resource)
-        } ?: note_decoration.setImageDrawable(null)
+            binding.noteDecoration.setImageResource(it.resource)
+        } ?: binding.noteDecoration.setImageDrawable(null)
         val noteListPosition = notePosition ?: return
         val guidelinePositionInDips = calculateGuidelineInDips(noteListPosition)
         val positionInPixels = densityCalculator.dipsToPixels(guidelinePositionInDips)
-        guideline.setGuidelineBegin(positionInPixels)
+        binding.guideline.setGuidelineBegin(positionInPixels)
     }
 
     private fun calculateGuidelineInDips(position: Int): Float {
@@ -130,6 +134,11 @@ class ScoreFragment : Fragment(), View.OnTouchListener, GestureDetector.OnGestur
 
     interface OnPositionChangedListener {
         fun onScorePositionChanged(position: Int)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

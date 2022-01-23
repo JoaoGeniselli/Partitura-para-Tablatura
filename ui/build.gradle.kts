@@ -1,18 +1,14 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-android-extensions")
 }
 
 android {
-    compileSdkVersion(Versions.Sdk.compile)
+    compileSdk = Versions.Sdk.compile
 
     defaultConfig {
-        minSdkVersion(Versions.Sdk.minimum)
-        targetSdkVersion(Versions.Sdk.target)
-        versionCode = 1
-        versionName = "1.0"
-
+        minSdk = Versions.Sdk.minimum
+        targetSdk = Versions.Sdk.target
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -26,18 +22,32 @@ android {
             )
         }
     }
-
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.0-rc01"
+    }
+    buildFeatures {
+        compose = true
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation(Dependencies.kotlin)
-    implementation(Dependencies.AndroidX.appCompat)
-    implementation(Dependencies.AndroidX.coreKtx)
     implementation(Dependencies.tapTargetView)
     implementation(Dependencies.AndroidX.constraintLayout)
 
-    testImplementation(Dependencies.junit)
-
-    androidTestImplementation(Dependencies.AndroidX.junitExtensions)
-    androidTestImplementation(Dependencies.AndroidX.espresso)
+    implementation(libs.core.ktx)
+    implementation(libs.app.compat)
+    implementation(libs.android.material)
+    implementation(libs.bundles.compose)
+    implementation(libs.lifecycle.runtime)
+    testImplementation(libs.junit.core)
+    androidTestImplementation(libs.android.test.ext)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.compose.junit)
+    debugImplementation(libs.compose.tooling.ui)
 }

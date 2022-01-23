@@ -7,8 +7,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath(Dependencies.gradlePlugin)
-        classpath(Dependencies.kotlinGradlePlugin)
+        classpath("com.android.tools.build:gradle:7.0.3")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0")
         classpath(Dependencies.googleServices)
         classpath(Dependencies.Firebase.crashlyticsGradlePlugin)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
 import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
+import com.dosei.music.scoreconverter.databinding.ActivityMainBinding
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
@@ -17,15 +18,17 @@ import com.dosei.music.scoreconverter.toolbox.shareText
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     private var scoreConverterFragment: ScoreConverterFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         adjustActionBar()
         savedInstanceState?.let {
             scoreConverterFragment = supportFragmentManager.findFragmentByTag(
@@ -46,10 +49,10 @@ class MainActivity : AppCompatActivity() {
     private fun adjustActionBar() {
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportActionBar?.hide()
-            view_ad?.visibility = View.GONE
+            binding.viewAd.visibility = View.GONE
         } else {
             supportActionBar?.show()
-            view_ad?.visibility = View.VISIBLE
+            binding.viewAd.visibility = View.VISIBLE
         }
     }
 
@@ -64,13 +67,13 @@ class MainActivity : AppCompatActivity() {
         scoreConverterFragment = fragment
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             R.id.rate_the_app -> rateThisApp()
             R.id.share -> shareApp()
             R.id.about -> redirectToAboutScreen()

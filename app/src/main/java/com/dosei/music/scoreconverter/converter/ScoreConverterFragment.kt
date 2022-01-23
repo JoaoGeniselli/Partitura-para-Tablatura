@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.dosei.music.scoreconverter.R
-import com.dosei.music.scoreconverter.player.AudioPlayer
+import com.dosei.music.scoreconverter.databinding.FragmentScoreConverterBinding
 import com.dosei.music.scoreconverter.ui.tutorial.Tutorial
 import com.dosei.music.scoreconverter.ui.view.ScoreFragment
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 import com.dosei.music.scoreconverter.ui.view.TablatureFragment
-import kotlinx.android.synthetic.main.fragment_score_converter.*
-import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListener {
+    
+    private var _binding: FragmentScoreConverterBinding? = null
+    private val binding: FragmentScoreConverterBinding get() = _binding!!
 
     private val viewModel by viewModel<ScoreConverterViewModel>()
     private lateinit var scoreFragment: ScoreFragment
@@ -26,7 +27,15 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_score_converter, container, false)
+    ): View {
+        _binding = FragmentScoreConverterBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -60,34 +69,34 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
     private fun ScoreConverterViewModel.bindToMe(savedInstanceState: Bundle?) {
         lifecycle.addObserver(this)
 
-        sharp_button.setOnClickListener {
+        binding.sharpButton.setOnClickListener {
             viewModel.onSharpClicked()
         }
-        flat_button.setOnClickListener { viewModel.onFlatClicked() }
+        binding.flatButton.setOnClickListener { viewModel.onFlatClicked() }
 
         currentNote.observe(
-            this@ScoreConverterFragment,
-            Observer { updateNote(it) }
+            viewLifecycleOwner,
+            { updateNote(it) }
         )
         progressMax.observe(
-            this@ScoreConverterFragment,
-            Observer { scoreFragment.maxPosition = it }
+            viewLifecycleOwner,
+            { scoreFragment.maxPosition = it }
         )
         sharpHighlight.observe(
-            this@ScoreConverterFragment,
-            Observer { updateSharpButtonIcon(it) }
+            viewLifecycleOwner,
+            { updateSharpButtonIcon(it) }
         )
         flatHighlight.observe(
-            this@ScoreConverterFragment,
-            Observer { updateFlatButtonIcon(it) }
+            viewLifecycleOwner,
+            { updateFlatButtonIcon(it) }
         )
         noteDecoration.observe(
-            this@ScoreConverterFragment,
-            Observer { scoreFragment.noteDecoration = it }
+            viewLifecycleOwner,
+            { scoreFragment.noteDecoration = it }
         )
         showTutorial.observe(
-            this@ScoreConverterFragment,
-            Observer { showTutorial() }
+            viewLifecycleOwner,
+            { showTutorial() }
         )
         savedInstanceState?.lastNotePosition?.let { position ->
             onSavedIndexRetrieved(position)
@@ -99,7 +108,7 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
 
     private fun updateNote(note: CurrentNote?) {
         note?.run {
-            text_current_note.text = getString(R.string.current_note, name)
+            binding.textCurrentNote.text = getString(R.string.current_note, name)
             scoreFragment.notePosition = scorePosition
             tablatureFragment.positions = tablaturePositions
         }
@@ -111,7 +120,7 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
         } else {
             R.drawable.ic_sharp_black
         }
-        sharp_button.setImageResource(updatedIcon)
+        binding.sharpButton.setImageResource(updatedIcon)
     }
 
     private fun updateFlatButtonIcon(highlight: Boolean) {
@@ -120,14 +129,14 @@ class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListen
         } else {
             R.drawable.ic_flat_black
         }
-        flat_button.setImageResource(updatedIcon)
+        binding.flatButton.setImageResource(updatedIcon)
     }
 
     private fun showTutorial() {
         val noteIndicator = view?.findViewById<View>(R.id.note_indicator) ?: return
         val stringIndicator = view?.findViewById<View>(R.id.note_line_6) ?: return
-        val currentNoteView = text_current_note ?: return
-        val sharpButton = sharp_button ?: return
+        val currentNoteView = binding.textCurrentNote
+        val sharpButton = binding.sharpButton
         Tutorial.start(activity ?: return) {
             addStep(noteIndicator, getString(R.string.tutorial_step_1_content))
             addStep(stringIndicator, getString(R.string.tutorial_step_2_content))

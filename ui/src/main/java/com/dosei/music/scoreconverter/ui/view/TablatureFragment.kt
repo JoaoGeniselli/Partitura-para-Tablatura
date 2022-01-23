@@ -6,17 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.dosei.music.scoreconverter.ui.R
-import kotlinx.android.synthetic.main.view_tablature_complete.*
+import com.dosei.music.scoreconverter.ui.databinding.ViewTablatureCompleteBinding
 
 class TablatureFragment : Fragment() {
+
+    private var _binding: ViewTablatureCompleteBinding? = null
+    private val binding: ViewTablatureCompleteBinding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.view_tablature_complete, container, false)
+    ): View {
+        _binding = ViewTablatureCompleteBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     var positions: GuitarPositions? = null
@@ -28,12 +36,12 @@ class TablatureFragment : Fragment() {
     private fun updatePositions() {
         positions?.run {
             updateAllChordPositions(
-                note_line_1 to string1,
-                note_line_2 to string2,
-                note_line_3 to string3,
-                note_line_4 to string4,
-                note_line_5 to string5,
-                note_line_6 to string6
+                binding.noteLine1 to string1,
+                binding.noteLine2 to string2,
+                binding.noteLine3 to string3,
+                binding.noteLine4 to string4,
+                binding.noteLine5 to string5,
+                binding.noteLine6 to string6
             )
         }
     }

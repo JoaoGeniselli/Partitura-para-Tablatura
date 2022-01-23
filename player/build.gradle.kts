@@ -4,14 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.Sdk.compile)
+    compileSdk = Versions.Sdk.compile
 
     defaultConfig {
-        minSdkVersion(Versions.Sdk.minimum)
-        targetSdkVersion(Versions.Sdk.target)
-        versionCode = Versions.App.code
-        versionName = Versions.App.name
-
+        minSdk = Versions.Sdk.minimum
+        targetSdk = Versions.Sdk.target
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -36,10 +33,10 @@ android {
 
 dependencies {
 
-    implementation(Dependencies.kotlin)
-    implementation(Dependencies.AndroidX.coreKtx)
-    implementation(Dependencies.AndroidX.appCompat)
-    implementation(Dependencies.midiDriver)
-    testImplementation(Dependencies.junit)
-    testImplementation(Dependencies.mockk)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.core.ktx)
+    implementation(libs.app.compat)
+    implementation(libs.midi.driver)
+    testImplementation(libs.junit.core)
+    testImplementation(libs.mockk)
 }
