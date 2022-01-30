@@ -11,8 +11,12 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.inset
 import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.dosei.music.scoreconverter.ui.R
 import com.dosei.music.scoreconverter.ui.view.NotationNotes.*
 
 enum class NotationNotes(val index: Int, val isMainLine: Boolean, val isLine: Boolean) {
@@ -55,8 +59,6 @@ enum class NotationNotes(val index: Int, val isMainLine: Boolean, val isLine: Bo
         fun getAll(intRange: IntRange): List<NotationNotes> {
             return values().filter { intRange.contains(it.index) }.sortedBy { it.index }
         }
-
-        fun totalNotes() = values().size
     }
 }
 
@@ -64,23 +66,32 @@ enum class NotationNotes(val index: Int, val isMainLine: Boolean, val isLine: Bo
 fun ComposableScore(modifier: Modifier = Modifier, noteRange: IntRange, noteIndex: Int? = null) {
     val notes = NotationNotes.getAll(noteRange)
 
+    val vector = ImageVector.vectorResource(id = R.drawable.ic_treble_clef)
+    val painter = rememberVectorPainter(image = vector)
+
     Canvas(modifier = modifier) {
         val noteSize = 16.dp.toPx()
         val stroke = 1.dp.toPx()
         var yCursor = 0f
 
-        notes.sortedByDescending { it.index }.forEach {
+        inset(vertical = noteSize * 8f, horizontal = 8.dp.toPx()){
+            with(painter) {
+                draw(painter.intrinsicSize)
+            }
+        }
+
+        notes.sortedByDescending { note -> note.index }.forEach { note ->
             val yPosition = yCursor + (noteSize / 2f)
-            if (it.isLine) {
+            if (note.isLine) {
                 drawLine(
-                    color = if (it.isMainLine) Color.Black else Color.LightGray,
+                    color = if (note.isMainLine) Color.Black else Color.LightGray,
                     strokeWidth = stroke,
                     start = Offset(x = 0f, y = yPosition),
                     end = Offset(x = size.width, y = yPosition)
                 )
             }
 
-            if (noteIndex == it.index) {
+            if (noteIndex == note.index) {
                 drawOval(
                     color = Color.Black,
                     topLeft = Offset(x = size.width / 2f, y = yCursor),
@@ -88,8 +99,21 @@ fun ComposableScore(modifier: Modifier = Modifier, noteRange: IntRange, noteInde
                 )
             }
             yCursor = yPosition
-
         }
+
+        drawLine(
+            color = Color.Black,
+            strokeWidth = stroke,
+            start = Offset(x = 0f, y = 9 * noteSize),
+            end = Offset(x = 0f, y = 13 * noteSize)
+        )
+
+        drawLine(
+            color = Color.Black,
+            strokeWidth = stroke,
+            start = Offset(x = size.width, y = 9 * noteSize),
+            end = Offset(x = size.width, y = 13 * noteSize)
+        )
     }
 }
 
@@ -99,7 +123,6 @@ private fun PreviewComposableScore() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
         ComposableScore(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(16.dp),
             noteRange = E2.index..B6.index,
             noteIndex = E4.index
