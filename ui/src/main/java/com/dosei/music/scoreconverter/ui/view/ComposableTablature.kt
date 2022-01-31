@@ -1,5 +1,6 @@
 package com.dosei.music.scoreconverter.ui.view
 
+import android.graphics.Typeface
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,12 +11,20 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun ComposableTablature(modifier: Modifier = Modifier, strings: Int = 6, positions: Map<Int, Int>) {
+    val paint = Paint().asFrameworkPaint().apply {
+        isAntiAlias = true
+        textSize = 30f
+        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+    }
     Canvas(modifier = modifier) {
         val positionSize = 16.dp.toPx()
         val itemPadding = 2.dp.toPx()
@@ -26,11 +35,21 @@ fun ComposableTablature(modifier: Modifier = Modifier, strings: Int = 6, positio
         val startX = 16.dp.toPx()
         val endX = size.width - 16.dp.toPx()
 
+        val ids = listOf("e", "B", "G", "D", "A", "E")
 
         for (string in 1..strings) {
             val rectY = yCursor + itemPadding
             val lineY = rectY + (positionSize / 2)
+            val id = ids[string.dec()]
 
+            drawIntoCanvas {
+                it.nativeCanvas.drawText(
+                    id,
+                    0f,
+                    lineY + 3.dp.toPx(),
+                    paint
+                )
+            }
 
             drawLine(
                 color = Color.Black,
@@ -40,9 +59,16 @@ fun ComposableTablature(modifier: Modifier = Modifier, strings: Int = 6, positio
             )
 
             drawRoundRect(
+                color = Color.White,
+                cornerRadius = CornerRadius(x = 4f, y = 4f),
+                topLeft = Offset(x = (size.width / 2f) - 16.dp.toPx(), y = rectY),
+                size = Size(width = 32.dp.toPx(), height = positionSize)
+            )
+
+            drawRoundRect(
                 color = Color.Black,
                 cornerRadius = CornerRadius(x = 4f, y = 4f),
-                topLeft = Offset(x = (size.width /2f) - 16.dp.toPx(), y = rectY),
+                topLeft = Offset(x = (size.width / 2f) - 16.dp.toPx(), y = rectY),
                 size = Size(width = 32.dp.toPx(), height = positionSize),
                 style = Stroke(width = 1.dp.toPx())
             )
