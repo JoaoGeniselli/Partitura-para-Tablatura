@@ -42,15 +42,6 @@ fun ComposableTablature(modifier: Modifier = Modifier, strings: Int = 6, positio
             val lineY = rectY + (positionSize / 2)
             val id = ids[string.dec()]
 
-            drawIntoCanvas {
-                it.nativeCanvas.drawText(
-                    id,
-                    0f,
-                    lineY + 3.dp.toPx(),
-                    paint
-                )
-            }
-
             drawLine(
                 color = Color.Black,
                 strokeWidth = stroke,
@@ -72,6 +63,25 @@ fun ComposableTablature(modifier: Modifier = Modifier, strings: Int = 6, positio
                 size = Size(width = 32.dp.toPx(), height = positionSize),
                 style = Stroke(width = 1.dp.toPx())
             )
+
+            drawIntoCanvas {
+                it.nativeCanvas.drawText(
+                    id,
+                    0f,
+                    lineY + 3.dp.toPx(),
+                    paint
+                )
+
+                positions[string]?.let { position ->
+                    val text = position.toString()
+                    it.nativeCanvas.drawText(
+                        text,
+                        size.width / 2f - text.length * 8f,
+                        lineY + 4.dp.toPx(),
+                        paint
+                    )
+                }
+            }
             yCursor += lineSize
         }
 
@@ -101,7 +111,11 @@ private fun PreviewComposableTablature() {
                 .fillMaxSize()
                 .padding(16.dp),
             strings = 6,
-            positions = mapOf()
+            positions = mapOf(
+                1 to 0,
+                2 to 5,
+                3 to 10
+            )
         )
     }
 }
