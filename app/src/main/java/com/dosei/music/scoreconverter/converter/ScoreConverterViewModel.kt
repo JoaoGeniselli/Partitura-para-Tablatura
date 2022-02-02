@@ -1,11 +1,7 @@
 package com.dosei.music.scoreconverter.converter
 
 import androidx.lifecycle.*
-import com.dosei.music.scoreconverter.domain.NoteModifier
-import com.dosei.music.scoreconverter.domain.Guitar
-import com.dosei.music.scoreconverter.domain.NotesRepository
-import com.dosei.music.scoreconverter.domain.OctavedNote
-import com.dosei.music.scoreconverter.domain.PositionsRepository
+import com.dosei.music.scoreconverter.domain.*
 import com.dosei.music.scoreconverter.io.SharedPreferencesClient
 import com.dosei.music.scoreconverter.player.AudioPlayer
 import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
@@ -62,9 +58,9 @@ class ScoreConverterViewModel(
     private fun onStop() = player.stop()
 
     private fun showTutorialIfNeeded() {
-        val tutorialWasNeverShown = !preferencesClient.getBoolean(KEY_TUTORIAL_COMMIT) 
+        val tutorialWasNeverShown = !preferencesClient.getBoolean(KEY_TUTORIAL_COMMIT)
         if (tutorialWasNeverShown) {
-            _showTutorial.value = Unit    
+            _showTutorial.value = Unit
         }
     }
 

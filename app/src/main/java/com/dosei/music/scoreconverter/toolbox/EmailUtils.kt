@@ -11,7 +11,7 @@ fun sendEmail(
     body: String? = null,
     chooserTitle: String
 ) {
-        val intent = Intent(Intent.ACTION_SEND).apply {
+    val intent = Intent(Intent.ACTION_SEND).apply {
         type = "message/rfc822"
         putExtra(Intent.EXTRA_EMAIL, recipients)
         putExtra(Intent.EXTRA_SUBJECT, subject)

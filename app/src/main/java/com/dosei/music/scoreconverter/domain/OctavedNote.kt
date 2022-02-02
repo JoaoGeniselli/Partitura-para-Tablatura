@@ -7,7 +7,8 @@ data class OctavedNote(
 ) {
     val name: String = "${note.name}${modifier?.noteSuffix.orEmpty()}$octave"
     val absolutePosition: Int
-        get() = note.scalePosition + (modifier?.absolutePositionDiff ?: 0) + (Note.SCALE_SIZE * octave)
+        get() = note.scalePosition + (modifier?.absolutePositionDiff
+            ?: 0) + (Note.SCALE_SIZE * octave)
 
     val nextNatural: OctavedNote
         get() {

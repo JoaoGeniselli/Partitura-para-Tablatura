@@ -1,8 +1,10 @@
 package com.dosei.music.scoreconverter.ui.view
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,7 +12,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.inset
-import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.vectorResource
@@ -70,12 +71,14 @@ fun ComposableScore(modifier: Modifier = Modifier, noteIndex: Int? = null) {
     val vector = ImageVector.vectorResource(id = R.drawable.ic_treble_clef)
     val painter = rememberVectorPainter(image = vector)
 
-    Canvas(modifier = modifier.fillMaxWidth().height(16.dp * notes.count { it.isLine.not() })) {
+    Canvas(modifier = modifier
+        .fillMaxWidth()
+        .height(16.dp * notes.count { it.isLine.not() })) {
         val noteSize = 16.dp.toPx()
         val stroke = 1.dp.toPx()
         var yCursor = 0f
 
-        inset(vertical = noteSize * 8f, horizontal = 8.dp.toPx()){
+        inset(vertical = noteSize * 8f, horizontal = 8.dp.toPx()) {
             with(painter) {
                 draw(painter.intrinsicSize)
             }

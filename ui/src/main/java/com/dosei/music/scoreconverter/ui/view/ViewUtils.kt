@@ -20,7 +20,7 @@ interface DensityCalculator {
     }
 }
 
-private class LightweightDensityCalculator(context: Context): DensityCalculator {
+private class LightweightDensityCalculator(context: Context) : DensityCalculator {
 
     private val density = context.resources.displayMetrics.density
 

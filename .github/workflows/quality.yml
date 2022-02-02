@@ -12,24 +12,24 @@ jobs:
     steps:
       - name: Checkout project
         uses: actions/checkout@v2
-        
+
       - name: Setup JDK
         uses: actions/setup-java@v1.4.3
         with:
           java-version: 1.8
-        
+
       - name: Setup secret.properties
         env:
           ADMOB_APPLICATION_ID: ${{ secrets.ADMOB_APPLICATION_ID }}
           ADMOB_HOME_BANNER_ID: ${{ secrets.ADMOB_HOME_BANNER_ID }}
           FAKE_ADMOB_HOME_BANNER_ID: ${{ secrets.FAKE_ADMOB_HOME_BANNER_ID }}
         run: echo "ADMOB_APPLICATION_ID=\"$ADMOB_APPLICATION_ID\"" > ./secret.properties |
-              echo "ADMOB_HOME_BANNER_ID=\"$ADMOB_HOME_BANNER_ID\"" >> ./secret.properties
+          echo "ADMOB_HOME_BANNER_ID=\"$ADMOB_HOME_BANNER_ID\"" >> ./secret.properties
 
       - name: Setup firebase auth
         env:
           FIREBASE_AUTH: ${{ secrets.FIREBASE_AUTH }}
         run: echo "$FIREBASE_AUTH" > ./app/google-services.json
-              
+
       - name: Run all tests
         run: ./gradlew test

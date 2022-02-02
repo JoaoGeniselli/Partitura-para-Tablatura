@@ -13,7 +13,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.NativePaint
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
@@ -38,7 +37,9 @@ fun ComposableTablature(
         textAlign = android.graphics.Paint.Align.CENTER
         typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
     }
-    Canvas(modifier = modifier.fillMaxWidth().height(20.dp * strings)) {
+    Canvas(modifier = modifier
+        .fillMaxWidth()
+        .height(20.dp * strings)) {
         val positionSize = 16.dp.toPx()
         val itemPadding = 2.dp.toPx()
         val lineSize = positionSize + itemPadding * 2f

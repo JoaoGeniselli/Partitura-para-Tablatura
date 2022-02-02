@@ -1,6 +1,8 @@
 package com.dosei.music.scoreconverter.main
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,8 +15,12 @@ import com.dosei.music.scoreconverter.ui.view.ComposableTablature
 @Composable
 fun ComposableConverter(modifier: Modifier = Modifier) {
     Column(modifier.padding(16.dp)) {
-        ComposableScore()
-        ComposableTablature()
+        ComposableScore(
+            Modifier
+                .padding(horizontal = 16.dp)
+                .weight(1f)
+        )
+        ComposableTablature(Modifier.padding(8.dp))
     }
 }
 

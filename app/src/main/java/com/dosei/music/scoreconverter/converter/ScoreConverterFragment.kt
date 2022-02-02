@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.databinding.FragmentScoreConverterBinding
 import com.dosei.music.scoreconverter.ui.tutorial.Tutorial
@@ -15,7 +14,7 @@ import com.dosei.music.scoreconverter.ui.view.TablatureFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ScoreConverterFragment : Fragment(), ScoreFragment.OnPositionChangedListener {
-    
+
     private var _binding: FragmentScoreConverterBinding? = null
     private val binding: FragmentScoreConverterBinding get() = _binding!!
 

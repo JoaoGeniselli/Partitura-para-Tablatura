@@ -1,7 +1,7 @@
 package com.dosei.music.scoreconverter
 
 import com.dosei.music.scoreconverter.domain.*
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class NotesRepositoryTest {
@@ -14,12 +14,14 @@ class NotesRepositoryTest {
             OctavedNote(
                 Note.E,
                 2
-            ).absolutePosition, range.first)
+            ).absolutePosition, range.first
+        )
         assertEquals(
             OctavedNote(
                 Note.C,
                 6
-            ).absolutePosition, range.last)
+            ).absolutePosition, range.last
+        )
     }
 
     @Test
@@ -32,13 +34,15 @@ class NotesRepositoryTest {
             OctavedNote(
                 Note.E,
                 2
-            ).absolutePosition, range.first)
+            ).absolutePosition, range.first
+        )
         assertEquals(
             OctavedNote(
                 Note.C,
                 6,
                 NoteModifier.SHARP
-            ).absolutePosition, range.last)
+            ).absolutePosition, range.last
+        )
     }
 
     @Test
@@ -51,13 +55,15 @@ class NotesRepositoryTest {
             OctavedNote(
                 Note.E,
                 2
-            ).absolutePosition, range.first)
+            ).absolutePosition, range.first
+        )
         assertEquals(
             OctavedNote(
                 Note.C,
                 6,
                 NoteModifier.FLAT
-            ).absolutePosition, range.last)
+            ).absolutePosition, range.last
+        )
     }
 
     @Test
@@ -116,12 +122,14 @@ class NotesRepositoryTest {
             OctavedNote(
                 Note.D,
                 2
-            ).absolutePosition, range.first)
+            ).absolutePosition, range.first
+        )
         assertEquals(
             OctavedNote(
                 Note.C,
                 6
-            ).absolutePosition, range.last)
+            ).absolutePosition, range.last
+        )
     }
 
     @Test
@@ -135,12 +143,14 @@ class NotesRepositoryTest {
             OctavedNote(
                 Note.E,
                 2
-            ), allNotes.first())
+            ), allNotes.first()
+        )
         assertEquals(
             OctavedNote(
                 Note.C,
                 6
-            ), allNotes.last())
+            ), allNotes.last()
+        )
     }
 
 }

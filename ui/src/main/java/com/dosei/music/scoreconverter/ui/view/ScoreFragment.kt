@@ -5,7 +5,6 @@ import android.view.*
 import androidx.annotation.IntRange
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.dosei.music.scoreconverter.ui.R
 import com.dosei.music.scoreconverter.ui.databinding.ViewScoreCompleteBinding
 import kotlin.math.max
 import kotlin.math.min

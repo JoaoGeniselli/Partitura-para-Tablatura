@@ -13,14 +13,15 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_application_id"/>
+            android:value="@string/admob_application_id" />
 
         <activity
             android:exported="false"
             android:name=".about.AboutActivity"
             android:label="@string/about_activity_title" />
 
-        <activity android:name="com.dosei.music.scoreconverter.main.MainActivity"
+        <activity
+            android:name="com.dosei.music.scoreconverter.main.MainActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
