@@ -3,6 +3,8 @@ package com.dosei.music.scoreconverter.ui.view
 import android.graphics.Typeface
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -20,7 +22,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ComposableTablature(modifier: Modifier = Modifier, strings: Int = 6, positions: Map<Int, Int>) {
+fun ComposableTablature(
+    modifier: Modifier = Modifier,
+    strings: Int = 6,
+    positions: Map<Int, Int> = mapOf()
+) {
     val paint = Paint().asFrameworkPaint().apply {
         isAntiAlias = true
         textSize = 30f
@@ -32,7 +38,7 @@ fun ComposableTablature(modifier: Modifier = Modifier, strings: Int = 6, positio
         textAlign = android.graphics.Paint.Align.CENTER
         typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
     }
-    Canvas(modifier = modifier) {
+    Canvas(modifier = modifier.fillMaxWidth().height(20.dp * strings)) {
         val positionSize = 16.dp.toPx()
         val itemPadding = 2.dp.toPx()
         val lineSize = positionSize + itemPadding * 2f

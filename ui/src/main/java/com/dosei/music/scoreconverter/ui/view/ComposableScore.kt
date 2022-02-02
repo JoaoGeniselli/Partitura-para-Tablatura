@@ -1,8 +1,8 @@
 package com.dosei.music.scoreconverter.ui.view
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -63,13 +63,14 @@ enum class NotationNotes(val index: Int, val isMainLine: Boolean, val isLine: Bo
 }
 
 @Composable
-fun ComposableScore(modifier: Modifier = Modifier, noteRange: IntRange, noteIndex: Int? = null) {
+fun ComposableScore(modifier: Modifier = Modifier, noteIndex: Int? = null) {
+    val noteRange = E2.index..B6.index
     val notes = NotationNotes.getAll(noteRange)
 
     val vector = ImageVector.vectorResource(id = R.drawable.ic_treble_clef)
     val painter = rememberVectorPainter(image = vector)
 
-    Canvas(modifier = modifier) {
+    Canvas(modifier = modifier.fillMaxWidth().height(16.dp * notes.count { it.isLine.not() })) {
         val noteSize = 16.dp.toPx()
         val stroke = 1.dp.toPx()
         var yCursor = 0f
@@ -124,7 +125,6 @@ private fun PreviewComposableScore() {
         ComposableScore(
             modifier = Modifier
                 .padding(16.dp),
-            noteRange = E2.index..B6.index,
             noteIndex = E4.index
         )
     }
