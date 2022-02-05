@@ -18,6 +18,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.inset
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.VectorPainter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -148,16 +149,20 @@ private fun DrawScope.drawNote(
     val width = noteSize + 4.dp.toPx()
     val startX = size.width / 2f
     val endX = size.width / 2f + width
-    drawOval(
-        color = Color.Black,
-        topLeft = Offset(x = startX, y = noteIndex.toFloat() * noteSizeInPx),
-        size = Size(width = width, height = noteSize)
-    )
+    val noteY = noteIndex.toFloat() * noteSizeInPx
+
+    rotate(degrees = -25f, Offset(x = startX + width / 2f, y = noteY + noteSize / 2f)) {
+        drawOval(
+            color = Color.Black,
+            topLeft = Offset(x = startX, y = noteY),
+            size = Size(width = width, height = noteSize)
+        )
+    }
     drawVerticalLine(
         stroke = stroke,
-        startY = (noteIndex * noteSizeInPx) + noteSizeInPx,
+        startY = noteY + noteSizeInPx,
         endY = (note.tailIndex * noteSizeInPx),
-        x = if (note.tailInStart) startX else endX
+        x = if (note.tailInStart) startX + stroke / 2f else endX - stroke / 2f
     )
     note.supplementaryLines.forEach {
         drawHorizontalLine(
