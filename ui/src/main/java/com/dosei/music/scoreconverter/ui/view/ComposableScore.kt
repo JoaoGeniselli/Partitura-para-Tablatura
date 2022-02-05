@@ -36,7 +36,7 @@ fun ComposableScore(
     noteIndex: Int = G3.index,
     onUpdateNoteIndex: (Int) -> Unit
 ) {
-    val noteRange = B6.index..E2.index
+    val noteRange = D6.index..E2.index
     val notes = NotationNotes.getAll(noteRange)
 
     val vector = ImageVector.vectorResource(id = R.drawable.ic_treble_clef)
@@ -81,15 +81,15 @@ fun ComposableScore(
 
         drawVerticalLine(
             stroke = stroke,
-            startY = 9 * noteSize,
-            endY = 13 * noteSize,
+            startY = 6.5f * noteSize,
+            endY = 10.5f * noteSize,
             x = 0f
         )
 
         drawVerticalLine(
             stroke = stroke,
-            startY = 9 * noteSize,
-            endY = 13 * noteSize,
+            startY = 6.5f * noteSize,
+            endY = 10.5f * noteSize,
             x = size.width
         )
 
@@ -107,7 +107,7 @@ fun ComposableScore(
 private fun DrawScope.drawClef(
     noteSize: Float,
     painter: VectorPainter
-) = inset(vertical = noteSize * 8f, horizontal = 8.dp.toPx()) {
+) = inset(vertical = noteSize * 5.4f, horizontal = 8.dp.toPx()) {
     with(painter) {
         draw(painter.intrinsicSize)
     }
@@ -161,7 +161,7 @@ private fun DrawScope.drawNote(
     drawVerticalLine(
         stroke = stroke,
         startY = noteY + noteSizeInPx,
-        endY = (note.tailIndex * noteSizeInPx),
+        endY = (note.tailIndex.inc() * noteSizeInPx),
         x = if (note.tailInStart) startX + stroke / 2f else endX - stroke / 2f
     )
     note.supplementaryLines.forEach {
@@ -170,7 +170,7 @@ private fun DrawScope.drawNote(
             stroke = stroke,
             startX = startX - 8.dp.toPx(),
             endX = endX + 8.dp.toPx(),
-            y = it * noteSizeInPx
+            y = it.inc() * noteSizeInPx
         )
     }
 }

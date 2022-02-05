@@ -57,11 +57,6 @@ fun ComposableConverter(modifier: Modifier = Modifier) {
 
 private fun Int.toNote(): OctavedNote? {
     return when (NotationNotes.getByIndex(this)) {
-        NotationNotes.B6 -> OctavedNote(note = Note.B, octave = 6)
-        NotationNotes.A6 -> OctavedNote(note = Note.A, octave = 6)
-        NotationNotes.G6 -> OctavedNote(note = Note.G, octave = 6)
-        NotationNotes.F6 -> OctavedNote(note = Note.F, octave = 6)
-        NotationNotes.E6 -> OctavedNote(note = Note.E, octave = 6)
         NotationNotes.D6 -> OctavedNote(note = Note.D, octave = 6)
         NotationNotes.C6 -> OctavedNote(note = Note.C, octave = 6)
         NotationNotes.B5 -> OctavedNote(note = Note.B, octave = 5)

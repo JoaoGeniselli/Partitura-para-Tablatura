@@ -1,7 +1,7 @@
 package com.dosei.music.scoreconverter.domain
 
 data class Guitar(
-    val fretsAmount: Int = 20,
+    val fretsAmount: Int = 22,
     val tuning: Tuning = Tuning(
         string1 = GuitarString(
             initialNote = OctavedNote(
