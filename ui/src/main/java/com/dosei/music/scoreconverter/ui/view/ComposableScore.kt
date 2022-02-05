@@ -61,10 +61,8 @@ fun ComposableScore(
         )
     ) {
         val noteSize = 16.dp.toPx()
-        val stroke = 1.dp.toPx()
+        val stroke = 2.dp.toPx()
         var yCursor = 0f
-
-        drawClef(noteSize, painter)
 
         notes.sortedBy { note -> note.index }.forEach { note ->
             val yPosition = yCursor + (noteSize / 2f)
@@ -94,7 +92,14 @@ fun ComposableScore(
             x = size.width
         )
 
-        drawNote(noteIndex, noteSizeInPx, noteSize)
+        drawClef(noteSize, painter)
+
+        drawNote(
+            noteIndex = noteIndex,
+            stroke = stroke,
+            noteSizeInPx = noteSizeInPx,
+            noteSize = noteSize
+        )
     }
 }
 
@@ -135,13 +140,35 @@ private fun DrawScope.drawVerticalLine(
 
 private fun DrawScope.drawNote(
     noteIndex: Int,
+    stroke: Float,
     noteSizeInPx: Float,
     noteSize: Float
-) = drawOval(
-    color = Color.Black,
-    topLeft = Offset(x = size.width / 2f, y = noteIndex.toFloat() * noteSizeInPx),
-    size = Size(width = noteSize + 4.dp.toPx(), height = noteSize)
-)
+) {
+    val note = NotationNotes.getByIndex(noteIndex) ?: return
+    val width = noteSize + 4.dp.toPx()
+    val startX = size.width / 2f
+    val endX = size.width / 2f + width
+    drawOval(
+        color = Color.Black,
+        topLeft = Offset(x = startX, y = noteIndex.toFloat() * noteSizeInPx),
+        size = Size(width = width, height = noteSize)
+    )
+    drawVerticalLine(
+        stroke = stroke,
+        startY = (noteIndex * noteSizeInPx) + noteSizeInPx,
+        endY = (note.tailIndex * noteSizeInPx),
+        x = if (note.tailInStart) startX else endX
+    )
+    note.supplementaryLines.forEach {
+        drawHorizontalLine(
+            color = Color.Black,
+            stroke = stroke,
+            startX = startX - 8.dp.toPx(),
+            endX = endX + 8.dp.toPx(),
+            y = it * noteSizeInPx
+        )
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
