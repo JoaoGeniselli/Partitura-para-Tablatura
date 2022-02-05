@@ -42,6 +42,8 @@ data class Guitar(
     )
 ) {
     companion object {
-        fun default() = Guitar()
+        private val default by lazy { Guitar() }
+
+        fun default() = default
     }
 }

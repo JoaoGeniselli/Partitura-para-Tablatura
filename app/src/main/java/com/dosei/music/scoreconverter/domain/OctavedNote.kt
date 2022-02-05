@@ -19,4 +19,8 @@ data class OctavedNote(
                 octave = nextNoteOctave
             )
         }
+
+    override fun toString(): String {
+        return note.name + modifier?.noteSuffix.orEmpty() + octave.toString()
+    }
 }

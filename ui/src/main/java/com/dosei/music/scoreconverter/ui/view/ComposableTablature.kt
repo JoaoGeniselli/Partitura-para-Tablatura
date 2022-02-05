@@ -17,39 +17,44 @@ import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun ComposableTablature(
     modifier: Modifier = Modifier,
     strings: Int = 6,
-    positions: Map<Int, Int> = mapOf()
+    positions: Map<Int, Int?> = mapOf()
 ) {
+    val textSizeDp = LocalDensity.current.run { 18.sp.toPx() }
     val paint = Paint().asFrameworkPaint().apply {
         isAntiAlias = true
-        textSize = 30f
+        textSize = textSizeDp
         typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
     }
     val paint2 = Paint().asFrameworkPaint().apply {
         isAntiAlias = true
-        textSize = 30f
+        textSize = textSizeDp
         textAlign = android.graphics.Paint.Align.CENTER
         typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
     }
-    Canvas(modifier = modifier
-        .fillMaxWidth()
-        .height(20.dp * strings)) {
-        val positionSize = 16.dp.toPx()
+    Canvas(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(32.dp * strings)
+    ) {
+        val positionSize = textSizeDp + 8.dp.toPx()
         val itemPadding = 2.dp.toPx()
         val lineSize = positionSize + itemPadding * 2f
         val stroke = 1.dp.toPx()
         var yCursor = 0f
 
-        val startX = 16.dp.toPx()
-        val endX = size.width - 16.dp.toPx()
+        val startX = 20.dp.toPx()
+        val endX = size.width - 20.dp.toPx()
 
-        val ids = listOf("e", "B", "G", "D", "A", "E")
+        val ids = listOf("E", "B", "G", "D", "A", "E")
 
         for (string in 1..strings) {
             val rectY = yCursor + itemPadding
@@ -65,16 +70,16 @@ fun ComposableTablature(
 
             drawRoundRect(
                 color = Color.White,
-                cornerRadius = CornerRadius(x = 4f, y = 4f),
-                topLeft = Offset(x = (size.width / 2f) - 16.dp.toPx(), y = rectY),
-                size = Size(width = 32.dp.toPx(), height = positionSize)
+                cornerRadius = CornerRadius(x = 4.dp.toPx(), y = 4.dp.toPx()),
+                topLeft = Offset(x = (size.width / 2f) - 24.dp.toPx(), y = rectY),
+                size = Size(width = 48.dp.toPx(), height = positionSize)
             )
 
             drawRoundRect(
                 color = Color.Black,
-                cornerRadius = CornerRadius(x = 4f, y = 4f),
-                topLeft = Offset(x = (size.width / 2f) - 16.dp.toPx(), y = rectY),
-                size = Size(width = 32.dp.toPx(), height = positionSize),
+                cornerRadius = CornerRadius(x = 4.dp.toPx(), y = 4.dp.toPx()),
+                topLeft = Offset(x = (size.width / 2f) - 24.dp.toPx(), y = rectY),
+                size = Size(width = 48.dp.toPx(), height = positionSize),
                 style = Stroke(width = 1.dp.toPx())
             )
 
@@ -82,7 +87,7 @@ fun ComposableTablature(
                 it.nativeCanvas.drawText(
                     id,
                     0f,
-                    lineY + 3.dp.toPx(),
+                    lineY + 7.dp.toPx(),
                     paint
                 )
 
@@ -90,7 +95,7 @@ fun ComposableTablature(
                 it.nativeCanvas.drawText(
                     text,
                     size.width / 2f,
-                    lineY + 4.dp.toPx(),
+                    lineY + 7.dp.toPx(),
                     paint2
                 )
             }
@@ -117,7 +122,7 @@ fun ComposableTablature(
 @Preview(showBackground = true)
 @Composable
 private fun PreviewComposableTablature() {
-    Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
+    Surface(color = Color.White) {
         ComposableTablature(
             modifier = Modifier
                 .fillMaxSize()
