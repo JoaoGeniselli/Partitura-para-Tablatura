@@ -60,6 +60,10 @@ android {
         compose = true
         viewBinding = true
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+    }
 }
 
 dependencies {
@@ -86,6 +90,8 @@ dependencies {
     androidTestImplementation(libs.android.test.ext)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.compose.junit)
+    androidTestImplementation(libs.espresso.compose)
 
+    debugImplementation(libs.compose.test.manifest)
     debugImplementation(libs.compose.tooling.ui)
 }

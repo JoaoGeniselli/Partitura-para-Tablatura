@@ -24,6 +24,8 @@ firebase-analytics = "com.google.firebase:firebase-analytics:17.5.0"
 firebase-crashlytics-core = "com.google.firebase:firebase-crashlytics:17.2.1"
 firebase-crashlytics-plugin = "com.google.firebase:firebase-crashlytics-gradle:2.2.0"
 
+espresso-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref = 'compose' }
+compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = 'compose' }
 
 google-services = "com.google.gms:google-services:4.3.3"
 gradle-plugin = "com.android.tools.build:gradle:3.6.2"

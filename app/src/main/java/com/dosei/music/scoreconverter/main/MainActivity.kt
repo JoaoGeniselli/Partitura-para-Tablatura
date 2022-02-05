@@ -6,7 +6,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Surface
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
 import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
@@ -20,22 +25,29 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
+//
+//    private lateinit var binding: ActivityMainBinding
 
     private var scoreConverterFragment: ScoreConverterFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        adjustActionBar()
-        savedInstanceState?.let {
-            scoreConverterFragment = supportFragmentManager.findFragmentByTag(
-                SCORE_CONVERTER_TAG
-            ) as? ScoreConverterFragment
-        } ?: initConverter()
-        loadAdMob()
+        setContent {
+            Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
+                ComposableConverter(
+                    modifier = Modifier
+                )
+            }
+        }
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+//        adjustActionBar()
+//        savedInstanceState?.let {
+//            scoreConverterFragment = supportFragmentManager.findFragmentByTag(
+//                SCORE_CONVERTER_TAG
+//            ) as? ScoreConverterFragment
+//        } ?: initConverter()
+//        loadAdMob()
     }
 
     private fun loadAdMob() {
@@ -46,26 +58,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun adjustActionBar() {
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            supportActionBar?.hide()
-            binding.viewAd.visibility = View.GONE
-        } else {
-            supportActionBar?.show()
-            binding.viewAd.visibility = View.VISIBLE
-        }
-    }
-
-    private fun initConverter() {
-        val fragment = ScoreConverterFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.main_container, fragment,
-                SCORE_CONVERTER_TAG
-            )
-            .commit()
-        scoreConverterFragment = fragment
-    }
+//    private fun adjustActionBar() {
+//        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            supportActionBar?.hide()
+//            binding.viewAd.visibility = View.GONE
+//        } else {
+//            supportActionBar?.show()
+//            binding.viewAd.visibility = View.VISIBLE
+//        }
+//    }
+//
+//    private fun initConverter() {
+//        val fragment = ScoreConverterFragment()
+//        supportFragmentManager.beginTransaction()
+//            .replace(
+//                R.id.main_container, fragment,
+//                SCORE_CONVERTER_TAG
+//            )
+//            .commit()
+//        scoreConverterFragment = fragment
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
