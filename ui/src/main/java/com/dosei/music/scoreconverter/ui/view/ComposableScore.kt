@@ -81,7 +81,7 @@ fun ComposableScore(
 
     val vector = ImageVector.vectorResource(id = R.drawable.ic_treble_clef)
     val painter = rememberVectorPainter(image = vector)
-    val height = 16.dp * notes.count { it.isLine.not() }
+    val height = 16.dp * (notes.count { it.isLine.not() } - 1)
     val heightInPx = LocalDensity.current.run { height.toPx() }
     val noteSizeInPx = LocalDensity.current.run { 8.dp.toPx() }
 
