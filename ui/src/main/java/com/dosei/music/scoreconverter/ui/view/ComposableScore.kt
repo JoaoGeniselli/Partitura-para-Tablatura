@@ -28,19 +28,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.ui.R
 import com.dosei.music.scoreconverter.ui.view.NotationNotes.*
+import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration.*
 import kotlin.math.roundToInt
 
 @Composable
 fun ComposableScore(
     modifier: Modifier = Modifier,
     noteIndex: Int = G3.index,
+    noteDecoration: ScoreNoteDecoration = NATURAL,
     onUpdateNoteIndex: (Int) -> Unit
 ) {
     val noteRange = D6.index..E2.index
     val notes = NotationNotes.getAll(noteRange)
 
-    val vector = ImageVector.vectorResource(id = R.drawable.ic_treble_clef)
-    val painter = rememberVectorPainter(image = vector)
+    val decoratorPainter = when(noteDecoration) {
+        FLAT -> rememberVector(id = R.drawable.ic_flat_black)
+        SHARP -> rememberVector(id = R.drawable.ic_sharp_black)
+        else -> null
+    }
+    val clefPainter = rememberVector(id = R.drawable.ic_treble_clef)
+
     val height = 16.dp * (notes.count { it.isLine.not() } - 0.5f)
     val heightInPx = LocalDensity.current.run { height.toPx() }
     val noteSizeInPx = LocalDensity.current.run { 8.dp.toPx() }
@@ -93,16 +100,22 @@ fun ComposableScore(
             x = size.width
         )
 
-        drawClef(noteSize, painter)
+        drawClef(noteSize, clefPainter)
 
         drawNote(
             noteIndex = noteIndex,
             stroke = stroke,
             noteSizeInPx = noteSizeInPx,
-            noteSize = noteSize
+            noteSize = noteSize,
+            noteDecoration = noteDecoration,
+            decorationPainter = decoratorPainter
         )
     }
 }
+
+@Composable
+private fun rememberVector(id: Int) =
+    rememberVectorPainter(image = ImageVector.vectorResource(id = id))
 
 private fun DrawScope.drawClef(
     noteSize: Float,
@@ -143,7 +156,9 @@ private fun DrawScope.drawNote(
     noteIndex: Int,
     stroke: Float,
     noteSizeInPx: Float,
-    noteSize: Float
+    noteSize: Float,
+    noteDecoration: ScoreNoteDecoration?,
+    decorationPainter: VectorPainter?
 ) {
     val note = NotationNotes.getByIndex(noteIndex) ?: return
     val width = noteSize + 4.dp.toPx()
@@ -173,7 +188,21 @@ private fun DrawScope.drawNote(
             y = it.inc() * noteSizeInPx
         )
     }
+
+    decorationPainter?.run {
+        val decoratorSize = intrinsicSize.scale(0.8f)
+        val decoratorX = startX - decoratorSize.width - 10.dp.toPx()
+        val decoratorY = noteY - decoratorSize.height * (noteDecoration?.topPaddingDiff ?: 1f)
+        inset(decoratorX, decoratorY) {
+            draw(
+                size = decoratorSize
+            )
+        }
+    }
 }
+
+private fun Size.scale(multiplier: Float) =
+    Size(this.width * multiplier, this.height * multiplier)
 
 @Preview(showBackground = true)
 @Composable
@@ -182,8 +211,9 @@ private fun PreviewComposableScore() {
         ComposableScore(
             modifier = Modifier
                 .padding(16.dp),
-            noteIndex = E4.index,
-            onUpdateNoteIndex = {}
+            noteIndex = C4.index,
+            onUpdateNoteIndex = {},
+            noteDecoration = SHARP
         )
     }
 }

@@ -1,12 +1,6 @@
 package com.dosei.music.scoreconverter.main
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.IconToggleButton
-import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +23,8 @@ import com.dosei.music.scoreconverter.ui.view.*
 fun ComposableConverter(modifier: Modifier = Modifier) {
     val guitar = Guitar.default()
     val noteIndex = remember { mutableStateOf(NotationNotes.E2.index) }
+    val selectedDecorationIndex = remember { mutableStateOf(1) }
+    val decorator = remember { mutableStateOf(ScoreNoteDecoration.NATURAL) }
     Column(modifier.padding(16.dp)) {
         ComposableScore(
             modifier = Modifier
@@ -36,9 +32,10 @@ fun ComposableConverter(modifier: Modifier = Modifier) {
                 .weight(1f)
                 .testTag("score"),
             noteIndex = noteIndex.value,
-            onUpdateNoteIndex = { noteIndex.value = it }
+            onUpdateNoteIndex = { noteIndex.value = it },
+            noteDecoration = decorator.value
         )
-        val note = noteIndex.value.toNote()
+        val note = noteIndex.value.toNote(decorator.value)
         ComposableTablature(
             modifier = Modifier.padding(8.dp),
             positions = guitar.tuning.run {
@@ -67,13 +64,20 @@ fun ComposableConverter(modifier: Modifier = Modifier) {
                     .align(Alignment.CenterVertically),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                text = "Nota: ${noteIndex.value.toNote()?.toString()}"
+                text = "Nota: ${note?.toString()}"
             )
 
             ToggleIconRow(
-                modifier = Modifier,
-                selectedIndex = 1,
-                onSelectIndex = {},
+                modifier = Modifier.padding(start = 8.dp),
+                selectedIndex = selectedDecorationIndex.value,
+                onSelectIndex = {
+                    selectedDecorationIndex.value = it
+                    when (it) {
+                        0 -> decorator.value = ScoreNoteDecoration.FLAT
+                        1 -> decorator.value = ScoreNoteDecoration.NATURAL
+                        2 -> decorator.value = ScoreNoteDecoration.SHARP
+                    }
+                },
                 iconSize = 24.dp,
                 icons = listOf(
                     Icon(
@@ -91,7 +95,6 @@ fun ComposableConverter(modifier: Modifier = Modifier) {
                 )
             )
         }
-
     }
 }
 
