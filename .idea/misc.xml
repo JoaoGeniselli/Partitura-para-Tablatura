@@ -9,6 +9,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/app/src/main/res/drawable/ic_natural_note.xml" value="3.0" />
+        <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/app/src/main/res/layout/fragment_score_converter.xml" value="0.3625" />
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/ui/src/main/res/drawable/ic_flat_black.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/ui/src/main/res/drawable/ic_natural_note.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/ui/src/main/res/layout/view_piano_octave.xml" value="0.13072916666666667" />

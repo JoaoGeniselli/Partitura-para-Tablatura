@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+        MobileAds.initialize(this) {}
 //        binding = ActivityMainBinding.inflate(layoutInflater)
 //        setContentView(binding.root)
 //        adjustActionBar()

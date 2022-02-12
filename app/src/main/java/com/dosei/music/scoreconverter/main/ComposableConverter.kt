@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.domain.Guitar
+import com.dosei.music.scoreconverter.toolbox.AdvertView
 import com.dosei.music.scoreconverter.ui.view.*
 
 @Composable
@@ -95,6 +96,7 @@ fun ComposableConverter(modifier: Modifier = Modifier) {
                 )
             )
         }
+        AdvertView(modifier = Modifier.padding(top = 16.dp))
     }
 }
 
