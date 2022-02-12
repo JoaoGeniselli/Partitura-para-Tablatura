@@ -56,7 +56,7 @@ fun ComposableScore(
 
     Canvas(modifier = modifier
         .fillMaxWidth()
-        .height(height)
+        .height(height + 24.dp)
         .draggable(
             orientation = Orientation.Vertical,
             state = rememberDraggableState { delta ->
@@ -188,12 +188,11 @@ private fun DrawScope.drawNote(
             y = it.inc() * noteSizeInPx
         )
     }
-
     decorationPainter?.run {
         val decoratorSize = intrinsicSize.scale(0.8f)
         val decoratorX = startX - decoratorSize.width - 10.dp.toPx()
         val decoratorY = noteY - decoratorSize.height * (noteDecoration?.topPaddingDiff ?: 1f)
-        inset(decoratorX, decoratorY) {
+        inset(left = decoratorX, top = decoratorY, right = 0f, bottom = 0f) {
             draw(
                 size = decoratorSize
             )
