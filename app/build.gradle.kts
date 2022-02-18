@@ -13,6 +13,7 @@ android {
         targetSdk = Versions.Sdk.target
         versionCode = Versions.App.code
         versionName = Versions.App.name
+        buildToolsVersion = Versions.Sdk.buildTools
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

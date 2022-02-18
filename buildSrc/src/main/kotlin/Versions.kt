@@ -8,6 +8,7 @@ object Versions {
         const val minimum = 21
         const val target = 31
         const val compile = 31
+        const val buildTools = "30.0.2"
     }
 
     const val koin = "2.1.6"
