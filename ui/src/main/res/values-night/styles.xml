@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="Minuet" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="statusBarBackground">#ff1b1b1b</item>
+        <item name="android:statusBarColor">?attr/statusBarBackground</item>
+    </style>
+</resources>

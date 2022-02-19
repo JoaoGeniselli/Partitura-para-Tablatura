@@ -85,6 +85,8 @@ dependencies {
     implementation(libs.android.material)
     implementation(libs.bundles.compose)
     implementation(libs.lifecycle.runtime)
+    implementation(libs.hilt.compose)
+    implementation(libs.navigation.compose)
 
     testImplementation(libs.junit.core)
 

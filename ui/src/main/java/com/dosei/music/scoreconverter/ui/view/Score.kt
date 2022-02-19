@@ -4,10 +4,10 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.inset
 import androidx.compose.ui.graphics.drawscope.rotate
@@ -27,6 +28,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.ui.R
+import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.dosei.music.scoreconverter.ui.view.NotationNotes.*
 import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration.*
 import kotlin.math.roundToInt
@@ -54,6 +56,9 @@ fun Score(
 
     val offsetY = remember { mutableStateOf(noteIndex * heightInPx) }
 
+    val lineColor = MaterialTheme.colors.onSurface
+    val supplementaryLineColor = MaterialTheme.colors.onSurface.copy(alpha = 0.4f)
+
     Canvas(modifier = modifier
         .fillMaxWidth()
         .height(height + 24.dp)
@@ -76,7 +81,7 @@ fun Score(
             val yPosition = yCursor + (noteSize / 2f)
             if (note.isLine) {
                 drawHorizontalLine(
-                    color = if (note.isMainLine) Color.Black else Color.LightGray,
+                    color = if (note.isMainLine) lineColor else supplementaryLineColor,
                     stroke = stroke,
                     startX = 0f,
                     endX = size.width,
@@ -87,6 +92,7 @@ fun Score(
         }
 
         drawVerticalLine(
+            color = lineColor,
             stroke = stroke,
             startY = 6.5f * noteSize,
             endY = 10.5f * noteSize,
@@ -94,15 +100,21 @@ fun Score(
         )
 
         drawVerticalLine(
+            color = lineColor,
             stroke = stroke,
             startY = 6.5f * noteSize,
             endY = 10.5f * noteSize,
             x = size.width
         )
 
-        drawClef(noteSize, clefPainter)
+        drawClef(
+            color = lineColor,
+            noteSize = noteSize,
+            painter = clefPainter
+        )
 
         drawNote(
+            color = lineColor,
             noteIndex = noteIndex,
             stroke = stroke,
             noteSizeInPx = noteSizeInPx,
@@ -118,11 +130,15 @@ private fun rememberVector(id: Int) =
     rememberVectorPainter(image = ImageVector.vectorResource(id = id))
 
 private fun DrawScope.drawClef(
+    color: Color,
     noteSize: Float,
     painter: VectorPainter
 ) = inset(vertical = noteSize * 5.4f, horizontal = 8.dp.toPx()) {
     with(painter) {
-        draw(painter.intrinsicSize)
+        draw(
+            colorFilter = ColorFilter.tint(color),
+            size = painter.intrinsicSize
+        )
     }
 }
 
@@ -141,18 +157,20 @@ private fun DrawScope.drawHorizontalLine(
 
 
 private fun DrawScope.drawVerticalLine(
+    color: Color,
     stroke: Float,
     startY: Float,
     endY: Float,
     x: Float
 ) = drawLine(
-    color = Color.Black,
+    color = color,
     strokeWidth = stroke,
     start = Offset(x = x, y = startY),
     end = Offset(x = x, y = endY)
 )
 
 private fun DrawScope.drawNote(
+    color: Color,
     noteIndex: Int,
     stroke: Float,
     noteSizeInPx: Float,
@@ -168,12 +186,13 @@ private fun DrawScope.drawNote(
 
     rotate(degrees = -25f, Offset(x = startX + width / 2f, y = noteY + noteSize / 2f)) {
         drawOval(
-            color = Color.Black,
+            color = color,
             topLeft = Offset(x = startX, y = noteY),
             size = Size(width = width, height = noteSize)
         )
     }
     drawVerticalLine(
+        color = color,
         stroke = stroke,
         startY = noteY + noteSizeInPx,
         endY = (note.tailIndex.inc() * noteSizeInPx),
@@ -181,7 +200,7 @@ private fun DrawScope.drawNote(
     )
     note.supplementaryLines.forEach {
         drawHorizontalLine(
-            color = Color.Black,
+            color = color,
             stroke = stroke,
             startX = startX - 8.dp.toPx(),
             endX = endX + 8.dp.toPx(),
@@ -194,6 +213,7 @@ private fun DrawScope.drawNote(
         val decoratorY = noteY - decoratorSize.height * (noteDecoration?.topPaddingDiff ?: 1f)
         inset(left = decoratorX, top = decoratorY, right = 0f, bottom = 0f) {
             draw(
+                colorFilter = ColorFilter.tint(color),
                 size = decoratorSize
             )
         }
@@ -206,13 +226,15 @@ private fun Size.scale(multiplier: Float) =
 @Preview(showBackground = true)
 @Composable
 private fun PreviewComposableScore() {
-    Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-        Score(
-            modifier = Modifier
-                .padding(16.dp),
-            noteIndex = C4.index,
-            onUpdateNoteIndex = {},
-            noteDecoration = SHARP
-        )
+    AppTheme(darkTheme = true) {
+        Surface {
+            Score(
+                modifier = Modifier
+                    .padding(16.dp),
+                noteIndex = C4.index,
+                onUpdateNoteIndex = {},
+                noteDecoration = SHARP
+            )
+        }
     }
 }

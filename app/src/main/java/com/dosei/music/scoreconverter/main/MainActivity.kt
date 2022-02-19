@@ -7,15 +7,21 @@ import android.view.MenuItem
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
+import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
@@ -23,11 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-                ScoreToTablature(
-                    modifier = Modifier
-                )
-            }
+            MainContent()
         }
         MobileAds.initialize(this) {}
     }
@@ -90,4 +92,31 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val SCORE_CONVERTER_TAG = "ScoreConverter"
     }
+}
+
+@Composable
+fun MainContent() {
+    AppTheme {
+        Surface {
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = { Text(stringResource(id = R.string.app_name)) },
+                    )
+                },
+                drawerContent = {
+                    Text(text = "Teste")
+                },
+                modifier = Modifier.fillMaxSize()
+            ) {
+                ScoreToTablature(modifier = Modifier.fillMaxSize())
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewMainContent() {
+    MainContent()
 }
