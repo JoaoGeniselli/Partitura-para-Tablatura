@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Partitura para Tablatura</string>
-    <string name="current_note">Nota atual: %1s</string>
+    <string name="current_note">Nota: </string>
     <string name="score">Partitura</string>
     <string name="tablature">Tablatura</string>
 
@@ -20,4 +20,7 @@
     <string name="about_activity_title">Sobre o app</string>
     <string name="about_content">Esta ferramenta foi feita com o objetivo de auxiliar estudantes de violão erudito na memorização das posições de notas de partitura no braço de um violão.\n\nSugestões são bem vindas!\nSe você tem alguma funcionalidade ou melhoria que gostaria de ver neste app, entre em contato conosco <a href="mailto:saturn.dev.app@gmail.com?Subject=Partitura%20para%20Tablatura">clicando aqui</a>.</string>
     <string name="version_name_label">Versão %s</string>
+    <string name="sharp_button">Botão Sustenido</string>
+    <string name="natural_button">Botão Natural</string>
+    <string name="flat_button">Botão Bemol</string>
 </resources>

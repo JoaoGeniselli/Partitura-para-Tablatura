@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -65,7 +66,10 @@ fun ScoreToTablature(modifier: Modifier = Modifier) {
                     .align(Alignment.CenterVertically),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                text = "Nota: ${note?.toString()}"
+                text = buildString {
+                    append(stringResource(id = R.string.current_note))
+                    append(note?.toString().orEmpty())
+                }
             )
 
             ToggleIconRow(
@@ -83,15 +87,15 @@ fun ScoreToTablature(modifier: Modifier = Modifier) {
                 icons = listOf(
                     Icon(
                         painter = painterResource(id = R.drawable.ic_flat_black),
-                        description = "flat button"
+                        description = stringResource(id = R.string.flat_button)
                     ),
                     Icon(
                         painter = painterResource(id = R.drawable.ic_natural_note),
-                        description = "natural button"
+                        description = stringResource(id = R.string.natural_button)
                     ),
                     Icon(
                         painter = painterResource(id = R.drawable.ic_sharp_black),
-                        description = "sharp button"
+                        description = stringResource(id = R.string.sharp_button)
                     )
                 )
             )

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Score to Tablature</string>
-    <string name="current_note">Current note: %1s</string>
+    <string name="current_note">Note: </string>
     <string name="score">Score</string>
     <string name="tablature">Tablature</string>
 
@@ -21,4 +21,7 @@
     <string name="about_activity_title">About the app</string>
     <string name="about_content">This tool was made with the objective of helping classical guitar students in memorizing the positions of score notes on the neck of a guitar.\n\nSuggestions are welcome!\nIf you have any feature or improvements that you would like to see in this app, please contact us by <a href="mailto:saturn.dev.app@gmail.com?Subject=Score%20to%20Tablature">clicking here</a>.</string>
     <string name="version_name_label">Version %s</string>
+    <string name="sharp_button">Sharp Button</string>
+    <string name="natural_button">Natural Button</string>
+    <string name="flat_button">Flat Button</string>
 </resources>
