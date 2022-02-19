@@ -32,7 +32,7 @@ import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration.*
 import kotlin.math.roundToInt
 
 @Composable
-fun ComposableScore(
+fun Score(
     modifier: Modifier = Modifier,
     noteIndex: Int = G3.index,
     noteDecoration: ScoreNoteDecoration = NATURAL,
@@ -207,7 +207,7 @@ private fun Size.scale(multiplier: Float) =
 @Composable
 private fun PreviewComposableScore() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-        ComposableScore(
+        Score(
             modifier = Modifier
                 .padding(16.dp),
             noteIndex = C4.index,

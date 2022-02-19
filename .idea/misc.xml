@@ -8,6 +8,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/compose-model-1645227215878.xml" value="0.19444444444444445" />
+        <entry key="../../../../layout/compose-model-1645227976011.xml" value="0.28969594594594594" />
+        <entry key="../../../../layout/compose-model-1645228114058.xml" value="0.15878378378378377" />
+        <entry key="../../../../layout/compose-model-1645228138091.xml" value="0.6416666666666667" />
+        <entry key="../../../../layout/compose-model-1645228231600.xml" value="0.5" />
+        <entry key="../../../../layout/compose-model-1645228473154.xml" value="0.6416666666666667" />
+        <entry key="../../../../layout/compose-model-1645228486675.xml" value="0.28969594594594594" />
+        <entry key="../../../../layout/compose-model-1645228586743.xml" value="0.15878378378378377" />
+        <entry key="../../../../layout/compose-model-1645228596110.xml" value="0.28969594594594594" />
+        <entry key="../../../../layout/compose-model-1645229285790.xml" value="0.28969594594594594" />
+        <entry key="../../../../layout/compose-model-1645284975927.xml" value="0.1" />
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/app/src/main/res/drawable/ic_natural_note.xml" value="3.0" />
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/app/src/main/res/layout/activity_about.xml" value="0.3625" />
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/app/src/main/res/layout/activity_main.xml" value="0.3625" />
@@ -18,6 +29,15 @@
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/ui/src/main/res/layout/view_score_complete.xml" value="0.3625" />
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/ui/src/main/res/layout/view_tablature_complete.xml" value="0.3625" />
         <entry key="..\:/Users/joaog/AndroidStudioProjects/Partitura-para-Tablatura/uitest/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.334" />
+        <entry key="app/src/main/res/drawable/app_icon_foreground.xml" value="0.334" />
+        <entry key="app/src/main/res/drawable/ic_info_outline_black_24dp.xml" value="0.334" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.334" />
+        <entry key="app/src/main/res/drawable/ic_mail_outline_black_24dp.xml" value="0.334" />
+        <entry key="app/src/main/res/drawable/ic_more_vert_white_24dp.xml" value="0.334" />
+        <entry key="app/src/main/res/drawable/ic_share_black_24dp.xml" value="0.334" />
+        <entry key="app/src/main/res/drawable/ic_star_border_black_24dp.xml" value="0.334" />
+        <entry key="ui/src/main/res/drawable/shape_black_rectangle.xml" value="0.334" />
       </map>
     </option>
   </component>

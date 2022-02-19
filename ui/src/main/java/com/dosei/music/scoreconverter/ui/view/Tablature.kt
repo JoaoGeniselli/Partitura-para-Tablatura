@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ComposableTablature(
+fun Tablature(
     modifier: Modifier = Modifier,
     strings: Int = 6,
     positions: Map<Int, Int?> = mapOf()
@@ -123,7 +123,7 @@ fun ComposableTablature(
 @Composable
 private fun PreviewComposableTablature() {
     Surface(color = Color.White) {
-        ComposableTablature(
+        Tablature(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),

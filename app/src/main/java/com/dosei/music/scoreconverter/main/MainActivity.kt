@@ -1,11 +1,9 @@
 package com.dosei.music.scoreconverter.main
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,71 +12,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
-import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
-import com.dosei.music.scoreconverter.databinding.ActivityMainBinding
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
-//
-//    private lateinit var binding: ActivityMainBinding
-
-    private var scoreConverterFragment: ScoreConverterFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-                ComposableConverter(
+                ScoreToTablature(
                     modifier = Modifier
                 )
             }
         }
         MobileAds.initialize(this) {}
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//        adjustActionBar()
-//        savedInstanceState?.let {
-//            scoreConverterFragment = supportFragmentManager.findFragmentByTag(
-//                SCORE_CONVERTER_TAG
-//            ) as? ScoreConverterFragment
-//        } ?: initConverter()
-//        loadAdMob()
     }
-
-    private fun loadAdMob() {
-        MobileAds.initialize(this) {}
-        findViewById<AdView>(R.id.view_ad)?.apply {
-            val adRequest = AdRequest.Builder().build()
-            loadAd(adRequest)
-        }
-    }
-
-//    private fun adjustActionBar() {
-//        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//            supportActionBar?.hide()
-//            binding.viewAd.visibility = View.GONE
-//        } else {
-//            supportActionBar?.show()
-//            binding.viewAd.visibility = View.VISIBLE
-//        }
-//    }
-//
-//    private fun initConverter() {
-//        val fragment = ScoreConverterFragment()
-//        supportFragmentManager.beginTransaction()
-//            .replace(
-//                R.id.main_container, fragment,
-//                SCORE_CONVERTER_TAG
-//            )
-//            .commit()
-//        scoreConverterFragment = fragment
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)

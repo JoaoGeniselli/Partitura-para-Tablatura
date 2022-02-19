@@ -21,13 +21,13 @@ import com.dosei.music.scoreconverter.toolbox.AdvertView
 import com.dosei.music.scoreconverter.ui.view.*
 
 @Composable
-fun ComposableConverter(modifier: Modifier = Modifier) {
+fun ScoreToTablature(modifier: Modifier = Modifier) {
     val guitar = Guitar.default()
     val noteIndex = remember { mutableStateOf(NotationNotes.E2.index) }
     val selectedDecorationIndex = remember { mutableStateOf(1) }
     val decorator = remember { mutableStateOf(ScoreNoteDecoration.NATURAL) }
     Column(modifier.padding(16.dp)) {
-        ComposableScore(
+        Score(
             modifier = Modifier
                 .padding(horizontal = 20.dp)
                 .weight(1f)
@@ -37,7 +37,7 @@ fun ComposableConverter(modifier: Modifier = Modifier) {
             noteDecoration = decorator.value
         )
         val note = noteIndex.value.toNote(decorator.value)
-        ComposableTablature(
+        Tablature(
             modifier = Modifier.padding(8.dp),
             positions = guitar.tuning.run {
                 if (note != null) {
@@ -104,7 +104,7 @@ fun ComposableConverter(modifier: Modifier = Modifier) {
 @Composable
 private fun PreviewComposableConverter() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-        ComposableConverter(
+        ScoreToTablature(
             modifier = Modifier
         )
     }

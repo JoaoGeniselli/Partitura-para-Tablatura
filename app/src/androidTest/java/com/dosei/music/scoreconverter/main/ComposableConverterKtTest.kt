@@ -17,7 +17,7 @@ class ComposableConverterKtTest {
     @Test
     fun testScroll() {
         composeTestRule.setContent {
-            ComposableConverter(Modifier.fillMaxSize())
+            ScoreToTablature(Modifier.fillMaxSize())
         }
 
         composeTestRule.onNodeWithTag("score").performTouchInput {
