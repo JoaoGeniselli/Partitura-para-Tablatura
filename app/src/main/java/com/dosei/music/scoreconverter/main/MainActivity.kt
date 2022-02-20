@@ -8,12 +8,17 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -102,37 +107,52 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun MainContent() {
+    val selectedFeature = remember { mutableStateOf(Feature.ScoreToTablature) }
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
     AppTheme {
         Surface {
-            val scaffoldState = rememberScaffoldState()
-            val scope = rememberCoroutineScope()
             Scaffold(
+                modifier = Modifier.fillMaxSize(),
                 scaffoldState = scaffoldState,
                 topBar = {
-                    TopAppBar(
-                        title = { Text(stringResource(id = R.string.app_name)) },
-                        navigationIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Menu,
-                                modifier = Modifier
-                                    .padding(start = 20.dp)
-                                    .clickable {
-                                        scope.launch { scaffoldState.drawerState.open() }
-                                    },
-                                contentDescription = stringResource(id = R.string.menu)
-                            )
-                        }
+                    TopBar(
+                        onClickMenu = { scope.launch { scaffoldState.drawerState.open() } }
                     )
                 },
                 drawerContent = {
-                    Text(text = "Teste")
-                },
-                modifier = Modifier.fillMaxSize()
+                    FeatureMenu(
+                        columnScope = this,
+                        activeFeature = selectedFeature.value,
+                        onClickFeature = { clickedFeature ->
+                            scope.launch {
+                                selectedFeature.value = clickedFeature
+                                scaffoldState.drawerState.close()
+                            }
+                        }
+                    )
+                }
             ) {
                 ScoreToTablature(modifier = Modifier.fillMaxSize())
             }
         }
     }
+}
+
+@Composable
+private fun TopBar(onClickMenu: () -> Unit) {
+    TopAppBar(
+        title = { Text(stringResource(id = R.string.app_name)) },
+        navigationIcon = {
+            Icon(
+                imageVector = Icons.Default.Menu,
+                modifier = Modifier
+                    .padding(start = 20.dp)
+                    .clickable(onClick = onClickMenu),
+                contentDescription = stringResource(id = R.string.menu)
+            )
+        }
+    )
 }
 
 @Preview(showBackground = true)

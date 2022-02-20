@@ -24,4 +24,6 @@
     <string name="natural_button">Botão Natural</string>
     <string name="flat_button">Botão Bemol</string>
     <string name="menu">Menu</string>
+    <string name="menu_item_converter">Partitura para Tablatura</string>
+    <string name="menu_item_chords_dictionary">Chords Dictionary</string>
 </resources>

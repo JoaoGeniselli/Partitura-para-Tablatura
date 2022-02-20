@@ -25,4 +25,6 @@
     <string name="natural_button">Natural Button</string>
     <string name="flat_button">Flat Button</string>
     <string name="menu">Menu</string>
+    <string name="menu_item_converter">Score to Tablature</string>
+    <string name="menu_item_chords_dictionary">Chords Dictionary</string>
 </resources>
