@@ -24,4 +24,5 @@
     <string name="sharp_button">Sharp Button</string>
     <string name="natural_button">Natural Button</string>
     <string name="flat_button">Flat Button</string>
+    <string name="menu">Menu</string>
 </resources>

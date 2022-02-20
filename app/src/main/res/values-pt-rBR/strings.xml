@@ -23,4 +23,5 @@
     <string name="sharp_button">Botão Sustenido</string>
     <string name="natural_button">Botão Natural</string>
     <string name="flat_button">Botão Bemol</string>
+    <string name="menu">Menu</string>
 </resources>

@@ -6,15 +6,20 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
@@ -23,6 +28,7 @@ import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -98,10 +104,24 @@ class MainActivity : AppCompatActivity() {
 fun MainContent() {
     AppTheme {
         Surface {
+            val scaffoldState = rememberScaffoldState()
+            val scope = rememberCoroutineScope()
             Scaffold(
+                scaffoldState = scaffoldState,
                 topBar = {
                     TopAppBar(
                         title = { Text(stringResource(id = R.string.app_name)) },
+                        navigationIcon = {
+                            Icon(
+                                imageVector = Icons.Default.Menu,
+                                modifier = Modifier
+                                    .padding(start = 20.dp)
+                                    .clickable {
+                                        scope.launch { scaffoldState.drawerState.open() }
+                                    },
+                                contentDescription = stringResource(id = R.string.menu)
+                            )
+                        }
                     )
                 },
                 drawerContent = {
