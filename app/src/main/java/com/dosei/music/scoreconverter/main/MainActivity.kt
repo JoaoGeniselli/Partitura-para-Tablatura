@@ -27,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
+import com.dosei.music.scoreconverter.chords.dictionary.ChordsDictionary
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
@@ -133,7 +134,11 @@ fun MainContent() {
                     )
                 }
             ) {
-                ScoreToTablature(modifier = Modifier.fillMaxSize())
+                when (selectedFeature.value) {
+                    Feature.ScoreToTablature -> ScoreToTablature(modifier = Modifier.fillMaxSize())
+                    Feature.ChordsDictionary -> ChordsDictionary(modifier = Modifier.fillMaxSize())
+                }
+
             }
         }
     }

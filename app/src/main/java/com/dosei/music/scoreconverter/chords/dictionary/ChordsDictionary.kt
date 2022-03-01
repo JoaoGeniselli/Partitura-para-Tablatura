@@ -13,7 +13,7 @@ import com.dosei.music.arpeggio.ChordDiagram
 
 @Composable
 fun ChordsDictionary(modifier: Modifier = Modifier) {
-    val chords = listOf(Chords.A, Chords.B, Chords.C).chunked(2)
+    val chords = Chords.all.chunked(2)
     GuitarThumbnailTheme {
         LazyColumn(modifier = modifier.fillMaxSize()) {
             items(chords) { pairOfChords ->
