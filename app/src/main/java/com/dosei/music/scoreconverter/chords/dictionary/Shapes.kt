@@ -7,38 +7,38 @@ object Shapes {
     // region Major Shapes
 
     fun C(tonic: Int): List<Component> = listOf(
-        b(tonic - 3, 1..3, 1),
-        p(5, tonic, 4),
-        p(4, tonic - 1, 3),
-        p(2, tonic - 2, 2)
+        i(1..3, tonic - 3),
+        p(5, tonic),
+        r(4, tonic - 1),
+        m(2, tonic - 2)
     )
 
     fun A(tonic: Int): List<Component> = listOf(
-        p(4, tonic + 2, 2),
-        p(3, tonic + 2, 3),
-        p(2, tonic + 2, 4),
-        b(tonic, 1..5, 1)
+        i(1..5, tonic),
+        m(4, tonic + 2),
+        r(3, tonic + 2),
+        p(2, tonic + 2)
     )
 
     fun G(tonic: Int): List<Component> = listOf(
-        b(tonic - 3, 1..6, 1),
-        p(6, tonic, 3),
-        p(5, tonic - 1, 2),
-        p(1, tonic, 4),
+        i(1..6, tonic - 3),
+        r(6, tonic),
+        m(5, tonic - 1),
+        p(1, tonic),
     )
 
     fun E(tonic: Int): List<Component> = listOf(
-        b(tonic, 1..6, 1),
-        p(5, tonic + 2, 3),
-        p(4, tonic + 2, 4),
-        p(3, tonic + 1, 2),
+        i(1..6, tonic),
+        r(5, tonic + 2),
+        p(4, tonic + 2),
+        m(3, tonic + 1),
     )
 
     fun D(tonic: Int): List<Component> = listOf(
-        p(4, tonic, 1),
-        p(3, tonic + 2, 2),
-        p(2, tonic + 3, 4),
-        p(1, tonic + 2, 3),
+        i(4, tonic),
+        m(3, tonic + 2),
+        p(2, tonic + 3),
+        r(1, tonic + 2),
     )
 
     // endregion
@@ -46,23 +46,23 @@ object Shapes {
     // region Minor Shapes
 
     fun Am(tonic: Int): List<Component> = listOf(
-        b(tonic, 1..5, 1),
-        p(4, tonic + 2, 3),
-        p(3, tonic + 2, 4),
-        p(2, tonic + 1, 2),
+        i(1..5, tonic),
+        r(4, tonic + 2),
+        p(3, tonic + 2),
+        m(2, tonic + 1),
     )
 
     fun Em(tonic: Int): List<Component> = listOf(
-        b(tonic, 1..6, 1),
-        p(5, tonic + 2, 3),
-        p(4, tonic + 2, 4),
+        i(1..6, tonic),
+        r(5, tonic + 2),
+        p(4, tonic + 2),
     )
 
     fun Dm(tonic: Int): List<Component> = listOf(
-        p(4, tonic, 1),
-        p(3, tonic + 2, 3),
-        p(2, tonic + 3, 4),
-        p(1, tonic + 1, 2),
+        i(4, tonic),
+        r(3, tonic + 2),
+        p(2, tonic + 3),
+        m(1, tonic + 1),
     )
 
     // endregion

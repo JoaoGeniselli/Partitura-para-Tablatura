@@ -7,11 +7,11 @@ object Chords {
 
     val A = chord(
         "A",
-        p(5),
-        p(4, 2, 1),
-        p(3, 2, 2),
-        p(2, 2, 3),
-        p(1)
+        o(5),
+        i(4, 2),
+        m(3, 2),
+        r(2, 2),
+        o(1)
     )
 
     val B = Chord(
@@ -21,29 +21,29 @@ object Chords {
 
     val C = chord(
         "C",
-        p(5, 3, 3),
-        p(4, 2, 2),
-        p(3),
-        p(2, 1, 1),
-        p(1)
+        r(5, 3),
+        m(4, 2),
+        o(3),
+        i(2, 1),
+        o(1)
     )
 
     val D = chord(
         "D",
-        p(4),
-        p(3, 2, 1),
-        p(2, 3, 3),
-        p(1, 2, 2)
+        o(4),
+        i(3, 2),
+        r(2, 3),
+        m(1, 2)
     )
 
     val E = chord(
         "E",
-        p(6),
-        p(5, 2, 2),
-        p(4, 2, 3),
-        p(3),
-        p(2),
-        p(1),
+        o(6),
+        m(5, 2),
+        r(4, 2),
+        i(3, 1),
+        o(2),
+        o(1),
     )
 
 
@@ -54,185 +54,175 @@ object Chords {
 
     val G = chord(
         "G",
-        p(6, 3, 2),
-        p(5, 2, 1),
-        p(4),
-        p(3),
-        p(2),
-        p(1, 3, 3)
+        m(6, 3),
+        i(5, 2),
+        o(4),
+        o(3),
+        o(2),
+        r(1, 3)
     )
 
     val Am = chord(
         "Am",
-        p(5),
-        p(4, 2, 2),
-        p(3, 2, 3),
-        p(2, 1, 1),
-        p(1)
+        o(5),
+        m(4, 2),
+        r(3, 2),
+        i(2, 1),
+        o(1)
     )
 
-    val Bm = Chord(
-        name = AnnotatedString("Bm"),
-        components = Shapes.Am(2)
-    )
+    val Bm = chord("Bm", Shapes.Am(2))
 
-    val Cm = Chord(
-        name = AnnotatedString("Cm"),
-        components = Shapes.Am(3)
-    )
+    val Cm = chord("Cm", Shapes.Am(3))
 
     val Dm = chord(
         "Dm",
-        p(4),
-        p(3, 2, 2),
-        p(2, 3, 3),
-        p(1, 1, 1)
+        o(4),
+        m(3, 2),
+        r(2, 3),
+        i(1, 1)
     )
 
     val Em = chord(
         "Em",
-        p(6),
-        p(5, 2, 2),
-        p(4, 2, 3),
-        p(3),
-        p(2),
-        p(1)
+        o(6),
+        m(5, 2),
+        r(4, 2),
+        o(3),
+        o(2),
+        o(1)
     )
 
-    val Fm = Chord(
-        name = AnnotatedString("Fm"),
-        components = Shapes.Em(1)
-    )
+    val Fm = chord("Fm", Shapes.Em(1))
 
-    val Gm = Chord(
-        name = AnnotatedString("Gm"),
-        components = Shapes.Em(3)
-    )
+    val Gm = chord("Gm", Shapes.Em(3))
 
     val A7 = chord(
         "A7",
-        p(5),
-        p(4, 2, 2),
-        p(3),
-        p(2, 2, 3),
-        p(1)
+        o(5),
+        m(4, 2),
+        o(3),
+        r(2, 2),
+        o(1)
     )
 
     val B7 = chord(
         "B7",
-        p(5, 2, 2),
-        p(4, 1, 1),
-        p(3, 2, 3),
-        p(2),
-        p(1, 2, 4),
+        m(5, 2),
+        i(4, 1),
+        r(3, 2),
+        o(2),
+        p(1, 2),
     )
 
     val C7 = chord(
         "C7",
-        p(5, 3, 3),
-        p(4, 2, 2),
-        p(3, 3, 4),
-        p(2, 1, 1),
-        p(1),
+        r(5, 3),
+        m(4, 2),
+        p(3, 3),
+        i(2, 1),
+        o(1),
     )
 
     val D7 = chord(
         "D7",
-        p(4),
-        p(3, 2, 2),
-        p(2, 1, 1),
-        p(1, 2, 3),
+        o(4),
+        m(3, 2),
+        i(2, 1),
+        r(1, 2),
     )
 
     val E7 = chord(
         "E7",
-        p(6),
-        p(5, 2, 2),
-        p(4, 2, 3),
-        p(3, 1, 1),
-        p(2, 3, 4),
-        p(1),
+        o(6),
+        m(5, 2),
+        r(4, 2),
+        i(3, 1),
+        p(2, 3),
+        o(1),
     )
 
     val F7 = chord(
         "F7",
-        b(1, 1..6, 1),
-        p(5, 3, 3),
-        p(3, 2, 2),
-        p(2, 4, 4),
+        i(1..6, 1),
+        r(5, 3),
+        m(3, 2),
+        p(2, 4),
     )
 
     val G7 = chord(
         "G7",
-        p(6, 3, 3),
-        p(5, 2, 2),
-        p(4),
-        p(3),
-        p(2),
-        p(1, 1, 1),
+        r(6, 3),
+        m(5, 2),
+        o(4),
+        o(3),
+        o(2),
+        i(1, 1),
     )
 
     val ADim = chord(
         "Aº",
-        p(5),
-        p(4, 1, 1),
-        p(3, 2, 3),
-        p(2, 1, 2),
+        o(5),
+        i(4, 1),
+        r(3, 2),
+        m(2, 1),
     )
 
     val BDim = chord(
         "Bº",
-        p(5, 2, 2),
-        p(4, 3, 3),
-        p(3, 1, 1),
-        p(2, 3, 4),
+        m(5, 2),
+        r(4, 3),
+        i(3, 1),
+        p(2, 3),
     )
 
     val CDim = chord(
         "Cº",
-        p(5, 3, 2),
-        p(4, 4, 3),
-        p(3, 2, 1),
-        p(2, 4, 4),
+        m(5, 3),
+        r(4, 4),
+        i(3, 2),
+        p(2, 4),
     )
 
     val DDim = chord(
         "Dº",
-        p(4),
-        p(3, 1, 1),
-        p(2),
-        p(1, 1, 2),
+        o(4),
+        i(3, 1),
+        o(2),
+        m(1, 1),
     )
 
     val EDim = chord(
         "Eº",
-        p(4, 2, 1),
-        p(3, 3, 3),
-        p(2, 2, 2),
-        p(1, 3, 4),
+        i(4, 2),
+        r(3, 3),
+        m(2, 2),
+        p(1, 3),
     )
 
     val FDim = chord(
         "Fº",
-        p(6, 1, 1),
-        p(4),
-        p(3, 1, 2),
-        p(2),
+        i(6, 1),
+        o(4),
+        m(3, 1),
+        o(2),
     )
 
     val GDim = chord(
         "Gº",
-        p(4, 5, 1),
-        p(3, 6, 3),
-        p(2, 5, 2),
-        p(1, 6, 4),
+        i(4, 5),
+        r(3, 6),
+        m(2, 5),
+        p(1, 6),
     )
 
     val all = listOf(
         A, B, C, D, E, F, G,
         Am, Bm, Cm, Dm, Em, Fm, Gm,
         A7, B7, C7, D7, E7, F7, G7,
-        ADim, BDim, CDim, DDim, EDim, FDim, GDim
+        ADim, BDim, CDim, DDim, EDim, FDim, GDim,
+
+        // _2, _3, _4, _5,
     )
 
     private fun chord(name: AnnotatedString, vararg components: Component): Chord {
@@ -241,5 +231,9 @@ object Chords {
 
     private fun chord(name: String, vararg components: Component): Chord {
         return chord(name = AnnotatedString(name), components = components)
+    }
+
+    private fun chord(name: String, components: List<Component>): Chord {
+        return Chord(name = AnnotatedString(name), components = components)
     }
 }
