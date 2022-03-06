@@ -7,6 +7,106 @@ import com.dosei.music.arpeggio.OpenString
 import com.dosei.music.arpeggio.Position
 
 object Chords {
+    /*
+    Tipos de acorde
+
+    =============
+    === MAIOR ===
+    =============
+
+    M (CAGED)
+    M7+
+    M7
+    M/3ª
+    M/5ª
+    M(add9)
+    M5+
+    M6
+    M6/5ª
+    M69
+    M69/5ª
+    M69/3ª
+    M7+/3ª
+    M7+/5ª
+    M7+(6)
+    M7+(#5)
+    M7+(#5)/3ª
+    M7+(9)
+    M7+(9)/3ª
+    M7+(9)/5ª
+    M7+(6 9)
+    M7+(9)/7+ª
+    M7+(#11)
+    M7+(#11)/5ª
+    M7+(9 #11)
+    M7+(9 #11)/5ª
+    M4
+    M7/3ª
+    M7/5ª
+    M/7ª
+    M7(b5)
+    M7(b5)/3ª
+    M7(#11)
+    M7/(9 #11)
+    M7(#11 13)
+    M7(#5)
+    M7(#5)/3ª
+    M7(#5)/7ª
+    M7(b13)
+    M7(#5 9)
+    M7(13)
+    M7(9)
+    M7(9 13)
+    M7(b9)
+    M7(#5 b9)
+    M7(b9 b13)
+    M7(b5 b9)
+    M7(b9 b11)
+    M7(b9 13)
+    M7(#9)
+    M7(#9)/5ª
+    M7(#5 #9)
+    M7(#9 #11)
+    M7(b5 #9)
+    M7 4
+    M7 4(9)
+    M7 4(13)
+    M7 4(9 13)
+    M7 4(b9)
+
+    =============
+    === MENOR ===
+    =============
+
+    m
+    m7 ok
+    m/3ª ok
+    m/5ª ok
+    m(add9) ok
+    m6 ok
+    m6/3ª ok
+    m6/5ª ok
+    m(6 9) ok
+    m(6 9)/3ª ok
+    m7/5ª ok
+    m7(9) ok
+    m7(9)/5ª ok
+    m/7ª ok
+    m7(b5)
+    m7(11)
+    m7(9 11)
+    m(7+)
+    m(6 7+) ok
+    m(7+ 9)
+
+    ================
+    === DIMINUTO ===
+    ================
+
+    dim
+    dim(b13)
+    dim(7+)
+   */
 
     val A = listOf(
         chord("A", Shapes.C(12)),
