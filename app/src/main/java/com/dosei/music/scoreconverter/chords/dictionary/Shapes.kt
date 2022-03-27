@@ -1,5 +1,6 @@
 package com.dosei.music.scoreconverter.chords.dictionary
 
+import androidx.compose.ui.text.AnnotatedString
 import com.dosei.music.arpeggio.*
 
 object Shapes {
@@ -133,33 +134,77 @@ object Shapes {
     }
 
     fun testMinor() {
-        Minor() // m
-        Minor.Minor7() // m7 ok
-        Minor.BassOn3() // m/3ª ok
-        Minor.BassOn5() // m/5ª ok
-        Minor.Add9() // m(add9) ok
-        Minor.Major6() // m6 ok
-        Minor.Major6.BassOn3() // m6/3ª ok
-        Minor.Major6.BassOn5() // m6/5ª ok
-        Minor.Major6.Major9() // m(6 9) ok
-        Minor.Major6.Major9.BassOn3() // m(6 9)/3ª ok
-        Minor.Minor7.BassOn5() // m7/5ª ok
-        Minor.Minor7.Major9() // m7(9) ok
-        Minor.Minor7.Major9.BassOn5() // m7(9)/5ª ok
-        Minor.BassOn7() // m/7ª ok
-        Minor.Minor7.Dim5() // m7(b5)
-        Minor.Minor7.Per11() // m7(11)
-        Minor.Minor7.Major9.Per11() // m7(9 11)
-        Minor.Major7() // m(7+)
-        Minor.Major6.Major7() // m(6 7+) ok
-        Minor.Major7.Major9() // m(7+ 9)
+//        Minor() // m
+//        Minor.Minor7() // m7 ok
+//        Minor.BassOn3() // m/3ª ok
+//        Minor.BassOn5() // m/5ª ok
+//        Minor.Add9() // m(add9) ok
+//        Minor.Major6() // m6 ok
+//        Minor.Major6.BassOn3() // m6/3ª ok
+//        Minor.Major6.BassOn5() // m6/5ª ok
+//        Minor.Major6.Major9() // m(6 9) ok
+//        Minor.Major6.Major9.BassOn3() // m(6 9)/3ª ok
+//        Minor.Minor7.BassOn5() // m7/5ª ok
+//        Minor.Minor7.Major9() // m7(9) ok
+//        Minor.Minor7.Major9.BassOn5() // m7(9)/5ª ok
+//        Minor.BassOn7() // m/7ª ok
+//        Minor.Minor7.Dim5() // m7(b5)
+//        Minor.Minor7.Per11() // m7(11)
+//        Minor.Minor7.Major9.Per11() // m7(9 11)
+//        Minor.Major7() // m(7+)
+//        Minor.Major6.Major7() // m(6 7+) ok
+//        Minor.Major7.Major9() // m(7+ 9)
     }
 
 
     object Minor {
 
-        operator fun invoke() {
-
+        operator fun invoke(tonic: Int, note: String) {
+            val name = note + "m"
+            val a = chord(
+                // Like Am
+                name,
+                i(1..5, tonic),
+                r(4, tonic + 2),
+                p(3, tonic + 2),
+                m(2, tonic + 1),
+            )
+            val b = chord(
+                // Like Em
+                name,
+                i(1..6, tonic),
+                r(5, tonic + 2),
+                p(4, tonic + 2),
+            )
+            val c = chord(
+                // Like Dm
+                name,
+                i(4, tonic),
+                r(3, tonic + 2),
+                p(2, tonic + 3),
+                m(1, tonic + 1),
+            )
+            val d = chord(
+                name,
+                p(5, tonic),
+                m(4, tonic - 2),
+                i(3, tonic - 3),
+                r(2, tonic - 2)
+            )
+            val e = chord(
+                name,
+                m(6, tonic),
+                i(4, tonic - 3),
+                r(3, tonic),
+                p(2, tonic)
+            )
+            val f = chord(
+                name,
+                m(5, tonic),
+                i(3, tonic - 3),
+                p(2, tonic + 1),
+                r(1, tonic)
+            )
         }
 
         object Minor7 {
@@ -194,7 +239,10 @@ object Shapes {
         }
 
         object BassOn3 {
-            operator fun invoke() {}
+            operator fun invoke(tonic: Int, note: String) {
+//                val name =
+
+            }
         }
 
         object BassOn5 {
@@ -257,4 +305,15 @@ object Shapes {
         }
     }
 
+    private fun chord(name: AnnotatedString, vararg components: Component): Chord {
+        return Chord(name = name, components = components.toList())
+    }
+
+    private fun chord(name: String, vararg components: Component): Chord {
+        return chord(name = AnnotatedString(name), components = components)
+    }
+
+    private fun chord(name: String, components: List<Component>): Chord {
+        return Chord(name = AnnotatedString(name), components = components)
+    }
 }
