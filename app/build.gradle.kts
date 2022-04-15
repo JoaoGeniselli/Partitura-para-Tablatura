@@ -36,7 +36,7 @@ android {
             resValue("string", "admob_home_banner_id", BuildConstants.adMobFakeBannerId)
         }
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
