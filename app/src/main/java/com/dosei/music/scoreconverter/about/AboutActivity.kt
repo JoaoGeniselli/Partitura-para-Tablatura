@@ -5,16 +5,19 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import androidx.appcompat.app.AppCompatActivity
 import com.dosei.music.scoreconverter.R
-import kotlinx.android.synthetic.main.activity_about.*
+import com.dosei.music.scoreconverter.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityAboutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
-        text_content?.movementMethod = LinkMovementMethod.getInstance()
+        binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.textContent.movementMethod = LinkMovementMethod.getInstance()
         getVersionName()?.let {
-            text_version.text = getString(R.string.version_name_label, it)
+            binding.textVersion.text = getString(R.string.version_name_label, it)
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

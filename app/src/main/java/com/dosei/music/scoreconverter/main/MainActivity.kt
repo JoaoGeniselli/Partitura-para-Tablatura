@@ -1,76 +1,58 @@
 package com.dosei.music.scoreconverter.main
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.about.AboutActivity
-import com.dosei.music.scoreconverter.converter.ScoreConverterFragment
+import com.dosei.music.scoreconverter.chords.dictionary.ChordsDictionary
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
+import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private var scoreConverterFragment: ScoreConverterFragment? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        adjustActionBar()
-        savedInstanceState?.let {
-            scoreConverterFragment = supportFragmentManager.findFragmentByTag(
-                SCORE_CONVERTER_TAG
-            ) as? ScoreConverterFragment
-        } ?: initConverter()
-        loadAdMob()
-    }
-
-    private fun loadAdMob() {
+        setContent {
+            MainContent()
+        }
         MobileAds.initialize(this) {}
-        findViewById<AdView>(R.id.view_ad)?.apply {
-            val adRequest = AdRequest.Builder().build()
-            loadAd(adRequest)
-        }
     }
 
-    private fun adjustActionBar() {
-        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            supportActionBar?.hide()
-            view_ad?.visibility = View.GONE
-        } else {
-            supportActionBar?.show()
-            view_ad?.visibility = View.VISIBLE
-        }
-    }
-
-    private fun initConverter() {
-        val fragment = ScoreConverterFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.main_container, fragment,
-                SCORE_CONVERTER_TAG
-            )
-            .commit()
-        scoreConverterFragment = fragment
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             R.id.rate_the_app -> rateThisApp()
             R.id.share -> shareApp()
             R.id.about -> redirectToAboutScreen()
@@ -122,4 +104,64 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val SCORE_CONVERTER_TAG = "ScoreConverter"
     }
+}
+
+@Composable
+fun MainContent() {
+    val selectedFeature = remember { mutableStateOf(Feature.ScoreToTablature) }
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
+    AppTheme {
+        Surface {
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                scaffoldState = scaffoldState,
+                topBar = {
+                    TopBar(
+                        onClickMenu = { scope.launch { scaffoldState.drawerState.open() } }
+                    )
+                },
+                drawerContent = {
+                    FeatureMenu(
+                        columnScope = this,
+                        activeFeature = selectedFeature.value,
+                        onClickFeature = { clickedFeature ->
+                            scope.launch {
+                                selectedFeature.value = clickedFeature
+                                scaffoldState.drawerState.close()
+                            }
+                        }
+                    )
+                }
+            ) {
+                when (selectedFeature.value) {
+                    Feature.ScoreToTablature -> ScoreToTablature(modifier = Modifier.fillMaxSize())
+                    Feature.ChordsDictionary -> ChordsDictionary(modifier = Modifier.fillMaxSize())
+                }
+
+            }
+        }
+    }
+}
+
+@Composable
+private fun TopBar(onClickMenu: () -> Unit) {
+    TopAppBar(
+        title = { Text(stringResource(id = R.string.app_name)) },
+        navigationIcon = {
+            Icon(
+                imageVector = Icons.Default.Menu,
+                modifier = Modifier
+                    .padding(start = 20.dp)
+                    .clickable(onClick = onClickMenu),
+                contentDescription = stringResource(id = R.string.menu)
+            )
+        }
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewMainContent() {
+    MainContent()
 }

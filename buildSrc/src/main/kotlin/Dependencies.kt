@@ -25,4 +25,6 @@ object Dependencies {
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val playServicesAds = "com.google.android.gms:play-services-ads:19.3.0"
     const val tapTargetView = "com.getkeepsafe.taptargetview:taptargetview:1.13.0"
+    const val midiDriver = "com.github.billthefarmer:mididriver:v1.20"
+    const val mockk = "io.mockk:mockk:1.11.0"
 }

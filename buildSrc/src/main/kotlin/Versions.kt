@@ -6,10 +6,11 @@ object Versions {
 
     object Sdk {
         const val minimum = 21
-        const val target = 29
-        const val compile = 29
+        const val target = 31
+        const val compile = 31
+        const val buildTools = "30.0.2"
     }
 
     const val koin = "2.1.6"
-    const val kotlin = "1.3.61"
+    const val kotlin = "1.6.0"
 }

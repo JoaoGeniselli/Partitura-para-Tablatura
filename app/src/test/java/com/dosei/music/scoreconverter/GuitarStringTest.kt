@@ -3,7 +3,7 @@ package com.dosei.music.scoreconverter
 import com.dosei.music.scoreconverter.domain.GuitarString
 import com.dosei.music.scoreconverter.domain.Note
 import com.dosei.music.scoreconverter.domain.OctavedNote
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class GuitarStringTest {
@@ -17,7 +17,6 @@ class GuitarStringTest {
         val string =
             GuitarString(initialNote = lowE)
 
-        // This is a test, remove me later
         assertEquals(28, string.noteRange.first)
         assertEquals(48, string.noteRange.last)
 
@@ -25,6 +24,7 @@ class GuitarStringTest {
             OctavedNote(
                 note = Note.C,
                 octave = 6
-            ).absolutePosition)
+            ).absolutePosition
+        )
     }
 }
