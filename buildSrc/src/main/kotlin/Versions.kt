@@ -1,7 +1,7 @@
 object Versions {
     object App {
-        const val name = "1.0.2"
-        const val code = 3
+        const val name = "1.1.0"
+        const val code = 4
     }
 
     object Sdk {
