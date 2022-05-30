@@ -1,11 +1,13 @@
 package com.dosei.music.scoreconverter.transposer
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.*
@@ -113,6 +115,10 @@ fun Transposer(
                 text = stringResource(id = R.string.transposer_transpose_button)
             )
         }
+    }
+
+    toastMessage?.let {
+        Toast.makeText(LocalContext.current, it, Toast.LENGTH_LONG).show()
     }
 }
 
