@@ -18,7 +18,7 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 
 @Composable
-fun AdvertView(modifier: Modifier = Modifier) {
+fun AdvertView(modifier: Modifier = Modifier, unitId: Int = R.string.admob_home_banner_id) {
     val isInEditMode = LocalInspectionMode.current
     if (isInEditMode) {
         Text(
@@ -36,7 +36,7 @@ fun AdvertView(modifier: Modifier = Modifier) {
             factory = { context ->
                 AdView(context).apply {
                     adSize = AdSize.BANNER
-                    adUnitId = context.getString(R.string.admob_home_banner_id)
+                    adUnitId = context.getString(unitId)
                     loadAd(AdRequest.Builder().build())
                 }
             }

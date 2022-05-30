@@ -68,6 +68,7 @@ android {
 }
 
 dependencies {
+    implementation(files("libs/transposer.jar"))
     implementation(project(path = ":ui"))
     implementation(project(path = ":player"))
     implementation(project(path = ":arpeggio"))
