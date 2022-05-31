@@ -32,6 +32,7 @@ import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
+import com.dosei.music.scoreconverter.transposer.TransposerLoader
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.launch
@@ -137,6 +138,7 @@ fun MainContent() {
                 when (selectedFeature.value) {
                     Feature.ScoreToTablature -> ScoreToTablature(modifier = Modifier.fillMaxSize())
                     Feature.ChordsDictionary -> ChordsDictionary(modifier = Modifier.fillMaxSize())
+                    Feature.Transposer -> TransposerLoader(modifier = Modifier.fillMaxSize())
                 }
 
             }

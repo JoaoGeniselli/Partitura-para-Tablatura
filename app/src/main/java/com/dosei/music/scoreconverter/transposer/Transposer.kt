@@ -1,39 +1,75 @@
 package com.dosei.music.scoreconverter.transposer
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.*
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.toolbox.AdvertView
 import com.dosei.music.scoreconverter.ui.view.Icon
-import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 import com.dosei.music.scoreconverter.ui.view.ToggleIconRow
+import org.koin.java.KoinJavaComponent.get
+
+@Composable
+fun TransposerLoader(
+    modifier: Modifier = Modifier
+) {
+    val viewModel: TransposerViewModel = get(TransposerViewModel::class.java)
+    val song = remember { mutableStateOf(TextFieldValue("")) }
+    val semitones = remember { mutableStateOf(0) }
+
+    Transposer(
+        modifier = modifier,
+        song = song.value,
+        toastMessage = null,
+        semitones = semitones.value,
+        onChangeSong = { song.value = it },
+        onAddSemitone = { semitones.value += 1 },
+        onRemoveSemitone = { semitones.value -= 1 },
+        onBeautify = {
+            val formatted = viewModel.onBeautify(song.value.annotatedString)
+            song.value = song.value.copy(annotatedString = formatted)
+        },
+        onCopy = { viewModel.onCopy(song.value.annotatedString) },
+        onTranspose = {
+            val transposed = viewModel.onTranspose(song.value.annotatedString, semitones.value)
+            song.value = song.value.copy(annotatedString = transposed)
+        }
+    )
+}
 
 @Composable
 fun Transposer(
     modifier: Modifier = Modifier,
-    song: AnnotatedString,
-    toastMessage: String?,
+    song: TextFieldValue,
+    toastMessage: Unit?,
     semitones: Int,
-    onChangeSong: (AnnotatedString) -> Unit,
+    onChangeSong: (TextFieldValue) -> Unit,
     onAddSemitone: () -> Unit,
     onRemoveSemitone: () -> Unit,
     onBeautify: () -> Unit,
-    onCopy: () -> Unit
+    onCopy: () -> Unit,
+    onTranspose: () -> Unit,
 ) {
     Column(modifier.padding(16.dp)) {
         AdvertView(unitId = R.string.admob_transposer_banner_id)
@@ -52,8 +88,8 @@ fun Transposer(
                     text = stringResource(id = R.string.transposer_your_chords_here)
                 )
             },
-            value = TextFieldValue(annotatedString = song),
-            onValueChange = { content -> onChangeSong(content.annotatedString) }
+            value = song,
+            onValueChange = { content -> onChangeSong(content) }
         )
 
         Text(
@@ -61,7 +97,7 @@ fun Transposer(
             fontSize = 16.sp,
             text = buildAnnotatedString {
                 withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-                    if (semitones >=  0) append('+')
+                    if (semitones >= 0) append('+')
                     append(semitones.toString())
                 }
                 append(' ')
@@ -108,7 +144,7 @@ fun Transposer(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp),
-            onClick = { /*TODO*/ }
+            onClick = onTranspose
         ) {
             Text(
                 fontSize = 18.sp,
@@ -118,7 +154,7 @@ fun Transposer(
     }
 
     toastMessage?.let {
-        Toast.makeText(LocalContext.current, it, Toast.LENGTH_LONG).show()
+        Toast.makeText(LocalContext.current, "Value Copied!", Toast.LENGTH_LONG).show()
     }
 }
 
@@ -128,14 +164,15 @@ private fun PreviewTransposer() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
         Transposer(
             modifier = Modifier,
-            song = AnnotatedString(""),
+            song = TextFieldValue(),
             toastMessage = null,
             semitones = 3,
             onChangeSong = {},
             onAddSemitone = {},
             onRemoveSemitone = {},
             onBeautify = {},
-            onCopy = {}
+            onCopy = {},
+            onTranspose = {}
         )
     }
 }

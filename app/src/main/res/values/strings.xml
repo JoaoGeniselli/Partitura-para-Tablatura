@@ -27,6 +27,7 @@
     <string name="menu">Menu</string>
     <string name="menu_item_converter">Score to Tablature</string>
     <string name="menu_item_chords_dictionary">Chords Dictionary</string>
+    <string name="menu_item_transposer">Tranposer</string>
 
     <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">Your song chords here...</string>
     <string name="transposer_remove_semitone_button">Remove semitone button</string>
