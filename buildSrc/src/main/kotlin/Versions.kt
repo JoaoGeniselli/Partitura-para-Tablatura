@@ -6,8 +6,8 @@ object Versions {
 
     object Sdk {
         const val minimum = 21
-        const val target = 31
-        const val compile = 31
+        const val target = 32
+        const val compile = 32
         const val buildTools = "30.0.2"
     }
 
