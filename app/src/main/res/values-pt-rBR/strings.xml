@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Partitura para Tablatura</string>
     <string name="current_note">Nota: </string>
     <string name="score">Partitura</string>
@@ -26,4 +26,13 @@
     <string name="menu">Menu</string>
     <string name="menu_item_converter">Partitura para Tablatura</string>
     <string name="menu_item_chords_dictionary">Dicionário de Acordes</string>
+    <string name="menu_item_transposer">Tranpositor de Cifras</string>
+
+    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">Sua cifra aqui...</string>
+    <string name="transposer_remove_semitone_button">Botão remover semitom</string>
+    <string name="transposer_add_semitone_button">Botão adicionar semitom</string>
+    <string name="transposer_transpose_button">Transpor</string>
+    <string name="transposer_semitones_diff">semitons</string>
+    <string name="transposer_copy_button">Botão copiar</string>
+    <string name="transposer_beautify_button">Botão formatar</string>
 </resources>

@@ -1,13 +1,13 @@
 object Versions {
     object App {
-        const val name = "1.1.1"
-        const val code = 5
+        const val name = "1.2.0"
+        const val code = 6
     }
 
     object Sdk {
         const val minimum = 21
-        const val target = 31
-        const val compile = 31
+        const val target = 32
+        const val compile = 32
         const val buildTools = "30.0.2"
     }
 

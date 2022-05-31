@@ -10,6 +10,7 @@ class ScoreConverterApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AppContext = this
         startKoin {
             androidContext(this@ScoreConverterApplication)
             modules(DependencyInjection.module)

@@ -36,9 +36,9 @@ fun ToggleIconRow(
     icons: List<Icon>,
     selectedIndex: Int,
     onSelectIndex: (Int) -> Unit,
-    iconSize: Dp = 48.dp
+    iconSize: Dp = 48.dp,
+    cornerRadius: Dp = 8.dp
 ) {
-    val cornerRadius = 8.dp
     Row(
         modifier = modifier
     ) {
