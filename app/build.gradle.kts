@@ -34,6 +34,7 @@ android {
 
             resValue("string", "admob_application_id", secrets.getString(SecretsKeys.adMobAppId))
             resValue("string", "admob_home_banner_id", BuildConstants.adMobFakeBannerId)
+            resValue("string", "admob_transposer_banner_id", BuildConstants.adMobFakeBannerId)
         }
         getByName("release") {
             isMinifyEnabled = true
@@ -42,11 +43,20 @@ android {
                 "proguard-rules.pro"
             )
 
-            resValue("string", "admob_application_id", secrets.getString(SecretsKeys.adMobAppId))
+            resValue(
+                "string",
+                "admob_application_id",
+                secrets.getString(SecretsKeys.adMobAppId)
+            )
             resValue(
                 "string",
                 "admob_home_banner_id",
                 secrets.getString(SecretsKeys.adMobHomeBannerId)
+            )
+            resValue(
+                "string",
+                "admob_transposer_banner_id",
+                secrets.getString(SecretsKeys.adMobTransposerBannerId)
             )
         }
     }

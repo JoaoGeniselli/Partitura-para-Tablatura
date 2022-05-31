@@ -36,7 +36,7 @@ fun Transposer(
     onCopy: () -> Unit
 ) {
     Column(modifier.padding(16.dp)) {
-        AdvertView()
+        AdvertView(unitId = R.string.admob_transposer_banner_id)
 
         OutlinedTextField(
             modifier = Modifier

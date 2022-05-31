@@ -100,7 +100,10 @@ fun ScoreToTablature(modifier: Modifier = Modifier) {
                 )
             )
         }
-        AdvertView(modifier = Modifier.padding(top = 16.dp))
+        AdvertView(
+            modifier = Modifier.padding(top = 16.dp),
+            unitId = R.string.admob_home_banner_id
+        )
     }
 }
 
