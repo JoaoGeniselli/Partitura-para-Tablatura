@@ -74,7 +74,6 @@ android {
 }
 
 dependencies {
-    implementation(files("libs/transposer.jar"))
     implementation(project(path = ":ui"))
     implementation(project(path = ":player"))
     implementation(project(path = ":arpeggio"))
@@ -95,6 +94,7 @@ dependencies {
     implementation(libs.lifecycle.runtime)
     implementation(libs.hilt.compose)
     implementation(libs.navigation.compose)
+    implementation(libs.ktransposer)
 
     testImplementation(libs.junit.core)
 

@@ -1,6 +1,6 @@
 package com.dosei.music.scoreconverter.di
 
-import Transpose
+import com.dosei.music.ktransposer.TransposeSong
 import com.dosei.music.scoreconverter.converter.MIDINoteConverter
 import com.dosei.music.scoreconverter.domain.Guitar
 import com.dosei.music.scoreconverter.io.SharedPreferencesClient
@@ -13,18 +13,14 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object DependencyInjection {
-    val module by lazy {
-        module {
-            single { Guitar.default() }
-            factory { SharedPreferencesClient(androidContext()) }
-            factory { PlayerDependencyInjection.createPlayer() }
-            factory { MIDINoteConverter() }
-            factory { CopyToClipboard(get()) }
-            factory { BeautifySong() }
-            factory { Transpose.create(Transpose.fileChordsQuery) }
-            viewModel {
-                TransposerViewModel(get(), get(), get())
-            }
-        }
+    val module = module {
+        single { Guitar.default() }
+        factory { SharedPreferencesClient(androidContext()) }
+        factory { PlayerDependencyInjection.createPlayer() }
+        factory { MIDINoteConverter() }
+        factory { CopyToClipboard(get()) }
+        factory { BeautifySong() }
+        factory { TransposeSong() }
+        viewModel { TransposerViewModel(get(), get(), get()) }
     }
 }

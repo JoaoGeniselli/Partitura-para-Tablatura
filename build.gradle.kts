@@ -20,6 +20,13 @@ allprojects {
         google()
         jcenter()
         maven(url = "https://jitpack.io")
+        maven(url = "https://maven.pkg.github.com/JoaoGeniselli/ktransposer") {
+            val secrets = SecretsAPI.forProject(rootProject)
+            credentials {
+                username = secrets.getString("GITHUB_PACKAGES_USER")
+                password = secrets.getString("GITHUB_PACKAGES_TOKEN")
+            }
+        }
     }
 }
 

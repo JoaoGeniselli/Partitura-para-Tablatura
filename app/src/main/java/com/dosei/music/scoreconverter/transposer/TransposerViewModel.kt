@@ -1,10 +1,10 @@
 package com.dosei.music.scoreconverter.transposer
 
-import NoteModifier
-import Transpose
 import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.dosei.music.ktransposer.NoteModifier
+import com.dosei.music.ktransposer.TransposeSong
 import com.dosei.music.scoreconverter.toolbox.BeautifySong
 import com.dosei.music.scoreconverter.toolbox.CopyToClipboard
 import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
@@ -12,7 +12,7 @@ import com.dosei.music.scoreconverter.toolbox.SingleLiveEvent
 class TransposerViewModel(
     private val copyToClipboard: CopyToClipboard,
     private val beautifySong: BeautifySong,
-    private val transpose: Transpose
+    private val transpose: TransposeSong
 ) : ViewModel() {
 
     private val _toastMessage = SingleLiveEvent<Unit>()
@@ -27,8 +27,8 @@ class TransposerViewModel(
 
     fun onTranspose(song: AnnotatedString, semitones: Int): AnnotatedString {
         val transposed = transpose(
+            song = song,
             semitones = semitones,
-            source = song,
             preferredModifier = NoteModifier.AUTO
         )
         return onBeautify(AnnotatedString(transposed))

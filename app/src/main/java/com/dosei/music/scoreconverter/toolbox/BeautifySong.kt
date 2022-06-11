@@ -1,19 +1,18 @@
 package com.dosei.music.scoreconverter.toolbox
 
-import Transpose
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import com.dosei.music.ktransposer.TransposeSong
 
 class BeautifySong(
-    regex: String = Transpose.fileChordsQuery
+    regex: String = TransposeSong.chordsRegex
 ) {
     private val pattern = regex.toRegex()
 
-    operator fun invoke(song: AnnotatedString): AnnotatedString {
-
-        return buildAnnotatedString {
+    operator fun invoke(song: AnnotatedString): AnnotatedString =
+        buildAnnotatedString {
             append(song.toString())
             pattern
                 .findAll(song)
@@ -25,5 +24,4 @@ class BeautifySong(
                     )
                 }
         }
-    }
 }
