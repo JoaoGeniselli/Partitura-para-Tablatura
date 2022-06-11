@@ -54,6 +54,7 @@ fun TransposerLoader(
         onTranspose = {
             val transposed = viewModel.onTranspose(song.value.annotatedString, semitones.value)
             song.value = song.value.copy(annotatedString = transposed)
+            semitones.value = 0
         }
     )
 }
