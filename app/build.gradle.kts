@@ -87,8 +87,11 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.constraint.layout)
     implementation(libs.recycler.view)
+
+    implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics.core)
+
     implementation(libs.koin.android)
     implementation(libs.play.services.ads)
     implementation(libs.android.material)
