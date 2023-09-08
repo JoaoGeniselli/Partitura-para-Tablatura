@@ -4,17 +4,15 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Surface
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
@@ -111,7 +109,7 @@ private fun SelectedButton(
     onClick: () -> Unit
 ) {
     val strokeColor =
-        if (isSystemInDarkTheme()) MaterialTheme.colors.onSurface else MaterialTheme.colors.primary
+        if (isSystemInDarkTheme()) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.primary
 
     OutlinedButton(
         modifier = Modifier
@@ -124,7 +122,7 @@ private fun SelectedButton(
             color = strokeColor
         ),
         colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = strokeColor.copy(
+            containerColor = strokeColor.copy(
                 alpha = 0.2f
             ),
             contentColor = strokeColor
@@ -156,15 +154,15 @@ private fun CommonButton(
         shape = position.createOutline(cornerRadius),
         border = BorderStroke(
             width = 1.dp,
-            color = MaterialTheme.colors.onSurface.copy(alpha = 0.5f)
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
         ),
         colors = ButtonDefaults.outlinedButtonColors(
-            backgroundColor = MaterialTheme.colors.surface,
-            contentColor = MaterialTheme.colors.primary
+            containerColor = MaterialTheme.colorScheme.surface,
+            contentColor = MaterialTheme.colorScheme.primary
         ),
     ) {
         Image(
-            colorFilter = ColorFilter.tint(MaterialTheme.colors.onSurface),
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
             modifier = Modifier.size(iconSize),
             painter = icon.painter,
             contentDescription = icon.description

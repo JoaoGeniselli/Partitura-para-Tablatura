@@ -1,11 +1,13 @@
 package com.dosei.music.scoreconverter.main
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,15 +18,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.dosei.music.arpeggio.Score
+import com.dosei.music.arpeggio.ScoreNote
+import com.dosei.music.arpeggio.ScoreNoteDecoration
+import com.dosei.music.arpeggio.Tablature
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.domain.Guitar
 import com.dosei.music.scoreconverter.toolbox.AdvertView
-import com.dosei.music.scoreconverter.ui.view.*
+import com.dosei.music.scoreconverter.ui.view.Icon
+import com.dosei.music.scoreconverter.ui.view.ToggleIconRow
 
 @Composable
 fun ScoreToTablature(modifier: Modifier = Modifier) {
     val guitar = Guitar.default()
-    val noteIndex = remember { mutableStateOf(NotationNotes.E2.index) }
+    var currentNote by remember { mutableStateOf(ScoreNote.E2) }
     val selectedDecorationIndex = remember { mutableStateOf(1) }
     val decorator = remember { mutableStateOf(ScoreNoteDecoration.NATURAL) }
     Column(modifier.padding(16.dp)) {
@@ -33,11 +40,11 @@ fun ScoreToTablature(modifier: Modifier = Modifier) {
                 .padding(horizontal = 20.dp)
                 .weight(1f)
                 .testTag("score"),
-            noteIndex = noteIndex.value,
-            onUpdateNoteIndex = { noteIndex.value = it },
+            currentNote = currentNote,
+            onUpdateNoteIndex = { currentNote = ScoreNote.getByIndex(it) ?: ScoreNote.E2 },
             noteDecoration = decorator.value
         )
-        val note = noteIndex.value.toNote(decorator.value)
+        val note = currentNote.index.toNote(decorator.value)
         Tablature(
             modifier = Modifier.padding(8.dp),
             positions = guitar.tuning.run {

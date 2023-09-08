@@ -35,4 +35,5 @@
     <string name="transposer_semitones_diff">semitons</string>
     <string name="transposer_copy_button">Botão copiar</string>
     <string name="transposer_beautify_button">Botão formatar</string>
+    <string name="features">Funcionalidades</string>
 </resources>

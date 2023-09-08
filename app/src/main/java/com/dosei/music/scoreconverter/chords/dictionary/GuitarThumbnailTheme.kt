@@ -1,6 +1,6 @@
 package com.dosei.music.scoreconverter.chords.dictionary
 
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -19,7 +19,7 @@ fun GuitarThumbnailTheme(
         typography = Typography(
             name = TextStyle().copy(fontSize = 18.sp, fontWeight = FontWeight.Bold),
             firstFretIndicator = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.SemiBold),
-            fingerIndicator = TextStyle(fontSize = 10.sp, color = MaterialTheme.colors.onPrimary)
+            fingerIndicator = TextStyle(fontSize = 10.sp, color = MaterialTheme.colorScheme.onPrimary)
         ),
         sizes = Sizes(position = 16.dp),
         content = content,

@@ -4,12 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.Sdk.compile
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = Versions.Sdk.minimum
-        buildToolsVersion = Versions.Sdk.buildTools
-        targetSdk = Versions.Sdk.target
+        minSdk = 21
+        targetSdk = 33
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -26,6 +25,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    namespace = "com.dosei.music.scoreconverter.player"
 }
 
 dependencies {

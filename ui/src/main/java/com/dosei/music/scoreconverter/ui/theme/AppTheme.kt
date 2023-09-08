@@ -1,9 +1,9 @@
 package com.dosei.music.scoreconverter.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
@@ -15,11 +15,9 @@ val SecondaryColorDark = Color(0xff1b1b1b)
 
 val ErrorColor = Color(0xffc62828)
 
-val LightColors = lightColors(
+val LightColors = lightColorScheme(
     primary = PrimaryColor,
-    primaryVariant = PrimaryColorDark,
     secondary = SecondaryColor,
-    secondaryVariant = SecondaryColorDark,
     background = Color.White,
     surface = Color.White,
     error = ErrorColor,
@@ -30,11 +28,9 @@ val LightColors = lightColors(
     onError = Color.White
 )
 
-val DarkColors = darkColors(
+val DarkColors = darkColorScheme(
     primary = PrimaryColor,
-    primaryVariant = PrimaryColorDark,
     secondary = SecondaryColor,
-    secondaryVariant = SecondaryColorDark,
     error = ErrorColor,
     onPrimary = Color.White,
     onSecondary = Color.White,
@@ -47,7 +43,7 @@ fun AppTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors = if (darkTheme) DarkColors else LightColors,
+        colorScheme = if (darkTheme) DarkColors else LightColors,
         content = content
     )
 }
