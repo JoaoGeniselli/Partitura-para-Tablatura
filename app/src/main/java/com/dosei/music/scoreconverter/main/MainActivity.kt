@@ -7,13 +7,19 @@ import android.view.MenuItem
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -37,6 +43,7 @@ import com.dosei.music.scoreconverter.toolbox.shareText
 import com.dosei.music.scoreconverter.transposer.TransposerLoader
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -114,35 +121,45 @@ fun MainContent() {
     val selectedFeature = remember { mutableStateOf(Feature.ScoreToTablature) }
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val features = Feature.values().toList()
 
     AppTheme {
         Surface {
-            Scaffold(
-                modifier = Modifier.fillMaxSize(),
-                topBar = {
-                    TopBar(
-                        onClickMenu = { /* scope.launch { scaffoldState.drawerState.open() } */ }
-                    )
-                },
-                // TODO: ADJUST DRAWER
-//                drawerContent = {
-//                    FeatureMenu(
-//                        columnScope = this,
-//                        activeFeature = selectedFeature.value,
-//                        onClickFeature = { clickedFeature ->
-//                            scope.launch {
-//                                selectedFeature.value = clickedFeature
-//                                scaffoldState.drawerState.close()
-//                            }
-//                        }
-//                    )
-//                }
+            ModalNavigationDrawer(
+                drawerState = drawerState,
+                drawerContent = {
+                    ModalDrawerSheet {
+                        Spacer(Modifier.height(12.dp))
+                        features.forEach { item ->
+                            NavigationDrawerItem(
+                                modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
+                                label = { Text(stringResource(item.nameRes)) },
+                                selected = item == selectedFeature.value,
+                                onClick = {
+                                    scope.launch { drawerState.close() }
+                                    selectedFeature.value = item
+                                },
+                            )
+                        }
+                    }
+                }
             ) {
-                val mod = Modifier.fillMaxSize().padding(it)
-                when (selectedFeature.value) {
-                    Feature.ScoreToTablature -> ScoreToTablature(modifier = mod)
-                    Feature.ChordsDictionary -> ChordsDictionary(modifier = mod)
-                    Feature.Transposer -> TransposerLoader(modifier = mod)
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = {
+                        TopBar(
+                            onClickMenu = { scope.launch { drawerState.open() } }
+                        )
+                    },
+                ) {
+                    val modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it)
+                    when (selectedFeature.value) {
+                        Feature.ScoreToTablature -> ScoreToTablature(modifier = modifier)
+                        Feature.ChordsDictionary -> ChordsDictionary(modifier = modifier)
+                        Feature.Transposer -> TransposerLoader(modifier = modifier)
+                    }
                 }
             }
         }
