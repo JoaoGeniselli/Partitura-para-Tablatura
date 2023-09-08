@@ -80,7 +80,6 @@ kotlin {
 dependencies {
     implementation(project(path = ":ui"))
     implementation(project(path = ":player"))
-//    implementation(project(path = ":arpeggio"))
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.app.compat)
