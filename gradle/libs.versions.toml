@@ -33,6 +33,7 @@ navigation-compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
 activity-compose = 'androidx.activity:activity-compose:1.7.2'
 
 ktransposer = 'com.dosei.music:ktransposer:1.1.0'
+arpeggio = 'com.dosei.music:arpeggio:1.2.0'
 
 lifecycle-runtime = 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
 junit-core = 'junit:junit:4.13.2'

@@ -1,10 +1,10 @@
 package com.dosei.music.scoreconverter.main
 
+import com.dosei.music.arpeggio.ScoreNoteDecoration
 import com.dosei.music.scoreconverter.domain.Note
 import com.dosei.music.scoreconverter.domain.NoteModifier
 import com.dosei.music.scoreconverter.domain.OctavedNote
 import com.dosei.music.scoreconverter.ui.view.NotationNotes
-import com.dosei.music.scoreconverter.ui.view.ScoreNoteDecoration
 
 fun Int.toNote(decoration: ScoreNoteDecoration): OctavedNote? {
     val modifier = when(decoration) {

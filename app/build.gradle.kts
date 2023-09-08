@@ -80,7 +80,7 @@ kotlin {
 dependencies {
     implementation(project(path = ":ui"))
     implementation(project(path = ":player"))
-    implementation(project(path = ":arpeggio"))
+//    implementation(project(path = ":arpeggio"))
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.app.compat)
@@ -119,6 +119,7 @@ dependencies {
     implementation(libs.hilt.compose)
     implementation(libs.navigation.compose)
     implementation(libs.ktransposer)
+    implementation(libs.arpeggio)
 
     testImplementation(libs.junit.core)
 

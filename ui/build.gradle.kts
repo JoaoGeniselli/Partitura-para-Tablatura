@@ -64,4 +64,6 @@ dependencies {
     androidTestImplementation(libs.compose.junit)
 
     //endregion
+
+    implementation(libs.arpeggio)
 }
