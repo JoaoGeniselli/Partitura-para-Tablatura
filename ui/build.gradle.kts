@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.Sdk.compile
+    compileSdk = 32
 
     defaultConfig {
-        minSdk = Versions.Sdk.minimum
-        targetSdk = Versions.Sdk.target
-        buildToolsVersion = Versions.Sdk.buildTools
+        minSdk = 21
+        targetSdk = 32
+        buildToolsVersion = "30.0.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -33,9 +33,9 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.kotlin)
-    implementation(Dependencies.tapTargetView)
-    implementation(Dependencies.AndroidX.constraintLayout)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0")
+    implementation("com.getkeepsafe.taptargetview:taptargetview:1.13.0")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
     implementation(libs.core.ktx)
     implementation(libs.app.compat)

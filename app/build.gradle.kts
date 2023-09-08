@@ -6,14 +6,14 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.Sdk.compile
+    compileSdk = 32
     defaultConfig {
         applicationId = "com.dosei.music.scoreconverter"
-        minSdk = Versions.Sdk.minimum
-        targetSdk = Versions.Sdk.target
-        versionCode = Versions.App.code
-        versionName = Versions.App.name
-        buildToolsVersion = Versions.Sdk.buildTools
+        minSdk = 21
+        targetSdk = 32
+        versionCode = 6
+        versionName = "1.2.0"
+        buildToolsVersion = "30.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
