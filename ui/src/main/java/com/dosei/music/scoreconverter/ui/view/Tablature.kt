@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
@@ -30,8 +30,8 @@ fun Tablature(
     strings: Int = 6,
     positions: Map<Int, Int?> = mapOf()
 ) {
-    val lineColor = MaterialTheme.colors.onSurface
-    val spaceColor = MaterialTheme.colors.surface
+    val lineColor = MaterialTheme.colorScheme.onSurface
+    val spaceColor = MaterialTheme.colorScheme.surface
     val textSizeDp = LocalDensity.current.run { 18.sp.toPx() }
     val paint = Paint().asFrameworkPaint().apply {
         color = lineColor.hashCode()

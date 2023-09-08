@@ -4,11 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Bottom
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
@@ -23,7 +22,7 @@ fun FeatureMenu(
     columnScope: ColumnScope,
     activeFeature: Feature,
     features: List<Feature> = Feature.values().toList(),
-    onClickFeature: (Feature) -> Unit
+    onClickFeature: (Feature) -> Unit,
 ) {
     columnScope.run {
         Row(
@@ -36,7 +35,7 @@ fun FeatureMenu(
             Text(
                 modifier = Modifier.fillMaxWidth().align(Bottom),
                 text = stringResource(id = R.string.app_name),
-                style = MaterialTheme.typography.h6
+                style = MaterialTheme.typography.headlineSmall
             )
         }
         features.forEach { currentFeature ->
@@ -58,7 +57,7 @@ fun FeatureMenu(
 @Composable
 fun ActiveMenuRow(text: String, onClick: () -> Unit) {
     val color =
-        if (isSystemInDarkTheme()) MaterialTheme.colors.onSurface else MaterialTheme.colors.primary
+        if (isSystemInDarkTheme()) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.primary
     Row(
         Modifier
             .height(48.dp)
@@ -76,7 +75,7 @@ fun ActiveMenuRow(text: String, onClick: () -> Unit) {
                 .padding(horizontal = 11.dp),
             text = text,
             color = color,
-            style = MaterialTheme.typography.subtitle2
+            style = MaterialTheme.typography.labelMedium
         )
     }
 }
@@ -95,8 +94,8 @@ fun InactiveMenuRow(text: String, onClick: () -> Unit) {
                 .align(CenterVertically)
                 .padding(horizontal = 11.dp),
             text = text,
-            color = MaterialTheme.colors.onSurface,
-            style = MaterialTheme.typography.subtitle2
+            color = MaterialTheme.colorScheme.onSurface,
+            style = MaterialTheme.typography.labelMedium
         )
     }
 }

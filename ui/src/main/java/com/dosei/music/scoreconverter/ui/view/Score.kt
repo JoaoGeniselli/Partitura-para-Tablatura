@@ -7,8 +7,8 @@ import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -56,8 +56,8 @@ fun Score(
 
     val offsetY = remember { mutableStateOf(noteIndex * heightInPx) }
 
-    val lineColor = MaterialTheme.colors.onSurface
-    val supplementaryLineColor = MaterialTheme.colors.onSurface.copy(alpha = 0.4f)
+    val lineColor = MaterialTheme.colorScheme.onSurface
+    val supplementaryLineColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
 
     Canvas(modifier = modifier
         .fillMaxWidth()

@@ -95,8 +95,27 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.play.services.ads)
     implementation(libs.android.material)
-    implementation(libs.bundles.compose)
     implementation(libs.lifecycle.runtime)
+
+    //region UI
+
+    implementation(platform(libs.compose.bom))
+    implementation(libs.compose.ui)
+    implementation(libs.compose.material)
+    implementation(libs.compose.graphics)
+    implementation(libs.compose.preview)
+    implementation(libs.activity.compose)
+
+    debugImplementation(libs.compose.tooling.ui)
+    debugImplementation(libs.compose.test.manifest)
+
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.android.test.ext)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.compose.junit)
+
+    //endregion
+
     implementation(libs.hilt.compose)
     implementation(libs.navigation.compose)
     implementation(libs.ktransposer)
@@ -104,10 +123,4 @@ dependencies {
     testImplementation(libs.junit.core)
 
     androidTestImplementation(libs.android.test.ext)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(libs.compose.junit)
-    androidTestImplementation(libs.espresso.compose)
-
-    debugImplementation(libs.compose.test.manifest)
-    debugImplementation(libs.compose.tooling.ui)
 }
