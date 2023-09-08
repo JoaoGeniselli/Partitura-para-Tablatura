@@ -1,9 +1,13 @@
 [versions]
 compose = '1.1.0-rc01'
-kotlin = '1.6.20'
+kotlin = '1.6.21'
 koin = '2.1.6'
 
 [libraries]
+
+google-play-services = "com.google.gms:google-services:4.3.10"
+firebase-crashlytics-gradle = "com.google.firebase:firebase-crashlytics-gradle:2.5.2"
+
 
 core-ktx = 'androidx.core:core-ktx:1.7.0'
 app-compat = 'androidx.appcompat:appcompat:1.4.0'
@@ -35,7 +39,7 @@ espresso-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref 
 compose-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = 'compose' }
 
 google-services = "com.google.gms:google-services:4.3.3"
-gradle-plugin = "com.android.tools.build:gradle:3.6.2"
+gradle-plugin = "com.android.tools.build:gradle:8.1.1"
 
 koin-android = { module = "org.koin:koin-android", version.ref = 'koin' }
 koin-scope = { module = "org.koin:koin-android-scope", version.ref = 'koin' }
