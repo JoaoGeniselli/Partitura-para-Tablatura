@@ -24,12 +24,13 @@ android {
         }
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.0-rc01"
+        kotlinCompilerExtensionVersion = "1.2.0-rc02"
     }
     buildFeatures {
         compose = true
         viewBinding = true
     }
+    namespace = "com.dosei.music.scoreconverter.ui"
 }
 
 dependencies {

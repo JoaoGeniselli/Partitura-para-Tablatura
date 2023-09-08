@@ -61,7 +61,7 @@ android {
         }
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.0-rc01"
+        kotlinCompilerExtensionVersion = "1.2.0-rc02"
     }
     buildFeatures {
         compose = true
@@ -71,6 +71,7 @@ android {
         resources.excludes.add("META-INF/AL2.0")
         resources.excludes.add("META-INF/LGPL2.1")
     }
+    namespace = "com.dosei.music.scoreconverter"
 }
 
 dependencies {
