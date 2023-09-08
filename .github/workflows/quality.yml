@@ -23,8 +23,12 @@ jobs:
           ADMOB_APPLICATION_ID: ${{ secrets.ADMOB_APPLICATION_ID }}
           ADMOB_HOME_BANNER_ID: ${{ secrets.ADMOB_HOME_BANNER_ID }}
           FAKE_ADMOB_HOME_BANNER_ID: ${{ secrets.FAKE_ADMOB_HOME_BANNER_ID }}
+          GITHUB_PACKAGES_USER: ${{ secrets.PACKAGES_USER }}
+          GITHUB_PACKAGES_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
         run: echo "ADMOB_APPLICATION_ID=\"$ADMOB_APPLICATION_ID\"" > ./secret.properties |
-          echo "ADMOB_HOME_BANNER_ID=\"$ADMOB_HOME_BANNER_ID\"" >> ./secret.properties
+          echo "ADMOB_HOME_BANNER_ID=\"$ADMOB_HOME_BANNER_ID\"" >> ./secret.properties |
+          echo "GITHUB_PACKAGES_USER=\"$GITHUB_PACKAGES_USER\"" >> ./secret.properties |
+          echo "GITHUB_PACKAGES_TOKEN=\"$GITHUB_PACKAGES_TOKEN\"" >> ./secret.properties
 
       - name: Setup firebase auth
         env:
