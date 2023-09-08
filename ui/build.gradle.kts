@@ -33,9 +33,9 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0")
-    implementation("com.getkeepsafe.taptargetview:taptargetview:1.13.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.tap.target.view)
+    implementation(libs.constraint.layout)
 
     implementation(libs.core.ktx)
     implementation(libs.app.compat)
