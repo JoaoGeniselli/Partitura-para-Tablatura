@@ -60,7 +60,7 @@ android {
         }
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-rc02"
+        kotlinCompilerExtensionVersion = libs.versions.compiler.kotlin.ext.get()
     }
     buildFeatures {
         compose = true
@@ -71,6 +71,10 @@ android {
         resources.excludes.add("META-INF/LGPL2.1")
     }
     namespace = "com.dosei.music.scoreconverter"
+}
+
+kotlin {
+    jvmToolchain(8)
 }
 
 dependencies {
@@ -86,8 +90,6 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics.core)
     implementation(libs.koin.android)
-    implementation(libs.koin.scope)
-    implementation(libs.koin.view.model)
     implementation(libs.play.services.ads)
     implementation(libs.android.material)
     implementation(libs.bundles.compose)

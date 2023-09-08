@@ -23,7 +23,7 @@ android {
         }
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-rc02"
+        kotlinCompilerExtensionVersion = libs.versions.compiler.kotlin.ext.get()
     }
     buildFeatures {
         compose = true
@@ -32,9 +32,12 @@ android {
     namespace = "com.dosei.music.scoreconverter.ui"
 }
 
+kotlin {
+    jvmToolchain(8)
+}
+
 dependencies {
     implementation(libs.kotlin.stdlib)
-    implementation(libs.tap.target.view)
     implementation(libs.constraint.layout)
 
     implementation(libs.core.ktx)

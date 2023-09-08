@@ -9,7 +9,7 @@ import com.dosei.music.scoreconverter.toolbox.BeautifySong
 import com.dosei.music.scoreconverter.toolbox.CopyToClipboard
 import com.dosei.music.scoreconverter.transposer.TransposerViewModel
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object DependencyInjection {

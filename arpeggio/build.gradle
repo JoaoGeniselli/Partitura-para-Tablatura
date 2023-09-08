@@ -27,9 +27,13 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-rc02"
+        kotlinCompilerExtensionVersion = libs.versions.compiler.kotlin.ext.get()
     }
     namespace 'com.dosei.music.arpeggio'
+}
+
+kotlin {
+    jvmToolchain(8)
 }
 
 dependencies {
