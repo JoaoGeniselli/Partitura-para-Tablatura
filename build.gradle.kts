@@ -20,6 +20,17 @@ allprojects {
         maven(url = "https://jitpack.io")
         maven(url = "https://maven.pkg.github.com/JoaoGeniselli/ktransposer") {
             val secrets = SecretsAPI.forProject(rootProject)
+            print("Received User: ")
+            println(secrets.getString("GITHUB_PACKAGES_USER"))
+            credentials {
+                username = secrets.getString("GITHUB_PACKAGES_USER")
+                password = secrets.getString("GITHUB_PACKAGES_TOKEN")
+            }
+        }
+        maven(url = "https://maven.pkg.github.com/JoaoGeniselli/arpeggio") {
+            val secrets = SecretsAPI.forProject(rootProject)
+            print("Received User: ")
+            println(secrets.getString("GITHUB_PACKAGES_USER"))
             credentials {
                 username = secrets.getString("GITHUB_PACKAGES_USER")
                 password = secrets.getString("GITHUB_PACKAGES_TOKEN")
