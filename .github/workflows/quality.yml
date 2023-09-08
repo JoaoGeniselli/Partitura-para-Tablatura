@@ -24,7 +24,7 @@ jobs:
           ADMOB_HOME_BANNER_ID: ${{ secrets.ADMOB_HOME_BANNER_ID }}
           ADMOB_TRANSPOSER_BANNER_ID: ${{ secrets.ADMOB_TRANSPOSER_BANNER_ID }}
           FAKE_ADMOB_HOME_BANNER_ID: ${{ secrets.FAKE_ADMOB_HOME_BANNER_ID }}
-          GITHUB_PACKAGES_USER: ${{ secrets.PACKAGES_USER }}
+          GITHUB_PACKAGES_USER: ${{ secrets.GITHUB_ACTOR }}
           GITHUB_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: | 
           echo "ADMOB_APPLICATION_ID=\"$ADMOB_APPLICATION_ID\"" >> ./secret.properties |
