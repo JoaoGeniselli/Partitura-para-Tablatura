@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Score to Tablature</string>
+    <string name="app_name">Guitar Kit</string>
     <string name="current_note">Note: </string>
     <string name="score">Score</string>
     <string name="tablature">Tablature</string>
@@ -25,9 +25,11 @@
     <string name="natural_button">Natural Button</string>
     <string name="flat_button">Flat Button</string>
     <string name="menu">Menu</string>
+
     <string name="menu_item_converter">Score to Tablature</string>
+    <string name="menu_item_converter_fretboard">Score to Guitar Fretboard</string>
     <string name="menu_item_chords_dictionary">Chords Dictionary</string>
-    <string name="menu_item_transposer">Tranposer</string>
+    <string name="menu_item_transposer">Chords Tranposer</string>
 
     <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">Your song chords here...</string>
     <string name="transposer_remove_semitone_button">Remove semitone button</string>
@@ -37,5 +39,7 @@
     <string name="transposer_copy_button">Copy button</string>
     <string name="transposer_beautify_button">Beautify button</string>
     <string name="features">Features</string>
+    <string name="about">About</string>
+
 
 </resources>

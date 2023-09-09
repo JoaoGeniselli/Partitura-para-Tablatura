@@ -4,7 +4,8 @@ import androidx.annotation.StringRes
 import com.dosei.music.scoreconverter.R
 
 enum class Feature(@StringRes val nameRes: Int) {
-    ScoreToTablature(nameRes = R.string.menu_item_converter),
-    ChordsDictionary(nameRes = R.string.menu_item_chords_dictionary),
-    Transposer(nameRes = R.string.menu_item_transposer)
+    ScoreToTablature(R.string.menu_item_converter),
+    ScoreToGuitarNeck(R.string.menu_item_converter_fretboard),
+    ChordsDictionary(R.string.menu_item_chords_dictionary),
+    Transposer(R.string.menu_item_transposer)
 }

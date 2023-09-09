@@ -159,6 +159,7 @@ fun MainContent() {
                         Feature.ScoreToTablature -> ScoreToTablature(modifier = modifier)
                         Feature.ChordsDictionary -> ChordsDictionary(modifier = modifier)
                         Feature.Transposer -> TransposerLoader(modifier = modifier)
+                        Feature.ScoreToGuitarNeck -> Unit
                     }
                 }
             }

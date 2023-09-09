@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Partitura para Tablatura</string>
+    <string name="app_name">Kit Violão</string>
     <string name="current_note">Nota: </string>
     <string name="score">Partitura</string>
     <string name="tablature">Tablatura</string>
@@ -24,9 +24,11 @@
     <string name="natural_button">Botão Natural</string>
     <string name="flat_button">Botão Bemol</string>
     <string name="menu">Menu</string>
+
     <string name="menu_item_converter">Partitura para Tablatura</string>
+    <string name="menu_item_converter_fretboard">Partitura para Posições no Braço</string>
     <string name="menu_item_chords_dictionary">Dicionário de Acordes</string>
-    <string name="menu_item_transposer">Tranpositor de Cifras</string>
+    <string name="menu_item_transposer">Transpositor de Cifras Musicais</string>
 
     <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">Sua cifra aqui...</string>
     <string name="transposer_remove_semitone_button">Botão remover semitom</string>
@@ -36,4 +38,5 @@
     <string name="transposer_copy_button">Botão copiar</string>
     <string name="transposer_beautify_button">Botão formatar</string>
     <string name="features">Funcionalidades</string>
+    <string name="about">Sobre</string>
 </resources>
