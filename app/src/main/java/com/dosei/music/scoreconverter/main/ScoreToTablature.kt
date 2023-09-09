@@ -1,6 +1,8 @@
 package com.dosei.music.scoreconverter.main
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +27,7 @@ import com.dosei.music.arpeggio.Tablature
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.domain.Guitar
 import com.dosei.music.scoreconverter.toolbox.AdvertView
+import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.dosei.music.scoreconverter.ui.view.Icon
 import com.dosei.music.scoreconverter.ui.view.ToggleIconRow
 
@@ -41,6 +44,7 @@ fun ScoreToTablature(modifier: Modifier = Modifier) {
                 .weight(1f)
                 .testTag("score"),
             currentNote = currentNote,
+            showSupplementaryLines = false,
             onUpdateNoteIndex = { currentNote = ScoreNote.getByIndex(it) ?: ScoreNote.E2 },
             noteDecoration = decorator.value
         )
@@ -115,11 +119,14 @@ fun ScoreToTablature(modifier: Modifier = Modifier) {
 }
 
 @Preview(showBackground = true)
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun PreviewComposableConverter() {
-    Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-        ScoreToTablature(
-            modifier = Modifier
-        )
+    AppTheme {
+        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+            ScoreToTablature(
+                modifier = Modifier
+            )
+        }
     }
 }
