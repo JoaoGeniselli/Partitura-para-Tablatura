@@ -41,6 +41,9 @@
     <string name="about">Sobre</string>
     <string name="action_help">Ajuda</string>
     <string name="understood">Entendi!</string>
+    <string name="action_search">Pesquisar</string>
+    <string name="search_chords">Pesquisar acordes</string>
+    <string name="history_item">Item do histórico</string>
 
     <string-array name="score_to_tablature_help">
         <item>Selecione uma nota arrastando a partitura verticalmente</item>
