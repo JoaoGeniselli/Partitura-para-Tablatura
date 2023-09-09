@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.screen.home
+package com.dosei.music.scoreconverter.feature.home
 
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable

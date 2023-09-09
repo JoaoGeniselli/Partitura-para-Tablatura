@@ -6,7 +6,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeDown
-import com.dosei.music.scoreconverter.screen.converter.tablature.ScoreToTablatureContent
+import com.dosei.music.scoreconverter.feature.converter.tablature.ScoreToTablatureContent
 import org.junit.Rule
 import org.junit.Test
 

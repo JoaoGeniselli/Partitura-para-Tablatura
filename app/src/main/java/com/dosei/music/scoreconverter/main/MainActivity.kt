@@ -34,14 +34,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.R
-import com.dosei.music.scoreconverter.screen.about.AboutActivity
-import com.dosei.music.scoreconverter.screen.chords.dictionary.ChordsDictionary
-import com.dosei.music.scoreconverter.screen.converter.tablature.ScoreToTablatureScreen
+import com.dosei.music.scoreconverter.feature.about.AboutActivity
+import com.dosei.music.scoreconverter.feature.chords.dictionary.ChordsDictionary
+import com.dosei.music.scoreconverter.feature.converter.tablature.ScoreToTablatureScreen
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
-import com.dosei.music.scoreconverter.screen.chords.transposer.TransposerLoader
+import com.dosei.music.scoreconverter.feature.chords.transposer.TransposerLoader
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.launch
@@ -110,10 +110,6 @@ class MainActivity : AppCompatActivity() {
             chooserTitle = getString(R.string.share_chooser_title)
         )
     }
-
-    companion object {
-        private const val SCORE_CONVERTER_TAG = "ScoreConverter"
-    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -145,44 +141,16 @@ fun MainContent() {
                     }
                 }
             ) {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = {
-                        TopBar(
-                            onClickMenu = { scope.launch { drawerState.open() } }
-                        )
-                    },
-                ) {
-                    val modifier = Modifier
-                        .fillMaxSize()
-                        .padding(it)
-                    when (selectedFeature.value) {
-                        Feature.ScoreToTablature -> ScoreToTablatureScreen(modifier = modifier)
-                        Feature.ChordsDictionary -> ChordsDictionary(modifier = modifier)
-                        Feature.Transposer -> TransposerLoader(modifier = modifier)
-                        Feature.ScoreToGuitarNeck -> Unit
-                    }
+                val modifier = Modifier.fillMaxSize()
+                when (selectedFeature.value) {
+                    Feature.ScoreToTablature -> ScoreToTablatureScreen(modifier = modifier)
+                    Feature.ChordsDictionary -> ChordsDictionary(modifier = modifier)
+                    Feature.Transposer -> TransposerLoader(modifier = modifier)
+                    Feature.ScoreToGuitarNeck -> Unit
                 }
             }
         }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun TopBar(onClickMenu: () -> Unit) {
-    TopAppBar(
-        title = { Text(stringResource(id = R.string.app_name)) },
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Default.Menu,
-                modifier = Modifier
-                    .padding(start = 20.dp)
-                    .clickable(onClick = onClickMenu),
-                contentDescription = stringResource(id = R.string.menu)
-            )
-        }
-    )
 }
 
 @Preview(showBackground = true)

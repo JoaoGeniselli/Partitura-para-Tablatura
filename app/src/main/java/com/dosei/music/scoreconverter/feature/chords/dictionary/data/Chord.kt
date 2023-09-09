@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.screen.chords.dictionary.data
+package com.dosei.music.scoreconverter.feature.chords.dictionary.data
 
 import androidx.compose.ui.text.AnnotatedString
 import com.dosei.music.arpeggio.Component

@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.screen.chords.dictionary
+package com.dosei.music.scoreconverter.feature.chords.dictionary
 
 import com.dosei.music.arpeggio.*
 

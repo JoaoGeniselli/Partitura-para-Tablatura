@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Kit Violão</string>
-    <string name="current_note">Nota: </string>
+    <string name="current_note">Nota selecionada: %s</string>
     <string name="score">Partitura</string>
     <string name="tablature">Tablatura</string>
 
@@ -39,4 +39,11 @@
     <string name="transposer_beautify_button">Botão formatar</string>
     <string name="features">Funcionalidades</string>
     <string name="about">Sobre</string>
+    <string name="action_help">Ajuda</string>
+
+    <string-array name="score_to_tablature_help">
+        <item>Selecione uma nota arrastando a partitura verticalmente</item>
+        <item>Altere para sustenido ou bemol clicando na partitura</item>
+        <item>Veja as posições da nota selecionada na tablatura</item>
+    </string-array>
 </resources>

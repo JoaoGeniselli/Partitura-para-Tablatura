@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.screen.chords.dictionary
+package com.dosei.music.scoreconverter.feature.chords.dictionary
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,8 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dosei.music.arpeggio.ChordDiagram
-import com.dosei.music.scoreconverter.screen.chords.dictionary.data.Chord
-import com.dosei.music.scoreconverter.screen.chords.dictionary.data.Chords
+import com.dosei.music.scoreconverter.feature.chords.dictionary.data.Chord
+import com.dosei.music.scoreconverter.feature.chords.dictionary.data.Chords
 
 @Composable
 fun ChordsDictionary(modifier: Modifier = Modifier) {

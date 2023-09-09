@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.screen.about
+package com.dosei.music.scoreconverter.feature.about
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

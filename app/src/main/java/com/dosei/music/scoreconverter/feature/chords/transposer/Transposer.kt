@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.screen.chords.transposer
+package com.dosei.music.scoreconverter.feature.chords.transposer
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
