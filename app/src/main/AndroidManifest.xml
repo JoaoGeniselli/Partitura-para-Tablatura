@@ -17,7 +17,7 @@
             android:value="@string/admob_application_id" />
 
         <activity
-            android:name=".about.AboutActivity"
+            android:name=".screen.about.AboutActivity"
             android:exported="false"
             android:label="@string/about_activity_title" />
 

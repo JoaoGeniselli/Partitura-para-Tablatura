@@ -1,7 +1,8 @@
-package com.dosei.music.scoreconverter.chords.dictionary
+package com.dosei.music.scoreconverter.screen.chords.dictionary
 
 import androidx.compose.ui.text.AnnotatedString
 import com.dosei.music.arpeggio.*
+import com.dosei.music.scoreconverter.screen.chords.dictionary.data.Chord
 
 object Shapes {
 

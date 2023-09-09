@@ -1,10 +1,15 @@
-package com.dosei.music.scoreconverter.chords.dictionary
+package com.dosei.music.scoreconverter.screen.chords.dictionary.data
 
 import androidx.compose.ui.text.AnnotatedString
 import com.dosei.music.arpeggio.Barre
 import com.dosei.music.arpeggio.Component
-import com.dosei.music.arpeggio.OpenString
 import com.dosei.music.arpeggio.Position
+import com.dosei.music.scoreconverter.screen.chords.dictionary.Shapes
+import com.dosei.music.scoreconverter.screen.chords.dictionary.i
+import com.dosei.music.scoreconverter.screen.chords.dictionary.m
+import com.dosei.music.scoreconverter.screen.chords.dictionary.o
+import com.dosei.music.scoreconverter.screen.chords.dictionary.p
+import com.dosei.music.scoreconverter.screen.chords.dictionary.r
 
 object Chords {
     /*

@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.about
+package com.dosei.music.scoreconverter.screen.about
 
 import android.content.pm.PackageManager
 import android.os.Bundle

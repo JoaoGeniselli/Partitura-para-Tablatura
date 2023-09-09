@@ -7,7 +7,7 @@ import com.dosei.music.scoreconverter.io.SharedPreferencesClient
 import com.dosei.music.scoreconverter.player.PlayerDependencyInjection
 import com.dosei.music.scoreconverter.toolbox.BeautifySong
 import com.dosei.music.scoreconverter.toolbox.CopyToClipboard
-import com.dosei.music.scoreconverter.transposer.TransposerViewModel
+import com.dosei.music.scoreconverter.screen.chords.transposer.TransposerViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

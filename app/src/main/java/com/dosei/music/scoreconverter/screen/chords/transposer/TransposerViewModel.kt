@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.transposer
+package com.dosei.music.scoreconverter.screen.chords.transposer
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.lifecycle.LiveData

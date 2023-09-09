@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.main
+package com.dosei.music.scoreconverter.screen.converter.tablature
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
@@ -12,7 +12,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -26,13 +25,22 @@ import com.dosei.music.arpeggio.ScoreNoteDecoration
 import com.dosei.music.arpeggio.Tablature
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.domain.Guitar
+import com.dosei.music.scoreconverter.main.toNote
 import com.dosei.music.scoreconverter.toolbox.AdvertView
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.dosei.music.scoreconverter.ui.view.Icon
 import com.dosei.music.scoreconverter.ui.view.ToggleIconRow
 
 @Composable
-fun ScoreToTablature(modifier: Modifier = Modifier) {
+fun ScoreToTablatureScreen(
+    modifier: Modifier = Modifier
+) {
+    ScoreToTablatureContent(modifier)
+}
+@Composable
+fun ScoreToTablatureContent(
+    modifier: Modifier = Modifier
+) {
     val guitar = Guitar.default()
     var currentNote by remember { mutableStateOf(ScoreNote.E2) }
     val selectedDecorationIndex = remember { mutableStateOf(1) }
@@ -124,7 +132,7 @@ fun ScoreToTablature(modifier: Modifier = Modifier) {
 private fun PreviewComposableConverter() {
     AppTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-            ScoreToTablature(
+            ScoreToTablatureContent(
                 modifier = Modifier
             )
         }

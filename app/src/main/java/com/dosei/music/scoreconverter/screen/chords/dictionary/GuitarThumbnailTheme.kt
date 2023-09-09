@@ -1,4 +1,4 @@
-package com.dosei.music.scoreconverter.chords.dictionary
+package com.dosei.music.scoreconverter.screen.chords.dictionary
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

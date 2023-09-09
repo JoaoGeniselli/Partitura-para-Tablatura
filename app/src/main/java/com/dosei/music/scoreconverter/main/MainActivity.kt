@@ -34,13 +34,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.R
-import com.dosei.music.scoreconverter.about.AboutActivity
-import com.dosei.music.scoreconverter.chords.dictionary.ChordsDictionary
+import com.dosei.music.scoreconverter.screen.about.AboutActivity
+import com.dosei.music.scoreconverter.screen.chords.dictionary.ChordsDictionary
+import com.dosei.music.scoreconverter.screen.converter.tablature.ScoreToTablatureScreen
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
-import com.dosei.music.scoreconverter.transposer.TransposerLoader
+import com.dosei.music.scoreconverter.screen.chords.transposer.TransposerLoader
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.launch
@@ -156,7 +157,7 @@ fun MainContent() {
                         .fillMaxSize()
                         .padding(it)
                     when (selectedFeature.value) {
-                        Feature.ScoreToTablature -> ScoreToTablature(modifier = modifier)
+                        Feature.ScoreToTablature -> ScoreToTablatureScreen(modifier = modifier)
                         Feature.ChordsDictionary -> ChordsDictionary(modifier = modifier)
                         Feature.Transposer -> TransposerLoader(modifier = modifier)
                         Feature.ScoreToGuitarNeck -> Unit
