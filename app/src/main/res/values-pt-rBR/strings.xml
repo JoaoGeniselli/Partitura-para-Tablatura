@@ -40,6 +40,7 @@
     <string name="features">Funcionalidades</string>
     <string name="about">Sobre</string>
     <string name="action_help">Ajuda</string>
+    <string name="understood">Entendi!</string>
 
     <string-array name="score_to_tablature_help">
         <item>Selecione uma nota arrastando a partitura verticalmente</item>

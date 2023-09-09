@@ -1,6 +1,9 @@
 package com.dosei.music.scoreconverter.feature.converter.tablature
 
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.PlainTooltipBox
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringArrayResource
@@ -12,13 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dosei.music.scoreconverter.R
-import com.dosei.music.scoreconverter.ui.view.RichTooltip
 
 @Composable
 fun ScoreToTablatureHelp(modifier: Modifier = Modifier) {
     ScoreToTablatureHelpContent(modifier)
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScoreToTablatureHelpContent(modifier: Modifier = Modifier) {
     val bullet = "\u2022"
@@ -35,7 +38,9 @@ fun ScoreToTablatureHelpContent(modifier: Modifier = Modifier) {
             }
         }
     }
-    RichTooltip(modifier = modifier, supportingText = text, subhead = "Ajuda")
+    PlainTooltipBox(modifier = modifier, tooltip = { Text(text) }) {
+
+    }
 }
 
 @Preview(locale = "pt-rBR")

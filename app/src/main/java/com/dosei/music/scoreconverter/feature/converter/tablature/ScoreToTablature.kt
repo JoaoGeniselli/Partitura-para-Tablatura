@@ -4,10 +4,15 @@ import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PlainTooltipBox
+import androidx.compose.material3.PlainTooltipState
+import androidx.compose.material3.RichTooltipBox
+import androidx.compose.material3.RichTooltipState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -16,11 +21,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.ParagraphStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextIndent
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,6 +46,7 @@ import com.dosei.music.scoreconverter.main.Feature
 import com.dosei.music.scoreconverter.main.toNote
 import com.dosei.music.scoreconverter.toolbox.AdvertView
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
+import kotlinx.coroutines.launch
 
 @Composable
 fun ScoreToTablatureScreen(
@@ -51,18 +64,32 @@ fun ScoreToTablatureContent(
     var currentNote by remember { mutableStateOf(ScoreNote.E2) }
     var decorator by remember { mutableStateOf(ScoreNoteDecoration.NATURAL) }
     val interactionSource = remember { MutableInteractionSource() }
-    val showHelp by remember { mutableStateOf(true) }
+    val helpState = remember { RichTooltipState() }
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(id = Feature.ScoreToTablature.nameRes)) },
                 actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.outline_help_outline_24),
-                            contentDescription = stringResource(R.string.action_help)
-                        )
+                    RichTooltipBox(
+                        modifier = Modifier,
+                        tooltipState = helpState,
+                        title = { Text(stringResource(id = R.string.action_help)) },
+                        text = { Text(buildHelpText()) },
+                        action = {
+                            Button(
+                                onClick = { scope.launch { helpState.dismiss() } },
+                                content = { Text(text = stringResource(R.string.understood)) }
+                            )
+                        }
+                    ) {
+                        IconButton(onClick = { scope.launch { helpState.show() } }) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.outline_help_outline_24),
+                                contentDescription = stringResource(R.string.action_help)
+                            )
+                        }
                     }
                 }
             )
@@ -119,6 +146,24 @@ fun ScoreToTablatureContent(
         }
     }
 
+}
+
+@Composable
+private fun buildHelpText(): AnnotatedString {
+    val bullet = "\u2022"
+    val items = stringArrayResource(id = R.array.score_to_tablature_help)
+    val paragraphStyle = ParagraphStyle(
+        textIndent = TextIndent(restLine = 15.sp),
+    )
+    return buildAnnotatedString {
+        items.forEach { item ->
+            withStyle(paragraphStyle) {
+                append(bullet)
+                append("\t\t")
+                append(item)
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true, locale = "pt-rBR")

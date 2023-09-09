@@ -69,7 +69,7 @@ fun HomeContent(
             items(Feature.values()) { feature ->
                 ListItem(
                     modifier = Modifier.clickable { onSelectFeature(feature) },
-                    headlineText = { Text(text = stringResource(feature.nameRes)) },
+                    headlineContent = { Text(text = stringResource(feature.nameRes)) },
                 )
                 Divider(Modifier.padding(horizontal = 16.dp))
             }
