@@ -10,7 +10,6 @@ class GuitarKitApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        AppContext = this
         startKoin {
             androidContext(this@GuitarKitApplication)
             modules(DependencyInjection.module)
