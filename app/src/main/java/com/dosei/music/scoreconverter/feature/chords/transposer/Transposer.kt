@@ -34,14 +34,14 @@ import com.dosei.music.scoreconverter.toolbox.AdvertView
 import org.koin.java.KoinJavaComponent.get
 
 @Composable
-fun TransposerLoader(
+fun TransposerScreen(
     modifier: Modifier = Modifier
 ) {
     val viewModel: TransposerViewModel = get(TransposerViewModel::class.java)
     val song = remember { mutableStateOf(TextFieldValue("")) }
     val semitones = remember { mutableStateOf(0) }
 
-    Transposer(
+    TransposerScreenContent(
         modifier = modifier,
         song = song.value,
         onChangeSong = { song.value = it },
@@ -62,7 +62,7 @@ fun TransposerLoader(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Transposer(
+fun TransposerScreenContent(
     modifier: Modifier = Modifier,
     song: TextFieldValue,
     onChangeSong: (TextFieldValue) -> Unit,
@@ -138,7 +138,7 @@ fun Transposer(
 @Composable
 private fun PreviewTransposer() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-        Transposer(
+        TransposerScreenContent(
             modifier = Modifier,
             song = TextFieldValue(),
             onChangeSong = {},

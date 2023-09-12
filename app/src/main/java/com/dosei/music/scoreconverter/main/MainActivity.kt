@@ -6,24 +6,18 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -35,13 +29,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.feature.about.AboutActivity
-import com.dosei.music.scoreconverter.feature.chords.dictionary.ChordsDictionary
+import com.dosei.music.scoreconverter.feature.chords.dictionary.ChordsDictionaryScreen
 import com.dosei.music.scoreconverter.feature.converter.tablature.ScoreToTablatureScreen
 import com.dosei.music.scoreconverter.toolbox.URL_PLAY_STORE
 import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
-import com.dosei.music.scoreconverter.feature.chords.transposer.TransposerLoader
+import com.dosei.music.scoreconverter.feature.chords.transposer.TransposerScreen
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.launch
@@ -144,8 +138,8 @@ fun MainContent() {
                 val modifier = Modifier.fillMaxSize()
                 when (selectedFeature.value) {
                     Feature.ScoreToTablature -> ScoreToTablatureScreen(modifier = modifier)
-                    Feature.ChordsDictionary -> ChordsDictionary(modifier = modifier)
-                    Feature.Transposer -> TransposerLoader(modifier = modifier)
+                    Feature.ChordsDictionary -> ChordsDictionaryScreen(modifier = modifier)
+                    Feature.Transposer -> TransposerScreen(modifier = modifier)
                     Feature.ScoreToGuitarNeck -> Unit
                 }
             }

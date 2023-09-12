@@ -35,7 +35,7 @@ import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.feature.chords.dictionary.data.Chords
 
 @Composable
-fun ChordsDictionary(modifier: Modifier = Modifier) {
+fun ChordsDictionaryScreen(modifier: Modifier = Modifier) {
     var searchQuery by remember { mutableStateOf("") }
     val chords = remember { Chords.all }
     val filteredChords by remember(chords, searchQuery) {
@@ -133,7 +133,7 @@ private fun Search(query: String, onChangeQuery: (String) -> Unit) {
 @Composable
 private fun PreviewChordsDictionary() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-        ChordsDictionary(
+        ChordsDictionaryScreen(
             modifier = Modifier
         )
     }
