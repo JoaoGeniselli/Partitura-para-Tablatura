@@ -31,7 +31,8 @@
     <string name="menu_item_chords_dictionary">Chords Dictionary</string>
     <string name="menu_item_transposer">Chords Tranposer</string>
 
-    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">Your song chords here...</string>
+    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">"G          D7          G\nPlace your lyrics like this!"
+    </string>
     <string name="transposer_remove_semitone_button">Remove semitone button</string>
     <string name="transposer_add_semitone_button">Add semitone button</string>
     <string name="transposer_transpose_button">Transpose</string>
@@ -45,10 +46,17 @@
     <string name="action_search">Search</string>
     <string name="search_chords">Search chords</string>
     <string name="history_item">History item</string>
+    <string name="action_transpose">Transpose</string>
+    <string name="chords_lyrics">Lyrics and Chords</string>
     <string-array name="score_to_tablature_help">
         <item>Selecione a nota a ser convertida arrastando a partitura verticalmente;</item>
         <item>Altere os modificadores (sustenido e bemol) clicando na partitura;</item>
         <item>Veja as posições disponíveis para a nota selecionada na tablatura.</item>
     </string-array>
+
+    <plurals name="tones">
+        <item quantity="one">%s tone</item>
+        <item quantity="other">%s tones</item>
+    </plurals>
 
 </resources>
