@@ -46,19 +46,22 @@ import com.dosei.music.scoreconverter.main.Feature
 import com.dosei.music.scoreconverter.main.toNote
 import com.dosei.music.scoreconverter.toolbox.AdvertView
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
+import com.dosei.music.scoreconverter.ui.view.MenuButton
 import kotlinx.coroutines.launch
 
 @Composable
 fun ScoreToTablatureScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onMenuClick: () -> Unit
 ) {
-    ScoreToTablatureContent(modifier)
+    ScoreToTablatureContent(modifier, onMenuClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScoreToTablatureContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onMenuClick: () -> Unit
 ) {
     val guitar = Guitar.default()
     var currentNote by remember { mutableStateOf(ScoreNote.E2) }
@@ -70,6 +73,7 @@ fun ScoreToTablatureContent(
     Scaffold(
         topBar = {
             TopAppBar(
+                navigationIcon = { MenuButton(onClick = onMenuClick) },
                 title = { Text(stringResource(id = Feature.ScoreToTablature.nameRes)) },
                 actions = {
                     RichTooltipBox(
@@ -173,7 +177,7 @@ private fun PreviewComposableConverter() {
     AppTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
             ScoreToTablatureContent(
-                modifier = Modifier
+                modifier = Modifier, {}
             )
         }
     }

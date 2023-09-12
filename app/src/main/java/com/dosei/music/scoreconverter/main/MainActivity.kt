@@ -36,6 +36,7 @@ import com.dosei.music.scoreconverter.toolbox.goToPlayStore
 import com.dosei.music.scoreconverter.toolbox.sendEmail
 import com.dosei.music.scoreconverter.toolbox.shareText
 import com.dosei.music.scoreconverter.feature.chords.transposer.TransposerScreen
+import com.dosei.music.scoreconverter.navigation.Navigation
 import com.dosei.music.scoreconverter.ui.theme.AppTheme
 import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.launch
@@ -109,39 +110,9 @@ class MainActivity : AppCompatActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainContent() {
-    val selectedFeature = remember { mutableStateOf(Feature.ScoreToTablature) }
-    val scope = rememberCoroutineScope()
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-    val features = Feature.values().toList()
-
     AppTheme {
         Surface {
-            ModalNavigationDrawer(
-                drawerState = drawerState,
-                drawerContent = {
-                    ModalDrawerSheet {
-                        Spacer(Modifier.height(12.dp))
-                        features.forEach { item ->
-                            NavigationDrawerItem(
-                                modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
-                                label = { Text(stringResource(item.nameRes)) },
-                                selected = item == selectedFeature.value,
-                                onClick = {
-                                    scope.launch { drawerState.close() }
-                                    selectedFeature.value = item
-                                },
-                            )
-                        }
-                    }
-                }
-            ) {
-                val modifier = Modifier.fillMaxSize()
-                when (selectedFeature.value) {
-                    Feature.ScoreToTablature -> ScoreToTablatureScreen(modifier = modifier)
-                    Feature.ChordsDictionary -> ChordsDictionaryScreen(modifier = modifier)
-                    Feature.Transposer -> TransposerScreen(modifier = modifier)
-                }
-            }
+            Navigation()
         }
     }
 }
