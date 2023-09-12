@@ -2,8 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Minuet" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="statusBarBackground">#ff001064</item>
-        <item name="android:statusBarColor">?attr/statusBarBackground</item>
     </style>
 
     <style name="Minuet.ImageButton" parent="Widget.AppCompat.ImageButton">
