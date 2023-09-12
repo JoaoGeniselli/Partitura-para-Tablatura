@@ -30,7 +30,7 @@
     <string name="menu_item_chords_dictionary">Dicionário de Acordes</string>
     <string name="menu_item_transposer">Transpositor de Cifras</string>
 
-    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">"G        D7        G\nAdicione sua cifra aqui!!"</string>
+    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">"D7           C7      G7\nAdicione sua cifra aqui!!"</string>
     <string name="transposer_remove_semitone_button">Botão remover semitom</string>
     <string name="transposer_add_semitone_button">Botão adicionar semitom</string>
     <string name="transposer_transpose_button">Transpor</string>
