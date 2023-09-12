@@ -113,7 +113,10 @@ private fun Search(query: String, onChangeQuery: (String) -> Unit) {
     ) {
         history.reversed().forEach { historyItem ->
             ListItem(
-                modifier = Modifier.clickable { onChangeQuery(historyItem) },
+                modifier = Modifier.clickable {
+                    onChangeQuery(historyItem)
+                    isSearchActive = false
+                },
                 leadingContent = {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_history_24),
