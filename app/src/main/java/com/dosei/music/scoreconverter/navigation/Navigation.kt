@@ -15,7 +15,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dosei.music.scoreconverter.feature.chords.dictionary.ChordsDictionaryScreen
 import com.dosei.music.scoreconverter.feature.chords.transposer.TransposerScreen
-import com.dosei.music.scoreconverter.feature.converter.tablature.ScoreToTablatureContent
 import com.dosei.music.scoreconverter.feature.converter.tablature.ScoreToTablatureScreen
 import com.dosei.music.scoreconverter.feature.home.HomeScreen
 import com.dosei.music.scoreconverter.main.Feature
