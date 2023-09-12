@@ -140,7 +140,6 @@ fun MainContent() {
                     Feature.ScoreToTablature -> ScoreToTablatureScreen(modifier = modifier)
                     Feature.ChordsDictionary -> ChordsDictionaryScreen(modifier = modifier)
                     Feature.Transposer -> TransposerScreen(modifier = modifier)
-                    Feature.ScoreToGuitarNeck -> Unit
                 }
             }
         }
