@@ -65,7 +65,8 @@ fun AppDrawer(
                     text = buildString {
                         append("v")
                         append(BuildConfig.VERSION_NAME)
-                    }
+                    },
+                    style = MaterialTheme.typography.labelMedium
                 )
                 Spacer(Modifier.height(16.dp))
             }
