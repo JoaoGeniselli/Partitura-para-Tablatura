@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/player" />
             <option value="$PROJECT_DIR$/ui" />
-            <option value="$PROJECT_DIR$/uitest" />
           </set>
         </option>
       </GradleProjectSettings>
