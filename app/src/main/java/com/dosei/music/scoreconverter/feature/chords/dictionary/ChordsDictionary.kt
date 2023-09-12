@@ -1,5 +1,6 @@
 package com.dosei.music.scoreconverter.feature.chords.dictionary
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -16,7 +17,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -34,12 +34,10 @@ import com.dosei.music.arpeggio.ChordDiagram
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.feature.chords.dictionary.data.Chords
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChordsDictionary(modifier: Modifier = Modifier) {
     var searchQuery by remember { mutableStateOf("") }
     val chords = remember { Chords.all }
-    var isSearchActive by remember { mutableStateOf(false) }
     val filteredChords by remember(chords, searchQuery) {
         derivedStateOf {
             if (searchQuery.isEmpty()) {
@@ -113,21 +111,22 @@ private fun Search(query: String, onChangeQuery: (String) -> Unit) {
         placeholder = { Text(stringResource(R.string.search_chords)) },
         windowInsets = WindowInsets(top = 8.dp)
     ) {
-        history.reversed().forEach {
+        history.reversed().forEach { historyItem ->
             ListItem(
+                modifier = Modifier.clickable { onChangeQuery(historyItem) },
                 leadingContent = {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_history_24),
                         contentDescription = stringResource(R.string.history_item)
                     )
                 },
-                headlineContent = { Text(text = it) }
+                headlineContent = { Text(text = historyItem) }
             )
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, locale = "pt-rBR")
 @Composable
 private fun PreviewChordsDictionary() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
