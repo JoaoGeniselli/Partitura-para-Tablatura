@@ -17,11 +17,6 @@
             android:value="@string/admob_application_id" />
 
         <activity
-            android:name=".feature.about.AboutActivity"
-            android:exported="false"
-            android:label="@string/about_activity_title" />
-
-        <activity
             android:name="com.dosei.music.scoreconverter.main.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
