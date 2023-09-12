@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,9 +32,10 @@ import androidx.compose.ui.unit.dp
 import com.dosei.music.arpeggio.ChordDiagram
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.feature.chords.dictionary.data.Chords
+import com.dosei.music.scoreconverter.ui.view.MenuButton
 
 @Composable
-fun ChordsDictionaryScreen(modifier: Modifier = Modifier) {
+fun ChordsDictionaryScreen(modifier: Modifier = Modifier, onMenuClick: () -> Unit) {
     var searchQuery by remember { mutableStateOf("") }
     val chords = remember { Chords.all }
     val filteredChords by remember(chords, searchQuery) {
@@ -52,7 +52,7 @@ fun ChordsDictionaryScreen(modifier: Modifier = Modifier) {
         contentWindowInsets = WindowInsets(8.dp, 16.dp, 8.dp, 16.dp)
     ) { padding ->
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Search(searchQuery) { searchQuery = it }
+            Search(searchQuery, onMenuClick) { searchQuery = it }
             Spacer(modifier = Modifier.height(8.dp))
             GuitarThumbnailTheme {
                 LazyVerticalGrid(
@@ -79,17 +79,16 @@ fun ChordsDictionaryScreen(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Search(query: String, onChangeQuery: (String) -> Unit) {
+private fun Search(
+    query: String,
+    onMenuClick: () -> Unit,
+    onChangeQuery: (String) -> Unit
+) {
     var isSearchActive by remember { mutableStateOf(false) }
     val history = remember { mutableListOf<String>() }
     SearchBar(
         modifier = Modifier,
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = stringResource(R.string.action_search)
-            )
-        },
+        leadingIcon = { MenuButton(onClick = onMenuClick) },
         trailingIcon = if (query.isNotEmpty()) {
             {
                 IconButton(onClick = { onChangeQuery("") }) {
@@ -134,7 +133,7 @@ private fun Search(query: String, onChangeQuery: (String) -> Unit) {
 private fun PreviewChordsDictionary() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
         ChordsDictionaryScreen(
-            modifier = Modifier
+            modifier = Modifier, {}
         )
     }
 }

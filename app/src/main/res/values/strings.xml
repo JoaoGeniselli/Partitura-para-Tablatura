@@ -31,8 +31,7 @@
     <string name="menu_item_chords_dictionary">Chords Dictionary</string>
     <string name="menu_item_transposer">Chords Tranposer</string>
 
-    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">"D7                C7   G7\nPlace your lyrics like this!"
-    </string>
+    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">"D7                C7   G7\nPlace your lyrics like this!"</string>
     <string name="transposer_remove_semitone_button">Remove semitone button</string>
     <string name="transposer_add_semitone_button">Add semitone button</string>
     <string name="transposer_transpose_button">Transpose</string>

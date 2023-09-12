@@ -31,11 +31,13 @@ import androidx.compose.ui.unit.dp
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.main.Feature
 import com.dosei.music.scoreconverter.toolbox.AdvertView
+import com.dosei.music.scoreconverter.ui.view.MenuButton
 import org.koin.java.KoinJavaComponent.get
 
 @Composable
 fun TransposerScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onMenuClick: () -> Unit
 ) {
     val viewModel: TransposerViewModel = get(TransposerViewModel::class.java)
     val song = remember { mutableStateOf(TextFieldValue("")) }
@@ -56,7 +58,8 @@ fun TransposerScreen(
             val transposed = viewModel.onTranspose(song.value.annotatedString, semitones.value)
             song.value = song.value.copy(annotatedString = transposed)
             semitones.value = 0
-        }
+        },
+        onMenuClick = onMenuClick
     )
 }
 
@@ -71,10 +74,14 @@ fun TransposerScreenContent(
     onBeautify: () -> Unit,
     onCopy: () -> Unit,
     onTranspose: () -> Unit,
+    onMenuClick: () -> Unit
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = stringResource(id = Feature.Transposer.nameRes)) })
+            TopAppBar(
+                navigationIcon = { MenuButton(onClick = onMenuClick) },
+                title = { Text(text = stringResource(id = Feature.Transposer.nameRes)) }
+            )
         },
         contentWindowInsets = WindowInsets(16.dp, 16.dp, 16.dp, 16.dp),
         bottomBar = {
@@ -146,7 +153,8 @@ private fun PreviewTransposer() {
             onRemoveSemitone = {},
             onBeautify = {},
             onCopy = {},
-            onTranspose = {}
+            onTranspose = {},
+            onMenuClick = {}
         )
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".ScoreConverterApplication"
+        android:name=".GuitarKitApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,11 +15,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_application_id" />
-
-        <activity
-            android:name=".feature.about.AboutActivity"
-            android:exported="false"
-            android:label="@string/about_activity_title" />
 
         <activity
             android:name="com.dosei.music.scoreconverter.main.MainActivity"

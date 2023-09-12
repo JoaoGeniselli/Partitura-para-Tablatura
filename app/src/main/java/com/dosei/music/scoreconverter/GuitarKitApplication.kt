@@ -6,13 +6,12 @@ import com.google.android.gms.ads.MobileAds
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class ScoreConverterApplication : Application() {
+class GuitarKitApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        AppContext = this
         startKoin {
-            androidContext(this@ScoreConverterApplication)
+            androidContext(this@GuitarKitApplication)
             modules(DependencyInjection.module)
         }
         MobileAds.initialize(this) { }
