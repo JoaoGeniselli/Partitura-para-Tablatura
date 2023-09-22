@@ -3,6 +3,7 @@ package com.dosei.music.scoreconverter.feature.chords.dictionary.data
 import androidx.compose.ui.text.AnnotatedString
 import com.dosei.music.arpeggio.Barre
 import com.dosei.music.arpeggio.Finger
+import com.dosei.music.arpeggio.OpenString
 import com.dosei.music.arpeggio.Position
 
 class ChordParser {
@@ -11,26 +12,29 @@ class ChordParser {
         val split = pattern.split(GROUP_DELIMITER)
         val name = split.getOrNull(SLOT_NAME).orEmpty()
 
-        val positions = split.subList(SLOT_FIRST_POSITION, split.lastIndex)
+        val positions = split.subList(SLOT_FIRST_POSITION, split.size)
             .mapNotNull { parseGroup(it) }
-            .sortedBy { it.fret }
 
-        val positionsWithBarres = positions.groupBy { it.finger }.map { positionsByFinger ->
-            when {
-                positionsByFinger.key == null -> positionsByFinger.value
-                positionsByFinger.value.size == 1 -> positionsByFinger.value
-                else -> {
-                    val minString = positionsByFinger.value.minOf { it.string }
-                    val maxString = positionsByFinger.value.maxOf { it.string }
-                    val barre = Barre(
-                        fret = positionsByFinger.value.first().fret,
-                        strings = minString..maxString,
-                        finger = positionsByFinger.key
-                    )
-                    listOf(barre)
+        val positionsWithBarres = positions
+            .groupBy { (it as? Position)?.finger }
+            .map { (finger, positions) ->
+                when {
+                    finger == null -> positions
+                    positions.size == 1 -> positions
+                    else -> {
+                        val minString = positions.minOf { it.string }
+                        val maxString = positions.maxOf { it.string }
+                        val barre = Barre(
+                            fret = positions.first().fret,
+                            strings = minString..maxString,
+                            finger = finger
+                        )
+                        listOf(barre)
+                    }
                 }
             }
-        }.flatten()
+            .flatten()
+            .map { if (it is Position && it.fret == 0) OpenString(it.string) else it }
 
         return Chord(AnnotatedString(name), positionsWithBarres)
     }
@@ -42,29 +46,27 @@ class ChordParser {
                 Position(
                     fret = values[SLOT_POSITION_FRET].toInt(),
                     string = values[SLOT_POSITION_STRING].toInt(),
-                    finger = values[SLOT_POSITION_FINGER].let { fingerId ->
-                        when (fingerId) {
-                            FINGER_INDEX -> Finger.Index
-                            FINGER_MIDDLE -> Finger.Middle
-                            FINGER_RING -> Finger.Ring
-                            FINGER_PINKY -> Finger.Pinky
-                            else -> null
-                        }
-                    }
+                    finger = values[SLOT_POSITION_FINGER].toFinger()
                 )
             }
-
             REGEX_POSITION.matches(group) -> {
-                val values = group.split(VALUE_DELIMITER).map { it.toInt() }
+                val values = group.split(VALUE_DELIMITER)
                 Position(
-                    string = values[SLOT_POSITION_STRING],
-                    fret = values[SLOT_POSITION_FRET],
+                    fret = values[SLOT_POSITION_FRET].toInt(),
+                    string = values[SLOT_POSITION_STRING].toInt(),
                     finger = null
                 )
             }
-
             else -> null
         }
+    }
+
+    private fun String.toFinger() = when (this) {
+        FINGER_INDEX -> Finger.Index
+        FINGER_MIDDLE -> Finger.Middle
+        FINGER_RING -> Finger.Ring
+        FINGER_PINKY -> Finger.Pinky
+        else -> null
     }
 
     companion object {
