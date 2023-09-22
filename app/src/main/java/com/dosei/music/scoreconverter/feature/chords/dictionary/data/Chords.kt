@@ -3,6 +3,7 @@ package com.dosei.music.scoreconverter.feature.chords.dictionary.data
 import androidx.compose.ui.text.AnnotatedString
 import com.dosei.music.arpeggio.Barre
 import com.dosei.music.arpeggio.Component
+import com.dosei.music.arpeggio.OpenString
 import com.dosei.music.arpeggio.Position
 import com.dosei.music.scoreconverter.feature.chords.dictionary.Shapes
 import com.dosei.music.scoreconverter.feature.chords.dictionary.i
