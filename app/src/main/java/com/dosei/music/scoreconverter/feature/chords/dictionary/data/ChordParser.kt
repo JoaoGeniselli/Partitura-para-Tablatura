@@ -2,9 +2,7 @@ package com.dosei.music.scoreconverter.feature.chords.dictionary.data
 
 import androidx.compose.ui.text.AnnotatedString
 import com.dosei.music.arpeggio.Barre
-import com.dosei.music.arpeggio.Component
 import com.dosei.music.arpeggio.Finger
-import com.dosei.music.arpeggio.OpenString
 import com.dosei.music.arpeggio.Position
 
 class ChordParser {
@@ -13,43 +11,55 @@ class ChordParser {
         val split = pattern.split(GROUP_DELIMITER)
         val name = split.getOrNull(SLOT_NAME).orEmpty()
 
-        val fingerSettings = listOfNotNull(
-            split.getOrNull(SLOT_FINGER_INDEX)?.let { parseGroup(it, Finger.Index) },
-            split.getOrNull(SLOT_FINGER_MIDDLE)?.let { parseGroup(it, Finger.Middle) },
-            split.getOrNull(SLOT_FINGER_RING)?.let { parseGroup(it, Finger.Ring) },
-            split.getOrNull(SLOT_FINGER_PINKY)?.let { parseGroup(it, Finger.Pinky) },
-        )
+        val positions = split.subList(SLOT_FIRST_POSITION, split.lastIndex)
+            .mapNotNull { parseGroup(it) }
+            .sortedBy { it.fret }
 
-        val openStrings = (SLOT_OPEN_STRINGS..split.lastIndex).mapNotNull {
-            parseGroup(split[it], null)
-        }
+        val positionsWithBarres = positions.groupBy { it.finger }.map { positionsByFinger ->
+            when {
+                positionsByFinger.key == null -> positionsByFinger.value
+                positionsByFinger.value.size == 1 -> positionsByFinger.value
+                else -> {
+                    val minString = positionsByFinger.value.minOf { it.string }
+                    val maxString = positionsByFinger.value.maxOf { it.string }
+                    val barre = Barre(
+                        fret = positionsByFinger.value.first().fret,
+                        strings = minString..maxString,
+                        finger = positionsByFinger.key
+                    )
+                    listOf(barre)
+                }
+            }
+        }.flatten()
 
-        return Chord(AnnotatedString(name), fingerSettings + openStrings)
+        return Chord(AnnotatedString(name), positionsWithBarres)
     }
 
-    private fun parseGroup(group: String, finger: Finger?): Component? {
+    private fun parseGroup(group: String): Position? {
         return when {
-            REGEX_BARRE.matches(group) -> {
-                val values = group.split(VALUE_DELIMITER).map { it.toInt() }
-                Barre(
-                    strings = values[SLOT_BARRE_START]..values[SLOT_BARRE_END],
-                    fret = values[SLOT_BARRE_FRET],
-                    finger = finger
+            REGEX_POSITION_WITH_FINGER.matches(group) -> {
+                val values = group.split(VALUE_DELIMITER)
+                Position(
+                    fret = values[SLOT_POSITION_FRET].toInt(),
+                    string = values[SLOT_POSITION_STRING].toInt(),
+                    finger = values[SLOT_POSITION_FINGER].let { fingerId ->
+                        when (fingerId) {
+                            FINGER_INDEX -> Finger.Index
+                            FINGER_MIDDLE -> Finger.Middle
+                            FINGER_RING -> Finger.Ring
+                            FINGER_PINKY -> Finger.Pinky
+                            else -> null
+                        }
+                    }
                 )
             }
 
             REGEX_POSITION.matches(group) -> {
-                val values = group.split("-").map { it.toInt() }
+                val values = group.split(VALUE_DELIMITER).map { it.toInt() }
                 Position(
                     string = values[SLOT_POSITION_STRING],
                     fret = values[SLOT_POSITION_FRET],
-                    finger = finger
-                )
-            }
-
-            REGEX_OPEN_STRING.matches(group) -> {
-                OpenString(
-                    string = group.toInt(),
+                    finger = null
                 )
             }
 
@@ -59,24 +69,21 @@ class ChordParser {
 
     companion object {
         const val GROUP_DELIMITER: String = ","
-        const val VALUE_DELIMITER: String = "-"
+        const val VALUE_DELIMITER: String = "."
 
         private const val SLOT_NAME = 0
-        private const val SLOT_FINGER_INDEX = 1
-        private const val SLOT_FINGER_MIDDLE = 2
-        private const val SLOT_FINGER_RING = 3
-        private const val SLOT_FINGER_PINKY = 4
-        private const val SLOT_OPEN_STRINGS = 5
+        private const val SLOT_FIRST_POSITION = 1
 
-        private const val SLOT_BARRE_START = 0
-        private const val SLOT_BARRE_END = 1
-        private const val SLOT_BARRE_FRET = 2
+        private const val FINGER_INDEX = "i"
+        private const val FINGER_MIDDLE = "m"
+        private const val FINGER_RING = "r"
+        private const val FINGER_PINKY = "p"
 
         private const val SLOT_POSITION_STRING = 0
         private const val SLOT_POSITION_FRET = 1
+        private const val SLOT_POSITION_FINGER = 2
 
-        private val REGEX_BARRE = "\\d-\\d-\\d".toRegex()
-        private val REGEX_POSITION = "\\d-\\d".toRegex()
-        private val REGEX_OPEN_STRING = "\\d".toRegex()
+        private val REGEX_POSITION_WITH_FINGER = "\\d\\.\\d\\.[irpm]".toRegex()
+        private val REGEX_POSITION = "\\d\\.\\d".toRegex()
     }
 }
