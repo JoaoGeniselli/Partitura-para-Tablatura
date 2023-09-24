@@ -34,6 +34,7 @@ android {
             resValue("string", "admob_application_id", secrets.getString(SecretsKeys.adMobAppId))
             resValue("string", "admob_home_banner_id", BuildConstants.adMobFakeBannerId)
             resValue("string", "admob_transposer_banner_id", BuildConstants.adMobFakeBannerId)
+            resValue("string", "admob_dictionary_banner_id", BuildConstants.adMobFakeBannerId)
         }
         getByName("release") {
             isMinifyEnabled = true
@@ -56,6 +57,11 @@ android {
                 "string",
                 "admob_transposer_banner_id",
                 secrets.getString(SecretsKeys.adMobTransposerBannerId)
+            )
+            resValue(
+                "string",
+                "admob_dictionary_banner_id",
+                secrets.getString(SecretsKeys.adMobDictionaryBannerId)
             )
         }
     }
@@ -91,7 +97,9 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics.core)
 
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
+    implementation(libs.koin.compose)
     implementation(libs.play.services.ads)
     implementation(libs.android.material)
     implementation(libs.lifecycle.runtime)
