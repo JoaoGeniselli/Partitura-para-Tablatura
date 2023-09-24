@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import com.dosei.music.arpeggio.ChordDiagram
 import com.dosei.music.scoreconverter.R
 import com.dosei.music.scoreconverter.feature.chords.dictionary.data.Chords
+import com.dosei.music.scoreconverter.toolbox.AdvertView
 import com.dosei.music.scoreconverter.ui.view.MenuButton
 
 @Composable
@@ -65,7 +66,7 @@ private fun ChordsDictionaryContent(
             Spacer(modifier = Modifier.height(8.dp))
             GuitarThumbnailTheme {
                 LazyVerticalGrid(
-                    modifier = modifier.fillMaxSize(),
+                    modifier = modifier.weight(1f).fillMaxWidth(),
                     verticalArrangement = spacedBy(8.dp),
                     horizontalArrangement = spacedBy(8.dp),
                     columns = GridCells.Fixed(2),
@@ -82,6 +83,10 @@ private fun ChordsDictionaryContent(
                     }
                 }
             }
+            AdvertView(
+                modifier = Modifier.padding(16.dp),
+                unitId = R.string.admob_dictionary_banner_id
+            )
         }
     }
 }
@@ -145,7 +150,7 @@ private fun PreviewChordsDictionary() {
         ChordsDictionaryContent(
             modifier = Modifier,
             state = ChordsDictionaryState(
-                content = Chords.all.take(5)
+                content = Chords.all.take(7)
             ),
             {}, {}
         )
