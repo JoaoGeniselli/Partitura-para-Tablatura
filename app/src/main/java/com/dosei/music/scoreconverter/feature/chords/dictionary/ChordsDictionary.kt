@@ -17,7 +17,7 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,24 +35,33 @@ import com.dosei.music.scoreconverter.feature.chords.dictionary.data.Chords
 import com.dosei.music.scoreconverter.ui.view.MenuButton
 
 @Composable
-fun ChordsDictionaryScreen(modifier: Modifier = Modifier, onMenuClick: () -> Unit) {
-    var searchQuery by remember { mutableStateOf("") }
-    val chords = remember { Chords.all }
-    val filteredChords by remember(chords, searchQuery) {
-        derivedStateOf {
-            if (searchQuery.isEmpty()) {
-                chords
-            } else {
-                chords.filter { it.name.contains(searchQuery, ignoreCase = true) }
-            }
-        }
-    }
+fun ChordsDictionaryScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ChordsDictionaryViewModel,
+    onMenuClick: () -> Unit
+) {
+    val state by viewModel.state.collectAsState(initial = ChordsDictionaryState())
+    ChordsDictionaryContent(
+        modifier,
+        state,
+        viewModel::onSearch,
+        onMenuClick,
+    )
+}
+
+@Composable
+private fun ChordsDictionaryContent(
+    modifier: Modifier,
+    state: ChordsDictionaryState,
+    onSearch: (String) -> Unit,
+    onMenuClick: () -> Unit
+) {
     Scaffold(
         modifier = modifier,
         contentWindowInsets = WindowInsets(8.dp, 16.dp, 8.dp, 16.dp)
     ) { padding ->
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Search(searchQuery, onMenuClick) { searchQuery = it }
+            Search(onMenuClick, onSearch)
             Spacer(modifier = Modifier.height(8.dp))
             GuitarThumbnailTheme {
                 LazyVerticalGrid(
@@ -62,7 +71,7 @@ fun ChordsDictionaryScreen(modifier: Modifier = Modifier, onMenuClick: () -> Uni
                     columns = GridCells.Fixed(2),
                     contentPadding = padding
                 ) {
-                    items(filteredChords) { chord ->
+                    items(state.content) { chord ->
                         ChordDiagram(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -80,18 +89,18 @@ fun ChordsDictionaryScreen(modifier: Modifier = Modifier, onMenuClick: () -> Uni
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Search(
-    query: String,
     onMenuClick: () -> Unit,
-    onChangeQuery: (String) -> Unit
+    onSearch: (String) -> Unit
 ) {
-    var isSearchActive by remember { mutableStateOf(false) }
+    var query by remember { mutableStateOf("") }
     val history = remember { mutableListOf<String>() }
+    var isSearchActive by remember { mutableStateOf(false) }
     SearchBar(
         modifier = Modifier,
         leadingIcon = { MenuButton(onClick = onMenuClick) },
         trailingIcon = if (query.isNotEmpty()) {
             {
-                IconButton(onClick = { onChangeQuery("") }) {
+                IconButton(onClick = { onSearch("") }) {
                     Icon(
                         imageVector = Icons.Default.Clear,
                         contentDescription = "Clear"
@@ -100,8 +109,9 @@ private fun Search(
             }
         } else null,
         query = query,
-        onQueryChange = onChangeQuery,
+        onQueryChange = { query = it },
         onSearch = {
+            onSearch(it)
             isSearchActive = false
             history.add(it)
         },
@@ -113,7 +123,7 @@ private fun Search(
         history.reversed().forEach { historyItem ->
             ListItem(
                 modifier = Modifier.clickable {
-                    onChangeQuery(historyItem)
+                    query = historyItem
                     isSearchActive = false
                 },
                 leadingContent = {
@@ -132,8 +142,12 @@ private fun Search(
 @Composable
 private fun PreviewChordsDictionary() {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
-        ChordsDictionaryScreen(
-            modifier = Modifier, {}
+        ChordsDictionaryContent(
+            modifier = Modifier,
+            state = ChordsDictionaryState(
+                content = Chords.all.take(5)
+            ),
+            {}, {}
         )
     }
 }

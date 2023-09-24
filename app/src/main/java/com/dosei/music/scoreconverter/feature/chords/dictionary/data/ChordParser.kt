@@ -85,7 +85,7 @@ class ChordParser {
         private const val SLOT_POSITION_FRET = 1
         private const val SLOT_POSITION_FINGER = 2
 
-        private val REGEX_POSITION_WITH_FINGER = "\\d\\.\\d\\.[irpm]".toRegex()
-        private val REGEX_POSITION = "\\d\\.\\d".toRegex()
+        private val REGEX_POSITION_WITH_FINGER = "\\d+\\.\\d+\\.[imrp]".toRegex()
+        private val REGEX_POSITION = "\\d+\\.\\d+".toRegex()
     }
 }

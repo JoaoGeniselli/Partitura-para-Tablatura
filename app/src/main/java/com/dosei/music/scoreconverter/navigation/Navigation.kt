@@ -19,6 +19,7 @@ import com.dosei.music.scoreconverter.feature.converter.tablature.ScoreToTablatu
 import com.dosei.music.scoreconverter.feature.home.HomeScreen
 import com.dosei.music.scoreconverter.main.Feature
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun Navigation(modifier: Modifier = Modifier) {
@@ -69,6 +70,7 @@ private fun MainNavigation(navController: NavHostController) {
                 }
             ) {
                 ChordsDictionaryScreen(
+                    viewModel = koinViewModel(),
                     onMenuClick = { scope.launch { drawerState.open() } }
                 )
             }

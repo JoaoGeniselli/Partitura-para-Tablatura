@@ -91,7 +91,9 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics.core)
 
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
+    implementation(libs.koin.compose)
     implementation(libs.play.services.ads)
     implementation(libs.android.material)
     implementation(libs.lifecycle.runtime)
