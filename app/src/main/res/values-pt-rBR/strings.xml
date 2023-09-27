@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Partitura para Tablatura</string>
-    <string name="current_note">Nota: </string>
+    <string name="app_name">Kit Violão</string>
+    <string name="current_note">Nota selecionada: %s</string>
     <string name="score">Partitura</string>
     <string name="tablature">Tablatura</string>
 
@@ -18,21 +18,44 @@
     <string name="share_app_content">Olá! Dê uma olhada neste aplicativo incrível!\n\n%1s\n%2s</string>
     <string name="contact_chooser_title">Enviar e-mail para:</string>
     <string name="about_activity_title">Sobre o app</string>
-    <string name="about_content">Esta ferramenta foi feita com o objetivo de auxiliar estudantes de violão erudito na memorização das posições de notas de partitura no braço de um violão.\n\nSugestões são bem vindas!\nSe você tem alguma funcionalidade ou melhoria que gostaria de ver neste app, entre em contato conosco <a href="mailto:saturn.dev.app@gmail.com?Subject=Partitura%20para%20Tablatura">clicando aqui</a>.</string>
+    <string name="about_content">Esta ferramenta foi feita com o objetivo de auxiliar estudantes de violão na memorização das posições de notas de partitura no braço de um violão.\n\nSugestões são bem vindas!\nSe você tem alguma funcionalidade ou melhoria que gostaria de ver neste app, entre em contato conosco <a href="mailto:saturn.dev.app@gmail.com?Subject=Partitura%20para%20Tablatura">clicando aqui</a>.</string>
     <string name="version_name_label">Versão %s</string>
     <string name="sharp_button">Botão Sustenido</string>
     <string name="natural_button">Botão Natural</string>
     <string name="flat_button">Botão Bemol</string>
     <string name="menu">Menu</string>
-    <string name="menu_item_converter">Partitura para Tablatura</string>
-    <string name="menu_item_chords_dictionary">Dicionário de Acordes</string>
-    <string name="menu_item_transposer">Tranpositor de Cifras</string>
 
-    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">Sua cifra aqui...</string>
+    <string name="menu_item_converter">Partitura para Tablatura</string>
+    <string name="menu_item_converter_fretboard">Partitura para Posições no Braço</string>
+    <string name="menu_item_chords_dictionary">Dicionário de Acordes</string>
+    <string name="menu_item_transposer">Transpositor de Cifras</string>
+
+    <string name="transposer_your_chords_here" tools:ignore="TypographyEllipsis">"D7           C7      G7\nAdicione sua cifra aqui!!"</string>
     <string name="transposer_remove_semitone_button">Botão remover semitom</string>
     <string name="transposer_add_semitone_button">Botão adicionar semitom</string>
     <string name="transposer_transpose_button">Transpor</string>
     <string name="transposer_semitones_diff">semitons</string>
     <string name="transposer_copy_button">Botão copiar</string>
     <string name="transposer_beautify_button">Botão formatar</string>
+    <string name="features">Funcionalidades</string>
+    <string name="about">Sobre</string>
+    <string name="action_help">Ajuda</string>
+    <string name="understood">Entendi!</string>
+    <string name="action_search">Pesquisar</string>
+    <string name="search_chords">Pesquisar acordes</string>
+    <string name="history_item">Item do histórico</string>
+    <string name="action_transpose">Transpor cifra</string>
+    <string name="chords_lyrics">Cifra</string>
+
+    <string-array name="score_to_tablature_help">
+        <item>Selecione uma nota arrastando a partitura verticalmente</item>
+        <item>Altere para sustenido ou bemol clicando na partitura</item>
+        <item>Veja as posições da nota selecionada na tablatura</item>
+    </string-array>
+
+    <plurals name="tones">
+        <item quantity="one">%s tom</item>
+        <item quantity="other">%s tons</item>
+        <item quantity="many">%s tons</item>
+    </plurals>
 </resources>
